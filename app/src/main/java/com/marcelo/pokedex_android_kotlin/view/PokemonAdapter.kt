@@ -46,7 +46,7 @@ class PokemonAdapter(
 
                 txtId.text = "#${item.formattedNumber}"
                 txtName.text = item.name
-                txtType01.text = item.types[0].name
+                txtType01.text = item.types[0].name.capitalize()
 
                 when (item.types[0].name) {
                     "grass" -> {
@@ -225,7 +225,7 @@ class PokemonAdapter(
 
                 if (item.types.size > 1) {
                     txtType02.visibility = View.VISIBLE
-                    txtType02.text = item.types[1].name
+                    txtType02.text = item.types[1].name.capitalize()
 
                     when (item.types[1].name) {
                         "grass" -> {
