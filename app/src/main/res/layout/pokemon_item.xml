@@ -15,7 +15,7 @@
         android:background="#00e673">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgPokemon"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/pokemon_imagem"
