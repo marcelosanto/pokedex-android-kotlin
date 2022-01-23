@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/ic_bug.xml" value="0.3515625" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/ic_poison.xml" value="0.3515625" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/pokemon_item.xml" value="0.3515625" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/activity_main.xml" value="0.324577861163227" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/pokemon_item.xml" value="0.75" />
