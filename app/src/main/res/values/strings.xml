@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">pokedex-android-kotlin</string>
+    <string name="pok_dex">Pokédex</string>
+    <string name="what_pok_mon_are_you_looking_for">What Pokémon are you looking for?</string>
+    <string name="search_fo_pok_mon_by_name_or_using_the_national_pok_dex_number">Search fo Pokémon by name or using the National Pokédex number.</string>
+</resources>
