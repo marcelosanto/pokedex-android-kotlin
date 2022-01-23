@@ -37,13 +37,14 @@ class PokemonAdapter(
 
             // TODO: Load image with Glide
 
-            txtId.text = "#${item.number}"
+            txtId.text = "#${item.formattedNumber}"
             txtName.text = item.name
             txtType01.text = item.types[0].name
 
             if (item.types.size > 1) {
                 txtType02.visibility = View.VISIBLE
                 txtType02.text = item.types[1].name
+                //txtType02.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bug, 0, 0, 0)
             } else {
                 txtType02.visibility = View.GONE
             }
