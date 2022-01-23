@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="Pokemon imagem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bulbasaur" />
+
+    <TextView
+        android:id="@+id/txt_idNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        tools:text="#014"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_pokeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_idNumber"
+        tools:text="Bulbasaur" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pokeName">
+
+        <TextView
+            android:id="@+id/txt_type01"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:background="#FD7D24"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="87dp"
+            tools:text="Bug" />
+
+        <TextView
+            android:id="@+id/txt_type02"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="#FD7D24"
+            android:gravity="center_horizontal"
+            android:textColor="#FFFFFF"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="87dp"
+            tools:text="Poison" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
