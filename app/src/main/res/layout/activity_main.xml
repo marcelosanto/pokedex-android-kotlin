@@ -49,9 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="30dp"
         android:text="@string/pok_dex"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -60,23 +61,23 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/search_fo_pok_mon_by_name_or_using_the_national_pok_dex_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputSearch"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:drawableLeft="@drawable/ic_search"
+        android:layout_margin="20dp"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="10dp"
         android:hint="@string/what_pok_mon_are_you_looking_for"
         app:layout_constraintBottom_toTopOf="@+id/rvPokemons"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:background="@drawable/shape_edittext" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPokemons"
