@@ -1,5 +1,6 @@
 package com.marcelo.pokedex_android_kotlin.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModelFactory
 
@@ -33,9 +35,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadRecyclerView(pokemons: List<Pokemon?>) {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = PokemonAdapter(pokemons)
+
+        var adapter = PokemonAdapter(pokemons)
+        recyclerView.adapter = adapter
+
+        adapter.setOnItemClickListener(object : PokemonAdapter.onItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(this@MainActivity, PokemonActivity::class.java)
+                val poke = PokemonModel(
+                    pokemons[position]!!.id,
+                    pokemons[position]!!.name,
+                    pokemons[position]!!.imageUrl,
+                    pokemons[position]!!.types
+                )
+                intent.putExtra("pokemon", poke)
+                startActivity(intent)
+            }
+        })
+
     }
 
-    
+
 }
 

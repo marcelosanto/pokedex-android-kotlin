@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedexandroidkotlin">
         <activity
+            android:name=".view.PokemonActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
