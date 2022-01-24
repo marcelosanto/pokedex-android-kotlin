@@ -8,22 +8,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.model.PokemonModel
 import java.util.*
 
 class PokemonActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_pokemon)
+
+        setupViews()
 
         val imagemView: ImageView = findViewById(R.id.imageView)
         val pokemonId: TextView = findViewById(R.id.txt_pokemonId)
         val pokemonName: TextView = findViewById(R.id.txt_pokemonName)
         val pokemonType01: TextView = findViewById(R.id.txt_pokemonType01)
         val pokemonType02: TextView = findViewById(R.id.txt_pokemonType02)
-        val constraintLayout = findViewById<ConstraintLayout>(R.id.pokemonConstrain);
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.pokemonConstrain)
 
 
         val pokemon = intent.getParcelableExtra<PokemonModel>("pokemon")
@@ -50,6 +60,18 @@ class PokemonActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun setupViews() {
+        val tabLayout: TabLayout = findViewById(R.id.add_tab)
+        val viewPager: ViewPager2 = findViewById(R.id.add_viewpager)
+        val adapter = TabViewPagerAdapter(this)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            //val tabs = arrayOf("About", "Stats", "Evolution")
+            tab.text = getString(adapter.tabs[position])
+        }.attach()
     }
 
     fun captalizerText(text: String) = text.replaceFirstChar {
@@ -241,3 +263,19 @@ class PokemonActivity : AppCompatActivity() {
         }
     }
 }
+
+class TabViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+    val tabs = arrayOf(R.string.about, R.string.stats, R.string.evolution)
+    val fragments = arrayOf(
+        PokemonAboutFragment(),
+        StatsFragment(),
+        EvolutionFragment()
+    )
+
+    override fun getItemCount() = fragments.size
+
+    override fun createFragment(position: Int): Fragment {
+        return fragments[position]
+    }
+}
+

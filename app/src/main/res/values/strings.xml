@@ -4,4 +4,9 @@
     <string name="what_pok_mon_are_you_looking_for">What Pokémon are you looking for?</string>
     <string name="search_fo_pok_mon_by_name_or_using_the_national_pok_dex_number">Search fo Pokémon by name or using the National Pokédex number.</string>
     <string name="pokemon_imagem">Pokemon imagem</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">About</string>
+    <string name="stats">Stats</string>
+    <string name="evolution">Evolution</string>
 </resources>
