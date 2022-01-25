@@ -26,6 +26,10 @@ class PokemonActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_pokemon)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar2)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         setupViews()
 
         val imagemView: ImageView = findViewById(R.id.imageView)
