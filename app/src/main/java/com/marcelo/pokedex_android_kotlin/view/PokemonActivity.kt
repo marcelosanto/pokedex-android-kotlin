@@ -2,11 +2,11 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -26,9 +26,11 @@ class PokemonActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_pokemon)
 
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar2)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar2)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
+
 
         setupViews()
 
@@ -42,7 +44,6 @@ class PokemonActivity : AppCompatActivity() {
 
         val pokemon = intent.getParcelableExtra<PokemonModel>("pokemon")
 
-        Log.e("POKEMON_ACTIVITY", "onCreate: $pokemon")
 
         pokemon?.let {
             Glide.with(this).load(pokemon.imageUrl).into(imagemView)
@@ -73,8 +74,8 @@ class PokemonActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            //val tabs = arrayOf("About", "Stats", "Evolution")
             tab.text = getString(adapter.tabs[position])
+
         }.attach()
     }
 
@@ -276,10 +277,14 @@ class TabViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         EvolutionFragment()
     )
 
+
     override fun getItemCount() = fragments.size
 
     override fun createFragment(position: Int): Fragment {
+
         return fragments[position]
     }
+
+
 }
 

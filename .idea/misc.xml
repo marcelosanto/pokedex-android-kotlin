@@ -15,10 +15,11 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/pokemon_item.xml" value="0.3515625" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/shape_edittext.xml" value="0.2537037037037037" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/tab_indicator_background.xml" value="0.18" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/font/sfpro.xml" value="0.14814814814814814" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/activity_pokemon.xml" value="0.1" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/activity_pokemon.xml" value="0.25" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_evolution.xml" value="0.1" />
-        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_pokemon_about.xml" value="0.67" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_pokemon_about.xml" value="0.5573997233748271" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_stats.xml" value="0.1" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/pokemon_item.xml" value="0.40414507772020725" />
       </map>

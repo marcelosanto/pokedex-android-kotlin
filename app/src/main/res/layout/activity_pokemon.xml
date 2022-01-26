@@ -34,7 +34,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/bulbasaur" />
+            app:srcCompat="@drawable/bulbasaur"
+            android:contentDescription="TODO" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
                 android:layout_marginTop="20dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/sf_pro_display_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="#014" />
@@ -62,6 +64,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/sf_pro_display_medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_idNumber"
                 tools:text="Bulbasaur" />
@@ -87,6 +90,7 @@
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
+                    android:fontFamily="@font/sf_pro_display_regular"
                     tools:layout_editor_absoluteX="45dp"
                     tools:layout_editor_absoluteY="87dp"
                     tools:text="Bug" />
@@ -104,6 +108,7 @@
                     android:paddingRight="8dp"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
+                    android:fontFamily="@font/sf_pro_display_regular"
                     tools:layout_editor_absoluteX="117dp"
                     tools:layout_editor_absoluteY="87dp"
                     tools:text="Poison" />
@@ -124,18 +129,19 @@
             android:id="@+id/add_tab"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#00000000"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="#00000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tabIndicator="@drawable/ic_pokeball"
-            app:tabIndicatorGravity="top"
-            android:layout_gravity="center"
             app:tabIndicatorColor="#33FFFFFF"
+            app:tabIndicatorGravity="top"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white"
             app:tabTextAppearance="@style/MyPokemonTabLayoutAppearance"
-            app:tabTextColor="@color/lt_gray" />
+            app:tabTextColor="@color/lt_gray"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/add_viewpager"
