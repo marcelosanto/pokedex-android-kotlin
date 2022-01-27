@@ -22,7 +22,7 @@ class PokemonAboutFragment : Fragment() {
 
         val bundle = arguments
         val message = bundle!!.getParcelable<PokemonModel>("message")
-        Log.i("TAG", "About: ${message?.name}")
+        Log.i("TAG", "About: ${message}")
 
         return inflater.inflate(R.layout.fragment_pokemon_about, container, false)
     }

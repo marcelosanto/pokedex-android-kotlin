@@ -46,8 +46,13 @@ class MainActivity : AppCompatActivity() {
                     pokemons[position]!!.id,
                     pokemons[position]!!.name,
                     pokemons[position]!!.imageUrl,
-                    pokemons[position]!!.types
-                )
+                    pokemons[position]!!.types,
+                    pokemons[position]!!.weight,
+                    pokemons[position]!!.height,
+                    pokemons[position]!!.base_experience,
+                    pokemons[position]!!.abilities,
+
+                    )
                 intent.putExtra("pokemon", poke)
                 startActivity(intent)
             }
