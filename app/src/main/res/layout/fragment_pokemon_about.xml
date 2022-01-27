@@ -71,6 +71,7 @@
                     android:text="Height" />
 
                 <TextView
+                    android:id="@+id/txt_height"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -90,10 +91,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/sf_pro_display_bold"
-
                     android:text="Weight" />
 
                 <TextView
+                    android:id="@+id/txt_weight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,6 +116,7 @@
                     android:text="Abilities" />
 
                 <TextView
+                    android:id="@+id/txt_abilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -275,6 +277,7 @@
                         android:text="Base Exp" />
 
                     <TextView
+                        android:id="@+id/txt_base_exp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
