@@ -2,6 +2,7 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,6 +19,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.model.PokemonModel
 import java.util.*
+
+var poke: Parcelable? = null
 
 class PokemonActivity : AppCompatActivity() {
 
@@ -44,6 +47,7 @@ class PokemonActivity : AppCompatActivity() {
 
         val pokemon = intent.getParcelableExtra<PokemonModel>("pokemon")
 
+        poke = pokemon
 
         pokemon?.let {
             Glide.with(this).load(pokemon.imageUrl).into(imagemView)
@@ -75,8 +79,9 @@ class PokemonActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(adapter.tabs[position])
-
         }.attach()
+
+
     }
 
     fun captalizerText(text: String) = text.replaceFirstChar {
@@ -281,6 +286,10 @@ class TabViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun getItemCount() = fragments.size
 
     override fun createFragment(position: Int): Fragment {
+        val bundle = Bundle()
+        bundle.putParcelable("message", poke)
+        
+        fragments[position].arguments = bundle
 
         return fragments[position]
     }
