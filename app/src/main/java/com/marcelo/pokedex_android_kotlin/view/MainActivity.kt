@@ -2,6 +2,7 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object : PokemonAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(this@MainActivity, PokemonActivity::class.java)
+
                 val poke = PokemonModel(
                     pokemons[position]!!.id,
                     pokemons[position]!!.name,
@@ -51,9 +53,10 @@ class MainActivity : AppCompatActivity() {
                     pokemons[position]!!.height,
                     pokemons[position]!!.base_experience,
                     pokemons[position]!!.abilities,
-
-                    )
+                    pokemons[position]!!.species
+                )
                 intent.putExtra("pokemon", poke)
+                Log.i("Species", "onItemClick: $poke")
                 startActivity(intent)
             }
         })

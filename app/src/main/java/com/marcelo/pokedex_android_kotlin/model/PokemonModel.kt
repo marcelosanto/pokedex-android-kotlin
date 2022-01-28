@@ -15,4 +15,5 @@ data class PokemonModel(
     val height: String,
     val base_experience: String,
     val abilities: List<PokemonAbility>,
+    val species: String
 ) : Parcelable

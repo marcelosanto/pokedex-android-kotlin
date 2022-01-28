@@ -1,5 +1,6 @@
 package com.marcelo.pokedex_android_kotlin.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Parcelable
@@ -24,6 +25,7 @@ var poke: Parcelable? = null
 
 class PokemonActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -288,7 +290,7 @@ class TabViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         val bundle = Bundle()
         bundle.putParcelable("message", poke)
-        
+
         fragments[position].arguments = bundle
 
         return fragments[position]

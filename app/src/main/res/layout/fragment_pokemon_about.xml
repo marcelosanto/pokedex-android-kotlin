@@ -49,6 +49,7 @@
                     android:text="Species" />
 
                 <TextView
+                    android:id="@+id/txt_species"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_regular"
@@ -138,6 +139,7 @@
                     android:text="Weaknesses" />
 
                 <TextView
+                    android:id="@+id/txt_weakness0"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:background="@color/red"
@@ -146,15 +148,7 @@
                     android:paddingHorizontal="8dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/red"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
-                    android:paddingHorizontal="8dp" />
-
-                <TextView
+                    android:id="@+id/txt_weakness1"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
@@ -164,6 +158,7 @@
                     android:paddingHorizontal="8dp" />
 
                 <TextView
+                    android:id="@+id/txt_weakness2"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"
@@ -173,6 +168,17 @@
                     android:paddingHorizontal="8dp" />
 
                 <TextView
+                    android:id="@+id/txt_weakness3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/red"
+                    android:drawableStart="@drawable/ic_poison"
+                    android:drawableTint="@color/white"
+                    android:paddingHorizontal="8dp" />
+
+                <TextView
+                    android:id="@+id/txt_weakness4"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_marginLeft="10dp"

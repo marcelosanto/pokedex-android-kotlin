@@ -1,5 +1,6 @@
 package com.marcelo.pokedex_android_kotlin.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.marcelo.pokedex_android_kotlin.api.PokemonRepository
@@ -19,24 +20,30 @@ class PokemonViewModel : ViewModel() {
 
         pokemonsApiResult?.results?.let {
             pokemons.postValue(it.map { pokemonResult ->
-                val number = pokemonResult.url
+                val id = pokemonResult.url
                     .replace("https://pokeapi.co/api/v2/pokemon/", "")
                     .replace("/", "").toInt()
 
-                val pokemonApiResult = PokemonRepository.getPokemon(number)
+                val pokemonApiResult = PokemonRepository.getPokemon(id)
+                val pokemonSpecies = PokemonRepository.getPokemonSpecies(id)
+                var ss = pokemonSpecies?.genera!![7].genus.toString()
+                Log.w("EEEE", "loadPokemons: $ss")
 
                 pokemonApiResult?.let {
                     Pokemon(
                         pokemonApiResult.id,
                         pokemonApiResult.name,
-                        pokemonApiResult.height,
                         pokemonApiResult.weight,
+                        pokemonApiResult.height,
                         pokemonApiResult.base_experience,
-                        pokemonApiResult.abilities.map { ability -> ability.ability },
                         pokemonApiResult.types.map { type ->
                             type.type
-                        }
+                        },
+                        pokemonApiResult.abilities.map { ability -> ability.ability },
+                        "$ss"
+
                     )
+
                 }
             })
         }

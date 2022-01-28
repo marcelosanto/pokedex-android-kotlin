@@ -10,6 +10,7 @@ data class PokemonApiResult(
     val base_experience: String,
     val types: List<PokemonTypeSlot>,
     val abilities: List<PokemonAbilities>,
+    var species: PokemonSpecies
 )
 
 

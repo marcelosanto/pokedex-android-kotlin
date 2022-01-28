@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import java.util.*
 
 class PokemonAdapter(
     private val items: List<Pokemon?>
@@ -56,7 +57,7 @@ class PokemonAdapter(
             val txtName = findViewById<TextView>(R.id.txt_pokeName)
             val txtType01 = findViewById<TextView>(R.id.txt_type01)
             val txtType02 = findViewById<TextView>(R.id.txt_type02)
-            val constraintLayout = findViewById<ConstraintLayout>(R.id.constraintLayout);
+            val constraintLayout = findViewById<ConstraintLayout>(R.id.constraintLayout)
 
 
 
@@ -65,13 +66,21 @@ class PokemonAdapter(
 
                 txtId.text = "#${item.formattedNumber}"
                 txtName.text = item.name
-                txtType01.text = item.types[0].name.capitalize()
+                txtType01.text = item.types[0].name.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }
 
                 changeColorForBackandLabel(item.types[0].name, txtType01, constraintLayout)
 
                 if (item.types.size > 1) {
                     txtType02.visibility = View.VISIBLE
-                    txtType02.text = item.types[1].name.capitalize()
+                    txtType02.text = item.types[1].name.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(
+                            Locale.getDefault()
+                        ) else it.toString()
+                    }
 
                     changeColorForBackandLabel(item.types[1].name, txtType02)
                 } else {

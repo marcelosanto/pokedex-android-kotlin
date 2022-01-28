@@ -8,8 +8,9 @@ data class Pokemon(
     val weight: String,
     val height: String,
     val base_experience: String,
-    val abilities: List<PokemonAbility>,
     val types: List<PokemonType>,
+    val abilities: List<PokemonAbility>,
+    val species: String
 ) {
     val formattedNumber = id.toString().padStart(3, '0')
     val imageUrl =

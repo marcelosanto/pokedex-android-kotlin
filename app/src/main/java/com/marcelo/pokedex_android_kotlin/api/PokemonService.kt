@@ -1,6 +1,7 @@
 package com.marcelo.pokedex_android_kotlin.api
 
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonApiResult
+import com.marcelo.pokedex_android_kotlin.api.model.PokemonSpecies
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonsApiResult
 import retrofit2.Call
 import retrofit2.http.GET
@@ -13,4 +14,7 @@ interface PokemonService {
 
     @GET("pokemon/{id}")
     fun getPokemon(@Path("id") id: Int): Call<PokemonApiResult>
+
+    @GET("pokemon-species/{id}")
+    fun getPokemonSpecies(@Path("id") id: Int): Call<PokemonSpecies>
 }
