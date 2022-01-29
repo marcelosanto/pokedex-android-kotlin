@@ -14,31 +14,69 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtEvolution"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textSize="20sp"
-            android:text="Evolution Chart" />
+            android:text="Evolution Chart"
+            android:textSize="20sp" />
 
 
         <LinearLayout
-            android:layout_weight="1"
+            android:id="@+id/layoutPokemonNotEvolution"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imgPokemonNotEvolution"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/ic_pokeball"
+                android:backgroundTint="#E8E8E8"
+                android:src="@drawable/bulbasaur" />
+
+            <TextView
+                android:id="@+id/txtIdPokemonNotEvolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:text="#001" />
+
+            <TextView
+                android:id="@+id/txtNamePokemonNotEvolution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Bulbasaur"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/firstLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgEvoOne"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/ic_pokeball"
+                    android:backgroundTint="#E8E8E8"
                     android:src="@drawable/bulbasaur" />
 
                 <TextView
@@ -53,31 +91,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_bold"
-                    android:textSize="20sp"
-                    android:text="Bulbasaur" />
+                    android:text="Bulbasaur"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/txtEvoOneMinLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_24"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="(Level 16)"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_baseline_arrow_forward_24" />
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgEvoTwo"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/ic_pokeball"
+                    android:backgroundTint="#E8E8E8"
                     android:src="@drawable/bulbasaur" />
 
                 <TextView
@@ -92,29 +132,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_bold"
-                    android:textSize="20sp"
-                    android:text="Bulbasaur" />
+                    android:text="Bulbasaur"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
+            android:id="@+id/layoutThird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgEvoTwos"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/ic_pokeball"
+                    android:backgroundTint="#E8E8E8"
                     android:src="@drawable/bulbasaur" />
 
                 <TextView
@@ -129,31 +173,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_bold"
-                    android:textSize="20sp"
-                    android:text="Bulbasaur" />
+                    android:text="Bulbasaur"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/txtEvoThirdMinLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_baseline_arrow_forward_24"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="(Level 16)"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_baseline_arrow_forward_24" />
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgEvoThird"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/ic_pokeball"
+                    android:backgroundTint="#E8E8E8"
                     android:src="@drawable/bulbasaur" />
 
                 <TextView
@@ -168,8 +214,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_bold"
-                    android:textSize="20sp"
-                    android:text="Bulbasaur" />
+                    android:text="Bulbasaur"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
