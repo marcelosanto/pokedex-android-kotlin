@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
                     pokemons[position]!!.base_happiness,
                     pokemons[position]!!.capture_rate,
                     pokemons[position]!!.growth_rate,
-                    pokemons[position]!!.evolutions
+                    pokemons[position]!!.evolutions,
+                    pokemons[position]!!.stats
 
                 )
                 intent.putExtra("pokemon", poke)

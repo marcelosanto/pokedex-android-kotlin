@@ -19,5 +19,6 @@ data class PokemonModel(
     val base_happiness: String,
     val capture_rate: String,
     val growth_rate: Rate,
-    val evolutions: PokemonEvolutions
+    val evolutions: PokemonEvolutions,
+    val stats: List<Stats>
 ) : Parcelable

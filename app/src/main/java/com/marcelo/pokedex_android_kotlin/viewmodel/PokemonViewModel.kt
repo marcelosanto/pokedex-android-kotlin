@@ -56,7 +56,8 @@ class PokemonViewModel : ViewModel() {
                         baseHappiness,
                         captureRate,
                         growthRate,
-                        pokemonEvolucao!!
+                        pokemonEvolucao!!,
+                        pokemonApiResult.stats
 
                     )
 

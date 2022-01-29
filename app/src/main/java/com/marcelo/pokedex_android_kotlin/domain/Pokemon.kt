@@ -3,6 +3,7 @@ package com.marcelo.pokedex_android_kotlin.domain
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonAbility
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonEvolutions
 import com.marcelo.pokedex_android_kotlin.api.model.Rate
+import com.marcelo.pokedex_android_kotlin.api.model.Stats
 
 data class Pokemon(
     val id: String,
@@ -17,7 +18,8 @@ data class Pokemon(
     val base_happiness: String,
     val capture_rate: String,
     val growth_rate: Rate,
-    val evolutions: PokemonEvolutions
+    val evolutions: PokemonEvolutions,
+    val stats: List<Stats>
 ) {
     val formattedNumber = id.padStart(3, '0')
     val imageUrl =
