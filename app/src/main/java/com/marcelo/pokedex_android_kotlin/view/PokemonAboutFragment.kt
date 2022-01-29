@@ -79,18 +79,18 @@ class PokemonAboutFragment : Fragment() {
 
         }
 
-        pokemon?.let {
 
-            txtBio.text = "${it.biography.replace("\n", " ")}"
-            txtSpecies.text = "${captalizerText(it.species)}"
+
+        pokemon.let {
+
+            txtBio.text = it.biography.replace("\n", " ")
+            txtSpecies.text = captalizerText(it.species)
 
             txtAbilities.text = when (it.abilities.size) {
-                1 -> "${captalizerText(it.abilities.get(0).name)}"
-                2 -> "${captalizerText(it.abilities.get(0).name)}, ${
+                1 -> captalizerText(it.abilities[0].name)
+                2 -> "${captalizerText(it.abilities[0].name)}, ${
                     captalizerText(
-                        it.abilities.get(
-                            1
-                        ).name
+                        it.abilities[1].name
                     )
                 }"
                 else -> ""

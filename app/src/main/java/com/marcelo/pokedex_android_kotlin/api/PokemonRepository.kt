@@ -1,6 +1,7 @@
 package com.marcelo.pokedex_android_kotlin.api
 
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonApiResult
+import com.marcelo.pokedex_android_kotlin.api.model.PokemonEvolutions
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonSpecies
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonsApiResult
 import retrofit2.Retrofit
@@ -34,6 +35,12 @@ object PokemonRepository {
 
     fun getPokemonSpecies(id: Int): PokemonSpecies? {
         val call = service.getPokemonSpecies(id)
+        return call.execute().body()
+
+    }
+
+    fun getPokemonEvolutions(id: Int): PokemonEvolutions? {
+        val call = service.getPokemonEvolutions(id)
         return call.execute().body()
 
     }
