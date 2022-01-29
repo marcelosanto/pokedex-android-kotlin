@@ -17,11 +17,12 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtBio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:fontFamily="@font/sf_pro_display_regular"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:elegantTextHeight="true"
                 android:text="Bulbasaur can be seen napping in bright sunlight.\n There is a seed on its back. By soaking up the \n sun's rays, the seed grow progressively larger."
                 android:textSize="15sp" />
 
@@ -129,20 +130,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:foregroundGravity="left"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginRight="95dp"
                     android:fontFamily="@font/sf_pro_display_bold"
                     android:text="Weaknesses" />
+
 
                 <TextView
                     android:id="@+id/txt_weakness0"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:background="@color/red"
+                    android:visibility="gone"
                     android:drawableStart="@drawable/ic_poison"
                     android:drawableTint="@color/white"
                     android:paddingHorizontal="8dp" />
@@ -155,6 +159,7 @@
                     android:background="@color/red"
                     android:drawableStart="@drawable/ic_poison"
                     android:drawableTint="@color/white"
+                    android:visibility="gone"
                     android:paddingHorizontal="8dp" />
 
                 <TextView
@@ -165,6 +170,8 @@
                     android:background="@color/red"
                     android:drawableStart="@drawable/ic_poison"
                     android:drawableTint="@color/white"
+                    android:visibility="gone"
+
                     android:paddingHorizontal="8dp" />
 
                 <TextView
@@ -175,6 +182,8 @@
                     android:background="@color/red"
                     android:drawableStart="@drawable/ic_poison"
                     android:drawableTint="@color/white"
+                    android:visibility="gone"
+
                     android:paddingHorizontal="8dp" />
 
                 <TextView
@@ -185,9 +194,10 @@
                     android:background="@color/red"
                     android:drawableStart="@drawable/ic_poison"
                     android:drawableTint="@color/white"
+                    android:visibility="gone"
                     android:paddingHorizontal="8dp" />
-            </LinearLayout>
 
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,6 +250,7 @@
                         android:text="Catch Rate" />
 
                     <TextView
+                        android:id="@+id/txtCatchRate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -262,6 +273,7 @@
                         android:text="Base Friendship" />
 
                     <TextView
+                        android:id="@+id/txtBaseFriend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -305,6 +317,7 @@
                         android:text="Growth Rate" />
 
                     <TextView
+                        android:id="@+id/txtGrowthRate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

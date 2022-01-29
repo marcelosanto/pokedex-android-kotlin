@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.marcelo.pokedex_android_kotlin.R
-import com.marcelo.pokedex_android_kotlin.model.PokemonModel
+import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 
 class EvolutionFragment : Fragment() {
 

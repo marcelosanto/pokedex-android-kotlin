@@ -1,7 +1,6 @@
-package com.marcelo.pokedex_android_kotlin.model
+package com.marcelo.pokedex_android_kotlin.api.model
 
 import android.os.Parcelable
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonAbility
 import com.marcelo.pokedex_android_kotlin.domain.PokemonType
 import kotlinx.parcelize.Parcelize
 
@@ -15,5 +14,9 @@ data class PokemonModel(
     val height: String,
     val base_experience: String,
     val abilities: List<PokemonAbility>,
-    val species: String
+    val species: String,
+    val biography: String,
+    val base_happiness: String,
+    val capture_rate: String,
+    val growth_rate: Rate
 ) : Parcelable

@@ -26,8 +26,14 @@ class PokemonViewModel : ViewModel() {
 
                 val pokemonApiResult = PokemonRepository.getPokemon(id)
                 val pokemonSpecies = PokemonRepository.getPokemonSpecies(id)
-                var ss = pokemonSpecies?.genera!![7].genus.toString()
-                Log.w("EEEE", "loadPokemons: $ss")
+
+                var species = pokemonSpecies?.genera!![7].genus
+                var flavor_text = pokemonSpecies?.flavor_text_entries[7].flavor_text
+                var base_happiness = pokemonSpecies?.base_happiness
+                var capture_rate = pokemonSpecies?.capture_rate
+                var growthRate = pokemonSpecies?.growth_rate
+
+                Log.w("EEEE", "loadPokemons: ${pokemonSpecies?.growth_rate.name}")
 
                 pokemonApiResult?.let {
                     Pokemon(
@@ -40,7 +46,11 @@ class PokemonViewModel : ViewModel() {
                             type.type
                         },
                         pokemonApiResult.abilities.map { ability -> ability.ability },
-                        "$ss"
+                        "$species",
+                        "$flavor_text",
+                        "$base_happiness",
+                        "$capture_rate",
+                        growthRate
 
                     )
 

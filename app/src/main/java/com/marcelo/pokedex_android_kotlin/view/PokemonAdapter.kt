@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
-import java.util.*
 
 class PokemonAdapter(
     private val items: List<Pokemon?>
@@ -65,22 +64,14 @@ class PokemonAdapter(
                 Glide.with(itemView.context).load(it.imageUrl).into(imgPokemon)
 
                 txtId.text = "#${item.formattedNumber}"
-                txtName.text = item.name
-                txtType01.text = item.types[0].name.replaceFirstChar {
-                    if (it.isLowerCase()) it.titlecase(
-                        Locale.getDefault()
-                    ) else it.toString()
-                }
+                txtName.text = captalizerText(item.name)
+                txtType01.text = captalizerText(item.types[0].name)
 
                 changeColorForBackandLabel(item.types[0].name, txtType01, constraintLayout)
 
                 if (item.types.size > 1) {
                     txtType02.visibility = View.VISIBLE
-                    txtType02.text = item.types[1].name.replaceFirstChar {
-                        if (it.isLowerCase()) it.titlecase(
-                            Locale.getDefault()
-                        ) else it.toString()
-                    }
+                    txtType02.text = captalizerText(item.types[1].name)
 
                     changeColorForBackandLabel(item.types[1].name, txtType02)
                 } else {
@@ -95,6 +86,17 @@ class PokemonAdapter(
             layout: ConstraintLayout? = null
         ) {
             when (type) {
+                "flying" -> {
+                    txt.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.ic_flying,
+                        0,
+                        0,
+                        0
+                    )
+                    txt.setBackgroundColor(Color.parseColor("#a385e0"))
+                    layout?.setBackgroundColor(Color.parseColor("#614f86"))
+                    
+                }
                 "grass" -> {
                     txt.setCompoundDrawablesWithIntrinsicBounds(
                         R.drawable.ic_grass,

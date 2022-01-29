@@ -2,15 +2,14 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcelo.pokedex_android_kotlin.R
+import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
-import com.marcelo.pokedex_android_kotlin.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModelFactory
 
@@ -53,10 +52,14 @@ class MainActivity : AppCompatActivity() {
                     pokemons[position]!!.height,
                     pokemons[position]!!.base_experience,
                     pokemons[position]!!.abilities,
-                    pokemons[position]!!.species
+                    pokemons[position]!!.species,
+                    pokemons[position]!!.biography,
+                    pokemons[position]!!.base_happiness,
+                    pokemons[position]!!.capture_rate,
+                    pokemons[position]!!.growth_rate
                 )
                 intent.putExtra("pokemon", poke)
-                Log.i("Species", "onItemClick: $poke")
+
                 startActivity(intent)
             }
         })
