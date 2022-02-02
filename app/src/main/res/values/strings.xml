@@ -9,4 +9,6 @@
     <string name="about">About</string>
     <string name="stats">Stats</string>
     <string name="evolution">Evolution</string>
+    <string name="sort_pok_mons_alphabetically_or_by_national_pok_dex_number">Sort Pokémons alphabetically or by National Pokédex number!</string>
+    <string name="sort">Sort</string>
 </resources>

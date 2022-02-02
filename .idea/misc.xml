@@ -22,9 +22,15 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_evolution.xml" value="0.33" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_pokemon_about.xml" value="0.4345718901453958" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_stats.xml" value="0.5" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/item_sort.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/pokemon_item.xml" value="0.40414507772020725" />
       </map>
     </option>
+  </component>
+  <component name="ExtraIconsSettingsProject">
+    <option name="overrideIDESettings" value="true" />
+    <option name="ignoredPattern" value="" />
+    <option name="additionalUIScale" value="1.0" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

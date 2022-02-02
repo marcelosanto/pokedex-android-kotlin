@@ -17,6 +17,8 @@ import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 
 
 class EvolutionFragment : Fragment() {
+    val URL =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +30,6 @@ class EvolutionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val URL =
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
 
         val evoOneId: TextView = view.findViewById(R.id.txtIdEvoOne)
 
@@ -97,31 +96,35 @@ class EvolutionFragment : Fragment() {
                 ""
             )?.replace("/", "")
 
-            val secondPokemon = pokemon?.evolutions?.chain?.evolves_to?.get(0)?.species?.name
+            if (pokemon?.evolutions?.chain?.evolves_to?.get(0)?.species != null) {
 
-            val evoluMinLevel =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolution_details?.get(0)?.min_level
+                var secondPokemon = pokemon.evolutions.chain.evolves_to[0].species?.name
 
-            val secondPokemonId =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.species?.url?.replace(
-                    "https://pokeapi.co/api/v2/pokemon-species/",
-                    ""
-                )?.replace("/", "")
 
-            layoutPokemonNotEvolution.visibility = View.GONE
-            layoutFirst.visibility = View.VISIBLE
+                val evoluMinLevel =
+                    pokemon.evolutions.chain.evolves_to[0].evolution_details?.get(0)?.min_level
 
-            evoOneId.text = "#${formattedNumber(id.toString())}"
-            evoOneName.text = captalizerText(pokemonName.toString())
-            Glide.with(this)
-                .load("$URL/$id.png")
-                .into(evoOneImage!!)
+                val secondPokemonId =
+                    pokemon.evolutions.chain.evolves_to[0].species?.url?.replace(
+                        "https://pokeapi.co/api/v2/pokemon-species/",
+                        ""
+                    )?.replace("/", "")
 
-            evoTwoId.text = "#${formattedNumber(secondPokemonId.toString())}"
-            evoTwoName.text = captalizerText(secondPokemon.toString())
-            Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwoImage!!)
+                layoutPokemonNotEvolution.visibility = View.GONE
+                layoutFirst.visibility = View.VISIBLE
 
-            EvoOneMinLevel?.text = "(Level $evoluMinLevel)"
+                evoOneId.text = "#${formattedNumber(id.toString())}"
+                evoOneName.text = captalizerText(pokemonName.toString())
+                Glide.with(this)
+                    .load("$URL/$id.png")
+                    .into(evoOneImage!!)
+
+                evoTwoId.text = "#${formattedNumber(secondPokemonId.toString())}"
+                evoTwoName.text = captalizerText(secondPokemon.toString())
+                Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwoImage!!)
+
+                EvoOneMinLevel?.text = "(Level $evoluMinLevel)"
+            }
 
         } catch (e: IndexOutOfBoundsException) {
             Log.e("EVO", "error: ${e.message.toString()}")
@@ -136,34 +139,36 @@ class EvolutionFragment : Fragment() {
                     ""
                 )?.replace("/", "")
 
-            val thirdPokemon =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species?.name
+            if (pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species != null) {
+
+                val thirdPokemon =
+                    pokemon.evolutions.chain.evolves_to[0].evolves_to?.get(0)?.species?.name
 
 
-            val thirdEvoMinLeve =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.evolution_details?.get(
-                    0
-                )?.min_level
+                val thirdEvoMinLeve =
+                    pokemon.evolutions.chain.evolves_to[0].evolves_to?.get(0)?.evolution_details?.get(
+                        0
+                    )?.min_level
 
-            val thirdPokemonId =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species?.url?.replace(
-                    "https://pokeapi.co/api/v2/pokemon-species/",
-                    ""
-                )?.replace("/", "")
+                val thirdPokemonId =
+                    pokemon.evolutions.chain.evolves_to[0].evolves_to?.get(0)?.species?.url?.replace(
+                        "https://pokeapi.co/api/v2/pokemon-species/",
+                        ""
+                    )?.replace("/", "")
 
-            layoutPokemonNotEvolution.visibility = View.GONE
-            layoutThird.visibility = View.VISIBLE
+                layoutPokemonNotEvolution.visibility = View.GONE
+                layoutThird.visibility = View.VISIBLE
 
-            evoTwosId.text = "#${formattedNumber(secondPokemonId.toString())}"
-            evoTwosName.text = captalizerText(secondPokemon.toString())
-            Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwosImage!!)
+                evoTwosId.text = "#${formattedNumber(secondPokemonId.toString())}"
+                evoTwosName.text = captalizerText(secondPokemon.toString())
+                Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwosImage!!)
 
-            EvoThirdMinLevel.text = "(Level $thirdEvoMinLeve)"
+                EvoThirdMinLevel.text = "(Level $thirdEvoMinLeve)"
 
-            evoThirdId.text = "#${formattedNumber(thirdPokemonId.toString())}"
-            evoThirdName.text = captalizerText(thirdPokemon.toString())
-            Glide.with(this).load("$URL/$thirdPokemonId.png").into(evoThirdImage!!)
-
+                evoThirdId.text = "#${formattedNumber(thirdPokemonId.toString())}"
+                evoThirdName.text = captalizerText(thirdPokemon.toString())
+                Glide.with(this).load("$URL/$thirdPokemonId.png").into(evoThirdImage!!)
+            }
 
         } catch (e: IndexOutOfBoundsException) {
             Log.e("EVO", "error: ${e.message.toString()}")
