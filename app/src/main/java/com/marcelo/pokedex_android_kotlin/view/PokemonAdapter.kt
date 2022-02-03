@@ -2,12 +2,9 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +15,7 @@ import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
 class PokemonAdapter(
     private val items: List<Pokemon?>
-) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>(), Filterable {
+) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     private lateinit var mListener: onItemClickListener
     var list: List<Pokemon?> = mutableListOf<Pokemon>()
@@ -285,34 +282,6 @@ class PokemonAdapter(
 
     }
 
-    override fun getFilter(): Filter {
-        Log.d("TAG", "getFilter: oiee")
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    list = items as ArrayList<Pokemon>
-                } else {
-                    val resultList = ArrayList<Pokemon>()
-                    for (row in list) {
-                        if (row?.name?.contains(constraint.toString()) == true) {
-                            resultList.add(row)
-                        }
-                    }
-                    list = resultList
-                }
-                val filterResults = FilterResults()
-                filterResults.values = list
-                return filterResults
-            }
-
-            @SuppressLint("NotifyDataSetChanged")
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                list = results?.values as ArrayList<Pokemon>
-                notifyDataSetChanged()
-            }
-        }
-    }
 }
 
 

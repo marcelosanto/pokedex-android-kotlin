@@ -56,16 +56,18 @@ class MainActivity : AppCompatActivity() {
 
 
         inputSearch.doAfterTextChanged { text ->
-            // filterArrayList.clear()
-            //adapter?.filter?.filter(text)
 
             if (text!!.isNotEmpty()) {
                 for (pokemon in tempArrayList) {
                     if (pokemon.name.contains(text.toString())) {
                         Log.i("FILTRO", "pokemon: ${pokemon.name} ")
-                        filterArrayList.add(pokemon)
+                        if (!filterArrayList.contains(pokemon)) {
+                            filterArrayList.add(pokemon)
+                        }
+                    } else {
+                        filterArrayList.remove(pokemon)
                     }
-                    //adapterInRecyclerView(filterArrayList)
+                    adapterInRecyclerView(filterArrayList)
                 }
                 Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
                 // adapterInRecyclerView(filterArrayList)
@@ -73,43 +75,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 filterArrayList.clear()
                 Log.i("FILTRO", "tempArray: ${tempArrayList.size} ")
-                // adapterInRecyclerView(tempArrayList)
+                adapterInRecyclerView(tempArrayList)
             }
-
-
-            /*} else {
-                filterArrayList.clear()
-                filterArrayList = tempArrayList.map { it.copy() } as ArrayList<Pokemon>
-                recyclerView.adapter?.notifyDataSetChanged()
-            }*/
-
-
-            /*if (filterArrayList.size > 0) {
-                Log.i("FILTRO", "FilterLIst: ${filterArrayList.size} ")
-            }*/
-
-            /* if (text!!.isEmpty()) {
-                 Log.i("FILTRO", "IsEmpty: ${text.length} ")
-                 Log.i("FILTRO", "tempArrayList: ${tempArrayList.size} ")
-                 loadRecyclerView(filterList)
-             }
-
-             if (filterList.isNotEmpty()) {
-                 Log.i("FILTRO", "FilterLIst: ${filterList.size} ")
-             }*/
-
-
-            /*if (filterList != null) {
-                if (filterList.isNotEmpty()) {
-                    if (text != null && text.isNotEmpty()) {
-                        Log.i("FILTRO", "onFiltro: ${tempArrayList.size}")
-                        loadRecyclerView(filterList.filter { it.name.startsWith(text) })
-                    }
-                } else {
-                    Log.i("FILTRO", "onElse: Cheguei a zero, ${tempArrayList.size}")
-                    //loadRecyclerView(tempArrayList)
-                }
-            }*/
 
         }
     }
