@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="95dp"
                     android:fontFamily="@font/sf_pro_display_bold"
-                    android:text="Weaknesses" />
+                    android:text="@string/weaknesses" />
 
 
                 <TextView

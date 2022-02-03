@@ -179,7 +179,7 @@ fun weaknessPokemon(type: String): List<String> = when (type) {
     else -> listOf("deu ruim")
 }
 
-private fun setIconAndColorForTextView(
+fun setIconAndColorForTextView(
     type: String,
     txt: TextView,
 ) {
@@ -209,7 +209,9 @@ private fun setIconAndColorForTextView(
                 0,
                 0
             )
+            
             txt.setBackgroundColor(Color.parseColor("#6a7611"))
+
         }
         "poison" -> {
             txt.setCompoundDrawablesWithIntrinsicBounds(
@@ -336,6 +338,7 @@ private fun setIconAndColorForTextView(
                 0,
                 0
             )
+
             txt.setBackgroundColor(Color.parseColor("#8989af"))
         }
         "water" -> {
@@ -345,6 +348,7 @@ private fun setIconAndColorForTextView(
                 0,
                 0
             )
+
             txt.setBackgroundColor(Color.parseColor("#1d5ee9"))
         }
 

@@ -16,13 +16,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/btn_filters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_filter"
             android:layout_gravity="end"
             android:paddingHorizontal="16dp"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/button_filter" />
 
         <ImageButton
             android:id="@+id/Btn_sort"
@@ -32,7 +33,7 @@
             android:layout_gravity="end"
             android:paddingHorizontal="16dp"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/button_sort" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
             android:layout_gravity="end"
             android:paddingHorizontal="16dp"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/button_generations" />
 
     </androidx.appcompat.widget.Toolbar>
 

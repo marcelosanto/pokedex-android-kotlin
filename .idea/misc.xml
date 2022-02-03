@@ -14,6 +14,7 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/ic_pokeball.xml" value="0.16203703703703703" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/pokemon_item.xml" value="0.3515625" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/roundstyle.xml" value="0.1335" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/shape_edittext.xml" value="0.2537037037037037" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/drawable/tab_indicator_background.xml" value="0.18" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/font/sfpro.xml" value="0.14814814814814814" />
@@ -21,7 +22,8 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/activity_pokemon.xml" value="0.25" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_evolution.xml" value="0.33" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_pokemon_about.xml" value="0.4345718901453958" />
-        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_stats.xml" value="0.5" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/fragment_stats.xml" value="0.3326488706365503" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/item_filters.xml" value="0.1" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/item_sort.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/pokedexandroidkotlin/app/src/main/res/layout/pokemon_item.xml" value="0.40414507772020725" />
       </map>

@@ -2,11 +2,13 @@ package com.marcelo.pokedex_android_kotlin.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
@@ -52,6 +55,10 @@ class MainActivity : AppCompatActivity() {
 
         btnSort.setOnClickListener { showSortFilter() }
 
+        val btnFilters: ImageButton = findViewById(R.id.btn_filters)
+
+        btnFilters.setOnClickListener { showFiltersAdvanced() }
+
         val inputSearch: TextInputEditText = findViewById(R.id.inputSearch)
 
 
@@ -79,6 +86,52 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    @SuppressLint("InflateParams")
+    private fun showFiltersAdvanced() {
+        val view: View = layoutInflater.inflate(R.layout.item_filters, null)
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+        dialog.show()
+
+        val cardBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
+
+        val imagemBug = dialog.findViewById<ImageView>(R.id.type_bug_img)
+
+        val cardTypeNormal = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
+        val imagemTypeNormal = dialog.findViewById<ImageView>(R.id.type_normal_img)
+
+        var isTrueTypeBug: Boolean = true
+
+        cardBug?.setOnClickListener {
+            isTrueTypeBug = if (isTrueTypeBug) {
+                cardBug.setCardBackgroundColor(Color.parseColor("#6a7611"))
+                imagemBug?.setColorFilter(Color.WHITE)
+                !isTrueTypeBug
+            } else {
+                cardBug.setCardBackgroundColor(Color.WHITE)
+                imagemBug?.setColorFilter(Color.parseColor("#6a7611"))
+                !isTrueTypeBug
+            }
+
+        }
+
+        var isTrueTypeNormal: Boolean = true
+
+        cardTypeNormal?.setOnClickListener {
+            isTrueTypeNormal = if (isTrueTypeNormal) {
+                cardTypeNormal.setCardBackgroundColor(Color.parseColor("#818054"))
+                imagemTypeNormal?.setColorFilter(Color.WHITE)
+                !isTrueTypeNormal
+            } else {
+                cardTypeNormal.setCardBackgroundColor(Color.WHITE)
+                imagemTypeNormal?.setColorFilter(Color.parseColor("#818054"))
+                !isTrueTypeNormal
+            }
+
+        }
+
     }
 
     @SuppressLint("InflateParams")
@@ -146,9 +199,6 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = PokemonAdapter(pokemons)
         recyclerView.adapter = adapter
-
-        //adapter.filter.filter("b")
-
 
         adapter.setOnItemClickListener(object : PokemonAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {

@@ -11,4 +11,14 @@
     <string name="evolution">Evolution</string>
     <string name="sort_pok_mons_alphabetically_or_by_national_pok_dex_number">Sort Pokémons alphabetically or by National Pokédex number!</string>
     <string name="sort">Sort</string>
+    <string name="filters">Filters</string>
+    <string name="use_advanced_search_to_explore_pok_mon_by_type_weaknes_height_and_more">Use advanced search to explore Pokémon by type, weaknes, height and more!</string>
+    <string name="button_filter">button filter</string>
+    <string name="button_generations">button generations</string>
+    <string name="button_sort">button sort</string>
+    <string name="weaknesses">Weaknesses</string>
+    <string name="icon_for_filter">icon for filter</string>
+    <string name="types">Types</string>
+    <string name="the_ranges_shown_on_the_right_are_for_a_level_100_pok_mon_maximum_values_are_base_on_a_beneficial_nature_252_evs_31_lvs_minimum_values_are_base_on_hindering_nature_0_evs_0_lvs">The ranges shown on the right are for a level 100 Pokémon, Maximum values are base on a beneficial nature, 252 Evs, 31 lVs; minimum values are base on hindering nature, 0 Evs, 0 lVs.</string>
+    <string name="the_effectiveness">The effectiveness of each type on Charmander.</string>
 </resources>
