@@ -1,9 +1,13 @@
 package com.marcelo.pokedex_android_kotlin.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -14,12 +18,17 @@ import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
 class PokemonAdapter(
     private val items: List<Pokemon?>
-) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>(), Filterable {
 
     private lateinit var mListener: onItemClickListener
+    var list: List<Pokemon?> = mutableListOf<Pokemon>()
 
     interface onItemClickListener {
         fun onItemClick(position: Int)
+    }
+
+    init {
+        list = items
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
@@ -50,6 +59,7 @@ class PokemonAdapter(
         }
 
 
+        @SuppressLint("SetTextI18n")
         fun bindView(item: Pokemon?) = with(itemView) {
             val imgPokemon = findViewById<ImageView>(R.id.imgPokemon)
             val txtId = findViewById<TextView>(R.id.txt_idNumber)
@@ -80,6 +90,7 @@ class PokemonAdapter(
             }
         }
 
+
         private fun changeColorForBackandLabel(
             type: String,
             txt: TextView,
@@ -95,7 +106,7 @@ class PokemonAdapter(
                     )
                     txt.setBackgroundColor(Color.parseColor("#a385e0"))
                     layout?.setBackgroundColor(Color.parseColor("#614f86"))
-                    
+
                 }
                 "grass" -> {
                     txt.setCompoundDrawablesWithIntrinsicBounds(
@@ -274,5 +285,38 @@ class PokemonAdapter(
 
     }
 
+    override fun getFilter(): Filter {
+        Log.d("TAG", "getFilter: oiee")
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    list = items as ArrayList<Pokemon>
+                } else {
+                    val resultList = ArrayList<Pokemon>()
+                    for (row in list) {
+                        if (row?.name?.contains(constraint.toString()) == true) {
+                            resultList.add(row)
+                        }
+                    }
+                    list = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = list
+                return filterResults
+            }
 
+            @SuppressLint("NotifyDataSetChanged")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                list = results?.values as ArrayList<Pokemon>
+                notifyDataSetChanged()
+            }
+        }
+    }
 }
+
+
+
+
+
+
