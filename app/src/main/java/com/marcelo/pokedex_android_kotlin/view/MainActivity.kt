@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
             if (text!!.isNotEmpty()) {
                 for (pokemon in tempArrayList) {
-                    if (pokemon.name.contains(text.toString())) {
+                    if (pokemon.name.contains(text.toString()) || pokemon.id.contains(text.toString())) {
                         Log.i("FILTRO", "pokemon: ${pokemon.name} ")
                         if (!filterArrayList.contains(pokemon)) {
                             filterArrayList.add(pokemon)
