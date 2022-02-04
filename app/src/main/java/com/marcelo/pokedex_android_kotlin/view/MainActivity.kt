@@ -24,6 +24,7 @@ import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModelFactory
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,7 +67,10 @@ class MainActivity : AppCompatActivity() {
 
             if (text!!.isNotEmpty()) {
                 for (pokemon in tempArrayList) {
-                    if (pokemon.name.contains(text.toString()) || pokemon.id.contains(text.toString())) {
+                    if (pokemon.name.contains(
+                            text.toString().lowercase(Locale.getDefault())
+                        ) || pokemon.id.contains(text.toString())
+                    ) {
                         Log.i("FILTRO", "pokemon: ${pokemon.name} ")
                         if (!filterArrayList.contains(pokemon)) {
                             filterArrayList.add(pokemon)
@@ -96,43 +100,162 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
         val cardBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
-
-        val imagemBug = dialog.findViewById<ImageView>(R.id.type_bug_img)
-
         val cardTypeNormal = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
-        val imagemTypeNormal = dialog.findViewById<ImageView>(R.id.type_normal_img)
+        val cardTypeFire = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fire)
+        val cardTypeWater = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_water)
+        val cardTypeEletric = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_eletric)
+        val cardTypeGrass = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_grass)
+        val cardTypeIce = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ice)
+        val cardTypeFighting = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fighting)
+        val cardTypePoison = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_poison)
+        val cardTypeGround = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ground)
+        val cardTypeFlying = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_flying)
+        val cardTypePsychic = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_psychic)
+        val cardTypeRock = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_rock)
+        val cardTypeGhost = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ghost)
+        val cardTypeDragon = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_dragon)
+        val cardTypeDark = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_dark)
+        val cardTypeSteel = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_steel)
+        val cardTypeFairy = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fairy)
 
-        var isTrueTypeBug: Boolean = true
+        val imgTypeNormal = dialog.findViewById<ImageView>(R.id.type_normal_img)
+        val imgTypeBug = dialog.findViewById<ImageView>(R.id.type_bug_img)
+        val imgTypeFire = dialog.findViewById<ImageView>(R.id.type_fire_img)
+        val imgTypeWater = dialog.findViewById<ImageView>(R.id.type_water_img)
+        val imgTypeEletric = dialog.findViewById<ImageView>(R.id.type_eletric_img)
+        val imgTypeGrass = dialog.findViewById<ImageView>(R.id.type_grass_img)
+        val imgTypeIce = dialog.findViewById<ImageView>(R.id.type_ice_img)
+        val imgTypeFighting = dialog.findViewById<ImageView>(R.id.type_fighting_img)
+        val imgTypePoison = dialog.findViewById<ImageView>(R.id.type_poison_img)
+        val imgTypeGround = dialog.findViewById<ImageView>(R.id.type_ground_img)
+        val imgTypeFlying = dialog.findViewById<ImageView>(R.id.type_flying_img)
+        val imgTypePsychic = dialog.findViewById<ImageView>(R.id.type_psychic_img)
+        val imgTypeRock = dialog.findViewById<ImageView>(R.id.type_rock_img)
+        val imgTypeGhost = dialog.findViewById<ImageView>(R.id.type_ghost_img)
+        val imgTypeDragon = dialog.findViewById<ImageView>(R.id.type_dragon_img)
+        val imgTypeDark = dialog.findViewById<ImageView>(R.id.type_dark_img)
+        val imgTypeSteel = dialog.findViewById<ImageView>(R.id.type_steel_img)
+        val imgTypeFairy = dialog.findViewById<ImageView>(R.id.type_fairy_img)
 
-        cardBug?.setOnClickListener {
-            isTrueTypeBug = if (isTrueTypeBug) {
-                cardBug.setCardBackgroundColor(Color.parseColor("#6a7611"))
-                imagemBug?.setColorFilter(Color.WHITE)
-                !isTrueTypeBug
-            } else {
-                cardBug.setCardBackgroundColor(Color.WHITE)
-                imagemBug?.setColorFilter(Color.parseColor("#6a7611"))
-                !isTrueTypeBug
-            }
-
+        if (cardBug != null && imgTypeBug != null) {
+            buttonAction("bug", cardBug, true, imgTypeBug)
         }
 
-        var isTrueTypeNormal: Boolean = true
-
-        cardTypeNormal?.setOnClickListener {
-            isTrueTypeNormal = if (isTrueTypeNormal) {
-                cardTypeNormal.setCardBackgroundColor(Color.parseColor("#818054"))
-                imagemTypeNormal?.setColorFilter(Color.WHITE)
-                !isTrueTypeNormal
-            } else {
-                cardTypeNormal.setCardBackgroundColor(Color.WHITE)
-                imagemTypeNormal?.setColorFilter(Color.parseColor("#818054"))
-                !isTrueTypeNormal
-            }
-
+        if (cardTypeNormal != null && imgTypeNormal != null) {
+            buttonAction("normal", cardTypeNormal, true, imgTypeNormal)
         }
+
+        if (cardTypeFire != null && imgTypeFire != null) {
+            buttonAction("fire", cardTypeFire, true, imgTypeFire)
+        }
+
+        if (cardTypeWater != null && imgTypeWater != null) {
+            buttonAction("water", cardTypeWater, true, imgTypeWater)
+        }
+
+        if (cardTypeEletric != null && imgTypeEletric != null) {
+            buttonAction("eletric", cardTypeEletric, true, imgTypeEletric)
+        }
+
+        if (cardTypeGrass != null && imgTypeGrass != null) {
+            buttonAction("grass", cardTypeGrass, true, imgTypeGrass)
+        }
+
+        if (cardTypeIce != null && imgTypeIce != null) {
+            buttonAction("ice", cardTypeIce, true, imgTypeIce)
+        }
+
+        if (cardTypeFighting != null && imgTypeFighting != null) {
+            buttonAction("fighting", cardTypeFighting, true, imgTypeFighting)
+        }
+
+        if (cardTypePoison != null && imgTypePoison != null) {
+            buttonAction("poison", cardTypePoison, true, imgTypePoison)
+        }
+
+        if (cardTypeGround != null && imgTypeGround != null) {
+            buttonAction("ground", cardTypeGround, true, imgTypeGround)
+        }
+
+        if (cardTypeFlying != null && imgTypeFlying != null) {
+            buttonAction("flying", cardTypeFlying, true, imgTypeFlying)
+        }
+
+        if (cardTypePsychic != null && imgTypePsychic != null) {
+            buttonAction("psychic", cardTypePsychic, true, imgTypePsychic)
+        }
+
+        if (cardTypeRock != null && imgTypeRock != null) {
+            buttonAction("rock", cardTypeRock, true, imgTypeRock)
+        }
+
+        if (cardTypeGhost != null && imgTypeGhost != null) {
+            buttonAction("ghost", cardTypeGhost, true, imgTypeGhost)
+        }
+
+        if (cardTypeDragon != null && imgTypeDragon != null) {
+            buttonAction("dragon", cardTypeDragon, true, imgTypeDragon)
+        }
+
+        if (cardTypeDark != null && imgTypeDark != null) {
+            buttonAction("dark", cardTypeDark, true, imgTypeDark)
+        }
+
+        if (cardTypeSteel != null && imgTypeSteel != null) {
+            buttonAction("steel", cardTypeSteel, true, imgTypeSteel)
+        }
+
+        if (cardTypeFairy != null && imgTypeFairy != null) {
+            buttonAction("fairy", cardTypeFairy, true, imgTypeFairy)
+        }
+
 
     }
+
+    private fun buttonAction(
+        type: String,
+        cardView: MaterialCardView,
+        isTypeBool: Boolean,
+        imgCardView: ImageView
+    ) {
+        var isTrueType = isTypeBool
+
+        cardView.setOnClickListener {
+            isTrueType = if (isTrueType) {
+                cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
+                imgCardView.setColorFilter(Color.WHITE)
+                !isTrueType
+            } else {
+                cardView.setCardBackgroundColor(Color.WHITE)
+                imgCardView.setColorFilter(Color.parseColor(colorType(type)))
+                !isTrueType
+            }
+
+        }
+    }
+
+    private fun colorType(type: String): String = when (type) {
+        "normal" -> "#818054"
+        "fire" -> "#c25c10"
+        "water" -> "#1d5ee9"
+        "eletric" -> "#FFEF00"
+        "grass" -> "#56972f"
+        "ice" -> "#5ec5c0"
+        "fighting" -> "#831f1b"
+        "poison" -> "#6c296a"
+        "ground" -> "#d3a328"
+        "flying" -> "#a385e0"
+        "psychic" -> "#f60b53"
+        "bug" -> "#6a7611"
+        "rock" -> "#7b6d24"
+        "ghost" -> "#4e3b66"
+        "dragon" -> "#4403e1"
+        "dark" -> "#413229"
+        "steel" -> "#8989af"
+        "fairy" -> "#c34c87"
+        else -> "#FFFFFF"
+    }
+
 
     @SuppressLint("InflateParams")
     private fun showSortFilter() {
