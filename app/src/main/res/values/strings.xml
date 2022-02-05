@@ -23,7 +23,7 @@
     <string name="reset">Reset</string>
     <string name="apply">Apply</string>
     <string-array name="rangeSlider">
-        <item>20.0</item>
-        <item>70.0</item>
+        <item>20</item>
+        <item>70</item>
     </string-array>
 </resources>

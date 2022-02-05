@@ -390,8 +390,9 @@ class MainActivity : AppCompatActivity() {
         val btnReset = dialog.findViewById<Button>(R.id.btn_types_reset)
 
         btnReset?.setOnClickListener {
-            if (filtersTypesList.isNotEmpty()) {
+            if (filtersTypesList.isNotEmpty() || filtersWeaknessesList.isNotEmpty()) {
                 filtersTypesList.clear()
+                filtersWeaknessesList.clear()
                 adapterInRecyclerView(tempArrayList)
             }
             dialog.dismiss()
@@ -856,7 +857,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        
+
     }
 
     private fun buttonAction(
