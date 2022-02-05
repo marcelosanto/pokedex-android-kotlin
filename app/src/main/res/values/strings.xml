@@ -21,4 +21,6 @@
     <string name="types">Types</string>
     <string name="the_ranges_shown_on_the_right_are_for_a_level_100_pok_mon_maximum_values_are_base_on_a_beneficial_nature_252_evs_31_lvs_minimum_values_are_base_on_hindering_nature_0_evs_0_lvs">The ranges shown on the right are for a level 100 Pokémon, Maximum values are base on a beneficial nature, 252 Evs, 31 lVs; minimum values are base on hindering nature, 0 Evs, 0 lVs.</string>
     <string name="the_effectiveness">The effectiveness of each type on Charmander.</string>
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
 </resources>

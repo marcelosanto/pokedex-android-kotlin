@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     private var filterArrayList: ArrayList<Pokemon> = ArrayList()
 
+    private var filtersTypesList: ArrayList<String> = ArrayList()
+
 
     private val recyclerView by lazy {
         findViewById<RecyclerView>(R.id.rvPokemons)
@@ -81,7 +83,6 @@ class MainActivity : AppCompatActivity() {
                     adapterInRecyclerView(filterArrayList)
                 }
                 Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
-                // adapterInRecyclerView(filterArrayList)
 
             } else {
                 filterArrayList.clear()
@@ -209,25 +210,62 @@ class MainActivity : AppCompatActivity() {
             buttonAction("fairy", cardTypeFairy, true, imgTypeFairy)
         }
 
+        val btnApply = dialog.findViewById<Button>(R.id.btn_types_apply)
 
+
+        btnApply?.setOnClickListener {
+            filterArrayList.clear()
+            for (tipos in tempArrayList.indices) {
+                if (tempArrayList[tipos].types.size > 1) {
+                    if (filtersTypesList.size > 0) {
+                        for (filterTypes in filtersTypesList) {
+                            if (tempArrayList[tipos].types[0].name.contains(filterTypes) || tempArrayList[tipos].types[1].name.contains(
+                                    filterTypes
+                                )
+                            ) {
+                                filterArrayList.add(tempArrayList[tipos])
+                            }
+                        }
+                    }
+
+                } else {
+                    if (filtersTypesList.size > 0) {
+                        for (filterTypes in filtersTypesList) {
+                            if (tempArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                filterArrayList.add(tempArrayList[tipos])
+                            }
+                        }
+                    } else {
+                        dialog.dismiss()
+                    }
+
+                }
+            }
+
+            val unic = filterArrayList.distinct()
+            adapterInRecyclerView(unic)
+            dialog.dismiss()
+        }
     }
 
     private fun buttonAction(
         type: String,
         cardView: MaterialCardView,
-        isTypeBool: Boolean,
+        isBoolType: Boolean,
         imgCardView: ImageView
     ) {
-        var isTrueType = isTypeBool
+        var isTrueType = isBoolType
 
         cardView.setOnClickListener {
             isTrueType = if (isTrueType) {
                 cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
                 imgCardView.setColorFilter(Color.WHITE)
+                filtersTypesList.add(type)
                 !isTrueType
             } else {
                 cardView.setCardBackgroundColor(Color.WHITE)
                 imgCardView.setColorFilter(Color.parseColor(colorType(type)))
+                filtersTypesList.remove(type)
                 !isTrueType
             }
 
@@ -346,6 +384,7 @@ class MainActivity : AppCompatActivity() {
 
                 )
                 intent.putExtra("pokemon", poke)
+
 
                 startActivity(intent)
             }
