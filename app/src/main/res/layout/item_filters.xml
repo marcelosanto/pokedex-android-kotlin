@@ -159,21 +159,22 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_grass"
-                        android:checkable="true"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:checkable="true"
+                        android:theme="@style/Theme.MaterialComponents.DayNight"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck">
 
                         <ImageView
                             android:id="@+id/type_grass_img"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_grass"
                             android:layout_gravity="center"
-                            android:tint="#56972f"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_grass"
+                            android:tint="#56972f" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
@@ -1012,6 +1013,200 @@
 
         </HorizontalScrollView>
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/black"
+            android:text="Heights" />
+
+        <LinearLayout
+            android:background="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.Light">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_resource_short"
+                        android:layout_gravity="center"
+                        android:tint="#FF1493"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:checkable="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_medium"
+                        android:layout_gravity="center"
+                        android:tint="	#6A5ACD"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:checkable="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_tall"
+                        android:layout_gravity="center"
+                        android:tint="#2F4F4F"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/black"
+            android:text="Weights" />
+
+        <LinearLayout
+            android:background="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp">
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.Light">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_light"
+                        android:layout_gravity="center"
+                        android:tint="#90EE90"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:checkable="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_normal"
+                        android:layout_gravity="center"
+                        android:tint="#6495ED"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:checkable="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_heavy"
+                        android:layout_gravity="center"
+                        android:tint="#778899"
+                        android:contentDescription="@string/icon_for_filter" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/black"
+            android:text="Number Range" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/range_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="testando"
+            app:values="@array/rangeSlider"
+            android:layout_marginVertical="20dp"
+            android:valueFrom="0.0"
+            android:valueTo="100.0" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1026,6 +1221,8 @@
                 android:fontFamily="@font/sf_pro_display_regular"
                 android:textAllCaps="false"
                 android:text="@string/reset"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/gray"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -1040,6 +1237,8 @@
                 android:backgroundTint="@color/red"
                 tools:ignore="ButtonStyle" />
         </LinearLayout>
+
+
     </LinearLayout>
 
 

@@ -4,7 +4,6 @@
     <string name="what_pok_mon_are_you_looking_for">What Pokémon are you looking for?</string>
     <string name="search_fo_pok_mon_by_name_or_using_the_national_pok_dex_number">Search fo Pokémon by name or using the National Pokédex number.</string>
     <string name="pokemon_imagem">Pokemon imagem</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about">About</string>
     <string name="stats">Stats</string>
@@ -23,4 +22,8 @@
     <string name="the_effectiveness">The effectiveness of each type on Charmander.</string>
     <string name="reset">Reset</string>
     <string name="apply">Apply</string>
+    <string-array name="rangeSlider">
+        <item>20.0</item>
+        <item>70.0</item>
+    </string-array>
 </resources>
