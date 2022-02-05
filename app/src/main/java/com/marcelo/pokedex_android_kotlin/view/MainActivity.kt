@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var filterArrayList: ArrayList<Pokemon> = ArrayList()
 
     private var filtersTypesList: ArrayList<String> = ArrayList()
+    private var filtersWeaknessesList: ArrayList<String> = ArrayList()
 
 
     private val recyclerView by lazy {
@@ -67,7 +68,9 @@ class MainActivity : AppCompatActivity() {
 
         inputSearch.doAfterTextChanged { text ->
 
-            if (text!!.isNotEmpty()) {
+            val tempsArray: ArrayList<Pokemon> = ArrayList()
+
+            if (text!!.isNotEmpty() && filtersTypesList.isEmpty()) {
                 for (pokemon in tempArrayList) {
                     if (pokemon.name.contains(
                             text.toString().lowercase(Locale.getDefault())
@@ -80,14 +83,43 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         filterArrayList.remove(pokemon)
                     }
-                    adapterInRecyclerView(filterArrayList)
+                    val unic = filterArrayList.distinct()
+                    adapterInRecyclerView(unic)
+                }
+                Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
+
+            } else if (text.isNotEmpty() && filtersTypesList.isNotEmpty()) {
+                Toast.makeText(this, "Estou Aqui", Toast.LENGTH_LONG).show()
+                Log.e("EER", "filtersLisy: ${filterArrayList.size}")
+                for (pokemon in filterArrayList) {
+                    if (pokemon.name.contains(
+                            text.toString().lowercase(Locale.getDefault())
+                        ) || pokemon.id.contains(text.toString())
+                    ) {
+                        Log.i("EEF", "if: ${pokemon.name} ")
+                        if (!tempsArray.contains(pokemon)) {
+                            tempsArray.add(pokemon)
+                        }
+                    } else {
+                        Log.i("EEF", "else: ${pokemon.name} ")
+                        tempsArray.remove(pokemon)
+
+                    }
+
+                    val unic = tempsArray.distinct()
+                    adapterInRecyclerView(unic)
                 }
                 Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
 
             } else {
-                filterArrayList.clear()
-                Log.i("FILTRO", "tempArray: ${tempArrayList.size} ")
-                adapterInRecyclerView(tempArrayList)
+                if (filtersTypesList.size > 0) {
+                    val unic = filterArrayList.distinct()
+                    adapterInRecyclerView(unic)
+                } else {
+                    filterArrayList.clear()
+                    Log.i("FILTRO", "tempArray: ${tempArrayList.size} ")
+                    adapterInRecyclerView(tempArrayList)
+                }
             }
 
         }
@@ -100,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         dialog.setContentView(view)
         dialog.show()
 
-        val cardBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
+        val cardTypeBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
         val cardTypeNormal = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
         val cardTypeFire = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fire)
         val cardTypeWater = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_water)
@@ -138,76 +170,181 @@ class MainActivity : AppCompatActivity() {
         val imgTypeSteel = dialog.findViewById<ImageView>(R.id.type_steel_img)
         val imgTypeFairy = dialog.findViewById<ImageView>(R.id.type_fairy_img)
 
-        if (cardBug != null && imgTypeBug != null) {
-            buttonAction("bug", cardBug, true, imgTypeBug)
+        Log.i("TYPESL", "showFiltersAdvanced: ${filtersTypesList}")
+
+        if (cardTypeBug != null && imgTypeBug != null) {
+            if (filtersTypesList.contains("bug")) {
+                activeFilterInTypesOrWeaknesses("bug", cardTypeBug, imgTypeBug)
+                buttonAction("bug", cardTypeBug, false, imgTypeBug, filtersTypesList)
+            } else {
+                buttonAction("bug", cardTypeBug, true, imgTypeBug, filtersTypesList)
+            }
         }
 
         if (cardTypeNormal != null && imgTypeNormal != null) {
-            buttonAction("normal", cardTypeNormal, true, imgTypeNormal)
+            if (filtersTypesList.contains("normal")) {
+                activeFilterInTypesOrWeaknesses("normal", cardTypeNormal, imgTypeNormal)
+                buttonAction("normal", cardTypeNormal, false, imgTypeNormal, filtersTypesList)
+            } else {
+                buttonAction("normal", cardTypeNormal, true, imgTypeNormal, filtersTypesList)
+            }
         }
 
         if (cardTypeFire != null && imgTypeFire != null) {
-            buttonAction("fire", cardTypeFire, true, imgTypeFire)
+            if (filtersTypesList.contains("fire")) {
+                activeFilterInTypesOrWeaknesses("fire", cardTypeFire, imgTypeFire)
+                buttonAction("fire", cardTypeFire, false, imgTypeFire, filtersTypesList)
+            } else {
+                buttonAction("fire", cardTypeFire, true, imgTypeFire, filtersTypesList)
+            }
         }
 
         if (cardTypeWater != null && imgTypeWater != null) {
-            buttonAction("water", cardTypeWater, true, imgTypeWater)
+            if (filtersTypesList.contains("water")) {
+                activeFilterInTypesOrWeaknesses("water", cardTypeWater, imgTypeWater)
+                buttonAction("water", cardTypeWater, false, imgTypeWater, filtersTypesList)
+            } else {
+                buttonAction("water", cardTypeWater, true, imgTypeWater, filtersTypesList)
+            }
         }
 
         if (cardTypeEletric != null && imgTypeEletric != null) {
-            buttonAction("eletric", cardTypeEletric, true, imgTypeEletric)
+            if (filtersTypesList.contains("eletric")) {
+                activeFilterInTypesOrWeaknesses("eletric", cardTypeEletric, imgTypeEletric)
+                buttonAction("eletric", cardTypeEletric, false, imgTypeEletric, filtersTypesList)
+            } else {
+                buttonAction("eletric", cardTypeEletric, true, imgTypeEletric, filtersTypesList)
+            }
+
         }
 
         if (cardTypeGrass != null && imgTypeGrass != null) {
-            buttonAction("grass", cardTypeGrass, true, imgTypeGrass)
+            if (filtersTypesList.contains("grass")) {
+                activeFilterInTypesOrWeaknesses("grass", cardTypeGrass, imgTypeGrass)
+                buttonAction("grass", cardTypeGrass, false, imgTypeGrass, filtersTypesList)
+            } else {
+                buttonAction("grass", cardTypeGrass, true, imgTypeGrass, filtersTypesList)
+            }
+
         }
 
         if (cardTypeIce != null && imgTypeIce != null) {
-            buttonAction("ice", cardTypeIce, true, imgTypeIce)
+            if (filtersTypesList.contains("ice")) {
+                activeFilterInTypesOrWeaknesses("ice", cardTypeIce, imgTypeIce)
+                buttonAction("ice", cardTypeIce, false, imgTypeIce, filtersTypesList)
+            } else {
+                buttonAction("ice", cardTypeIce, true, imgTypeIce, filtersTypesList)
+            }
+
         }
 
         if (cardTypeFighting != null && imgTypeFighting != null) {
-            buttonAction("fighting", cardTypeFighting, true, imgTypeFighting)
+            if (filtersTypesList.contains("fighting")) {
+                activeFilterInTypesOrWeaknesses("fighting", cardTypeFighting, imgTypeFighting)
+                buttonAction("fighting", cardTypeFighting, false, imgTypeFighting, filtersTypesList)
+            } else {
+                buttonAction("fighting", cardTypeFighting, true, imgTypeFighting, filtersTypesList)
+            }
+
         }
 
         if (cardTypePoison != null && imgTypePoison != null) {
-            buttonAction("poison", cardTypePoison, true, imgTypePoison)
+            if (filtersTypesList.contains("poison")) {
+                activeFilterInTypesOrWeaknesses("poison", cardTypePoison, imgTypePoison)
+                buttonAction("poison", cardTypePoison, false, imgTypePoison, filtersTypesList)
+            } else {
+                buttonAction("poison", cardTypePoison, true, imgTypePoison, filtersTypesList)
+            }
+
         }
 
         if (cardTypeGround != null && imgTypeGround != null) {
-            buttonAction("ground", cardTypeGround, true, imgTypeGround)
+            if (filtersTypesList.contains("ground")) {
+                activeFilterInTypesOrWeaknesses("ground", cardTypeGround, imgTypeGround)
+                buttonAction("ground", cardTypeGround, false, imgTypeGround, filtersTypesList)
+            } else {
+                buttonAction("ground", cardTypeGround, true, imgTypeGround, filtersTypesList)
+            }
+
         }
 
         if (cardTypeFlying != null && imgTypeFlying != null) {
-            buttonAction("flying", cardTypeFlying, true, imgTypeFlying)
+            if (filtersTypesList.contains("flying")) {
+                activeFilterInTypesOrWeaknesses("flying", cardTypeFlying, imgTypeFlying)
+                buttonAction("flying", cardTypeFlying, false, imgTypeFlying, filtersTypesList)
+            } else {
+                buttonAction("flying", cardTypeFlying, true, imgTypeFlying, filtersTypesList)
+            }
+
         }
 
         if (cardTypePsychic != null && imgTypePsychic != null) {
-            buttonAction("psychic", cardTypePsychic, true, imgTypePsychic)
+            if (filtersTypesList.contains("psychic")) {
+                activeFilterInTypesOrWeaknesses("psychic", cardTypePsychic, imgTypePsychic)
+                buttonAction("psychic", cardTypePsychic, false, imgTypePsychic, filtersTypesList)
+            } else {
+                buttonAction("psychic", cardTypePsychic, true, imgTypePsychic, filtersTypesList)
+            }
+
         }
 
         if (cardTypeRock != null && imgTypeRock != null) {
-            buttonAction("rock", cardTypeRock, true, imgTypeRock)
+            if (filtersTypesList.contains("rock")) {
+                activeFilterInTypesOrWeaknesses("rock", cardTypeRock, imgTypeRock)
+                buttonAction("rock", cardTypeRock, false, imgTypeRock, filtersTypesList)
+            } else {
+                buttonAction("rock", cardTypeRock, true, imgTypeRock, filtersTypesList)
+            }
+
         }
 
         if (cardTypeGhost != null && imgTypeGhost != null) {
-            buttonAction("ghost", cardTypeGhost, true, imgTypeGhost)
+            if (filtersTypesList.contains("ghost")) {
+                activeFilterInTypesOrWeaknesses("ghost", cardTypeGhost, imgTypeGhost)
+                buttonAction("ghost", cardTypeGhost, false, imgTypeGhost, filtersTypesList)
+            } else {
+                buttonAction("ghost", cardTypeGhost, true, imgTypeGhost, filtersTypesList)
+            }
+
         }
 
         if (cardTypeDragon != null && imgTypeDragon != null) {
-            buttonAction("dragon", cardTypeDragon, true, imgTypeDragon)
+            if (filtersTypesList.contains("dragon")) {
+                activeFilterInTypesOrWeaknesses("dragon", cardTypeDragon, imgTypeDragon)
+                buttonAction("dragon", cardTypeDragon, false, imgTypeDragon, filtersTypesList)
+            } else {
+                buttonAction("dragon", cardTypeDragon, true, imgTypeDragon, filtersTypesList)
+            }
+
         }
 
         if (cardTypeDark != null && imgTypeDark != null) {
-            buttonAction("dark", cardTypeDark, true, imgTypeDark)
+            if (filtersTypesList.contains("dark")) {
+                activeFilterInTypesOrWeaknesses("dark", cardTypeDark, imgTypeDark)
+                buttonAction("dark", cardTypeDark, false, imgTypeDark, filtersTypesList)
+            } else {
+                buttonAction("dark", cardTypeDark, true, imgTypeDark, filtersTypesList)
+            }
+
         }
 
         if (cardTypeSteel != null && imgTypeSteel != null) {
-            buttonAction("steel", cardTypeSteel, true, imgTypeSteel)
+            if (filtersTypesList.contains("steel")) {
+                activeFilterInTypesOrWeaknesses("steel", cardTypeSteel, imgTypeSteel)
+                buttonAction("steel", cardTypeSteel, false, imgTypeSteel, filtersTypesList)
+            } else {
+                buttonAction("steel", cardTypeSteel, true, imgTypeSteel, filtersTypesList)
+            }
+
         }
 
         if (cardTypeFairy != null && imgTypeFairy != null) {
-            buttonAction("fairy", cardTypeFairy, true, imgTypeFairy)
+            if (filtersTypesList.contains("fairy")) {
+                activeFilterInTypesOrWeaknesses("fairy", cardTypeFairy, imgTypeFairy)
+                buttonAction("fairy", cardTypeFairy, false, imgTypeFairy, filtersTypesList)
+            } else {
+                buttonAction("fairy", cardTypeFairy, true, imgTypeFairy, filtersTypesList)
+            }
         }
 
         val btnApply = dialog.findViewById<Button>(R.id.btn_types_apply)
@@ -215,36 +352,508 @@ class MainActivity : AppCompatActivity() {
 
         btnApply?.setOnClickListener {
             filterArrayList.clear()
-            for (tipos in tempArrayList.indices) {
-                if (tempArrayList[tipos].types.size > 1) {
-                    if (filtersTypesList.size > 0) {
-                        for (filterTypes in filtersTypesList) {
-                            if (tempArrayList[tipos].types[0].name.contains(filterTypes) || tempArrayList[tipos].types[1].name.contains(
-                                    filterTypes
-                                )
-                            ) {
-                                filterArrayList.add(tempArrayList[tipos])
-                            }
-                        }
-                    }
 
-                } else {
-                    if (filtersTypesList.size > 0) {
-                        for (filterTypes in filtersTypesList) {
-                            if (tempArrayList[tipos].types[0].name.contains(filterTypes)) {
-                                filterArrayList.add(tempArrayList[tipos])
+            if (filtersTypesList.isNotEmpty()) {
+                for (tipos in tempArrayList.indices) {
+                    if (tempArrayList[tipos].types.size > 1) {
+                        if (filtersTypesList.size > 0) {
+                            for (filterTypes in filtersTypesList) {
+                                if (tempArrayList[tipos].types[0].name.contains(filterTypes) || tempArrayList[tipos].types[1].name.contains(
+                                        filterTypes
+                                    )
+                                ) {
+                                    filterArrayList.add(tempArrayList[tipos])
+                                }
                             }
                         }
+
                     } else {
-                        dialog.dismiss()
+                        if (filtersTypesList.size > 0) {
+                            for (filterTypes in filtersTypesList) {
+                                if (tempArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                    filterArrayList.add(tempArrayList[tipos])
+                                }
+                            }
+                        } else {
+                            dialog.dismiss()
+                        }
                     }
-
                 }
+                val unic = filterArrayList.distinct()
+                adapterInRecyclerView(unic)
+            } else {
+                adapterInRecyclerView(tempArrayList)
+            }
+            dialog.dismiss()
+        }
+
+        val btnReset = dialog.findViewById<Button>(R.id.btn_types_reset)
+
+        btnReset?.setOnClickListener {
+            if (filtersTypesList.isNotEmpty()) {
+                filtersTypesList.clear()
+                adapterInRecyclerView(tempArrayList)
+            }
+            dialog.dismiss()
+        }
+
+        val cardWeaknessesBug =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_bug)
+        val cardWeaknessesNormal =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_normal)
+        val cardWeaknessesFire =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_fire)
+        val cardWeaknessesWater =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_water)
+        val cardWeaknessesEletric =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_eletric)
+        val cardWeaknessesGrass =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_grass)
+        val cardWeaknessesIce =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_ice)
+        val cardWeaknessesFighting =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_fighting)
+        val cardWeaknessesPoison =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_poison)
+        val cardWeaknessesGround =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_ground)
+        val cardWeaknessesFlying =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_flying)
+        val cardWeaknessesPsychic =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_psychic)
+        val cardWeaknessesRock =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_rock)
+        val cardWeaknessesGhost =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_ghost)
+        val cardWeaknessesDragon =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_dragon)
+        val cardWeaknessesDark =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_dark)
+        val cardWeaknessesSteel =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_steel)
+        val cardWeaknessesFairy =
+            dialog.findViewById<MaterialCardView>(R.id.card_weaknesses_filter_fairy)
+
+        val imgWeaknessesNormal = dialog.findViewById<ImageView>(R.id.weaknesses_normal_img)
+        val imgWeaknessesBug = dialog.findViewById<ImageView>(R.id.weaknesses_bug_img)
+        val imgWeaknessesFire = dialog.findViewById<ImageView>(R.id.weaknesses_fire_img)
+        val imgWeaknessesWater = dialog.findViewById<ImageView>(R.id.weaknesses_water_img)
+        val imgWeaknessesEletric = dialog.findViewById<ImageView>(R.id.weaknesses_eletric_img)
+        val imgWeaknessesGrass = dialog.findViewById<ImageView>(R.id.weaknesses_grass_img)
+        val imgWeaknessesIce = dialog.findViewById<ImageView>(R.id.weaknesses_ice_img)
+        val imgWeaknessesFighting = dialog.findViewById<ImageView>(R.id.weaknesses_fighting_img)
+        val imgWeaknessesPoison = dialog.findViewById<ImageView>(R.id.weaknesses_poison_img)
+        val imgWeaknessesGround = dialog.findViewById<ImageView>(R.id.weaknesses_ground_img)
+        val imgWeaknessesFlying = dialog.findViewById<ImageView>(R.id.weaknesses_flying_img)
+        val imgWeaknessesPsychic = dialog.findViewById<ImageView>(R.id.weaknesses_psychic_img)
+        val imgWeaknessesRock = dialog.findViewById<ImageView>(R.id.weaknesses_rock_img)
+        val imgWeaknessesGhost = dialog.findViewById<ImageView>(R.id.weaknesses_ghost_img)
+        val imgWeaknessesDragon = dialog.findViewById<ImageView>(R.id.weaknesses_dragon_img)
+        val imgWeaknessesDark = dialog.findViewById<ImageView>(R.id.weaknesses_dark_img)
+        val imgWeaknessesSteel = dialog.findViewById<ImageView>(R.id.weaknesses_steel_img)
+        val imgWeaknessesFairy = dialog.findViewById<ImageView>(R.id.weaknesses_fairy_img)
+
+        if (cardWeaknessesBug != null && imgWeaknessesBug != null) {
+            if (filtersWeaknessesList.contains("bug")) {
+                activeFilterInTypesOrWeaknesses("bug", cardWeaknessesBug, imgWeaknessesBug)
+                buttonAction(
+                    "bug",
+                    cardWeaknessesBug,
+                    false,
+                    imgWeaknessesBug,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "bug",
+                    cardWeaknessesBug,
+                    true,
+                    imgWeaknessesBug,
+                    filtersWeaknessesList
+                )
+            }
+        }
+
+        if (cardWeaknessesNormal != null && imgWeaknessesNormal != null) {
+            if (filtersWeaknessesList.contains("normal")) {
+                activeFilterInTypesOrWeaknesses("normal", cardWeaknessesNormal, imgWeaknessesNormal)
+                buttonAction(
+                    "normal",
+                    cardWeaknessesNormal,
+                    false,
+                    imgWeaknessesNormal,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "normal",
+                    cardWeaknessesNormal,
+                    true,
+                    imgWeaknessesNormal,
+                    filtersWeaknessesList
+                )
+            }
+        }
+
+        if (cardWeaknessesFire != null && imgWeaknessesFire != null) {
+            if (filtersWeaknessesList.contains("fire")) {
+                activeFilterInTypesOrWeaknesses("fire", cardWeaknessesFire, imgWeaknessesFire)
+                buttonAction(
+                    "fire",
+                    cardWeaknessesFire,
+                    false,
+                    imgWeaknessesFire,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "fire",
+                    cardWeaknessesFire,
+                    true,
+                    imgWeaknessesFire,
+                    filtersWeaknessesList
+                )
+            }
+        }
+
+        if (cardWeaknessesWater != null && imgWeaknessesWater != null) {
+            if (filtersWeaknessesList.contains("water")) {
+                activeFilterInTypesOrWeaknesses("water", cardWeaknessesWater, imgWeaknessesWater)
+                buttonAction(
+                    "water",
+                    cardWeaknessesWater,
+                    false,
+                    imgWeaknessesWater,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "water",
+                    cardWeaknessesWater,
+                    true,
+                    imgWeaknessesWater,
+                    filtersWeaknessesList
+                )
+            }
+        }
+
+        if (cardWeaknessesEletric != null && imgWeaknessesEletric != null) {
+            if (filtersWeaknessesList.contains("eletric")) {
+                activeFilterInTypesOrWeaknesses(
+                    "eletric",
+                    cardWeaknessesEletric,
+                    imgWeaknessesEletric
+                )
+                buttonAction(
+                    "eletric",
+                    cardWeaknessesEletric,
+                    false,
+                    imgWeaknessesEletric,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "eletric",
+                    cardWeaknessesEletric,
+                    true,
+                    imgWeaknessesEletric,
+                    filtersWeaknessesList
+                )
             }
 
-            val unic = filterArrayList.distinct()
-            adapterInRecyclerView(unic)
-            dialog.dismiss()
+        }
+
+        if (cardWeaknessesGrass != null && imgWeaknessesGrass != null) {
+            if (filtersWeaknessesList.contains("grass")) {
+                activeFilterInTypesOrWeaknesses("grass", cardWeaknessesGrass, imgWeaknessesGrass)
+                buttonAction(
+                    "grass",
+                    cardWeaknessesGrass,
+                    false,
+                    imgWeaknessesGrass,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "grass",
+                    cardWeaknessesGrass,
+                    true,
+                    imgWeaknessesGrass,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesIce != null && imgWeaknessesIce != null) {
+            if (filtersWeaknessesList.contains("ice")) {
+                activeFilterInTypesOrWeaknesses("ice", cardWeaknessesIce, imgWeaknessesIce)
+                buttonAction(
+                    "ice",
+                    cardWeaknessesIce,
+                    false,
+                    imgWeaknessesIce,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "ice",
+                    cardWeaknessesIce,
+                    true,
+                    imgWeaknessesIce,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesFighting != null && imgWeaknessesFighting != null) {
+            if (filtersWeaknessesList.contains("fighting")) {
+                activeFilterInTypesOrWeaknesses(
+                    "fighting",
+                    cardWeaknessesFighting,
+                    imgWeaknessesFighting
+                )
+                buttonAction(
+                    "fighting",
+                    cardWeaknessesFighting,
+                    false,
+                    imgWeaknessesFighting,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "fighting",
+                    cardWeaknessesFighting,
+                    true,
+                    imgWeaknessesFighting,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesPoison != null && imgWeaknessesPoison != null) {
+            if (filtersWeaknessesList.contains("poison")) {
+                activeFilterInTypesOrWeaknesses("poison", cardWeaknessesPoison, imgWeaknessesPoison)
+                buttonAction(
+                    "poison",
+                    cardWeaknessesPoison,
+                    false,
+                    imgWeaknessesPoison,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "poison",
+                    cardWeaknessesPoison,
+                    true,
+                    imgWeaknessesPoison,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesGround != null && imgWeaknessesGround != null) {
+            if (filtersWeaknessesList.contains("ground")) {
+                activeFilterInTypesOrWeaknesses("ground", cardWeaknessesGround, imgWeaknessesGround)
+                buttonAction(
+                    "ground",
+                    cardWeaknessesGround,
+                    false,
+                    imgWeaknessesGround,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "ground",
+                    cardWeaknessesGround,
+                    true,
+                    imgWeaknessesGround,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesFlying != null && imgWeaknessesFlying != null) {
+            if (filtersWeaknessesList.contains("flying")) {
+                activeFilterInTypesOrWeaknesses("flying", cardWeaknessesFlying, imgWeaknessesFlying)
+                buttonAction(
+                    "flying",
+                    cardWeaknessesFlying,
+                    false,
+                    imgWeaknessesFlying,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "flying",
+                    cardWeaknessesFlying,
+                    true,
+                    imgWeaknessesFlying,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesPsychic != null && imgWeaknessesPsychic != null) {
+            if (filtersWeaknessesList.contains("psychic")) {
+                activeFilterInTypesOrWeaknesses(
+                    "psychic",
+                    cardWeaknessesPsychic,
+                    imgWeaknessesPsychic
+                )
+                buttonAction(
+                    "psychic",
+                    cardWeaknessesPsychic,
+                    false,
+                    imgWeaknessesPsychic,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "psychic",
+                    cardWeaknessesPsychic,
+                    true,
+                    imgWeaknessesPsychic,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesRock != null && imgWeaknessesRock != null) {
+            if (filtersWeaknessesList.contains("rock")) {
+                activeFilterInTypesOrWeaknesses("rock", cardWeaknessesRock, imgWeaknessesRock)
+                buttonAction(
+                    "rock",
+                    cardWeaknessesRock,
+                    false,
+                    imgWeaknessesRock,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "rock",
+                    cardWeaknessesRock,
+                    true,
+                    imgWeaknessesRock,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesGhost != null && imgWeaknessesGhost != null) {
+            if (filtersWeaknessesList.contains("ghost")) {
+                activeFilterInTypesOrWeaknesses("ghost", cardWeaknessesGhost, imgWeaknessesGhost)
+                buttonAction(
+                    "ghost",
+                    cardWeaknessesGhost,
+                    false,
+                    imgWeaknessesGhost,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "ghost",
+                    cardWeaknessesGhost,
+                    true,
+                    imgWeaknessesGhost,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesDragon != null && imgWeaknessesDragon != null) {
+            if (filtersWeaknessesList.contains("dragon")) {
+                activeFilterInTypesOrWeaknesses("dragon", cardWeaknessesDragon, imgWeaknessesDragon)
+                buttonAction(
+                    "dragon",
+                    cardWeaknessesDragon,
+                    false,
+                    imgWeaknessesDragon,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "dragon",
+                    cardWeaknessesDragon,
+                    true,
+                    imgWeaknessesDragon,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesDark != null && imgWeaknessesDark != null) {
+            if (filtersWeaknessesList.contains("dark")) {
+                activeFilterInTypesOrWeaknesses("dark", cardWeaknessesDark, imgWeaknessesDark)
+                buttonAction(
+                    "dark",
+                    cardWeaknessesDark,
+                    false,
+                    imgWeaknessesDark,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "dark",
+                    cardWeaknessesDark,
+                    true,
+                    imgWeaknessesDark,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesSteel != null && imgWeaknessesSteel != null) {
+            if (filtersWeaknessesList.contains("steel")) {
+                activeFilterInTypesOrWeaknesses("steel", cardWeaknessesSteel, imgWeaknessesSteel)
+                buttonAction(
+                    "steel",
+                    cardWeaknessesSteel,
+                    false,
+                    imgWeaknessesSteel,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "steel",
+                    cardWeaknessesSteel,
+                    true,
+                    imgWeaknessesSteel,
+                    filtersWeaknessesList
+                )
+            }
+
+        }
+
+        if (cardWeaknessesFairy != null && imgWeaknessesFairy != null) {
+            if (filtersWeaknessesList.contains("fairy")) {
+                activeFilterInTypesOrWeaknesses("fairy", cardWeaknessesFairy, imgWeaknessesFairy)
+                buttonAction(
+                    "fairy",
+                    cardWeaknessesFairy,
+                    false,
+                    imgWeaknessesFairy,
+                    filtersWeaknessesList
+                )
+            } else {
+                buttonAction(
+                    "fairy",
+                    cardWeaknessesFairy,
+                    true,
+                    imgWeaknessesFairy,
+                    filtersWeaknessesList
+                )
+            }
         }
     }
 
@@ -252,7 +861,8 @@ class MainActivity : AppCompatActivity() {
         type: String,
         cardView: MaterialCardView,
         isBoolType: Boolean,
-        imgCardView: ImageView
+        imgCardView: ImageView,
+        array: ArrayList<String>
     ) {
         var isTrueType = isBoolType
 
@@ -260,16 +870,25 @@ class MainActivity : AppCompatActivity() {
             isTrueType = if (isTrueType) {
                 cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
                 imgCardView.setColorFilter(Color.WHITE)
-                filtersTypesList.add(type)
+                array.add(type)
                 !isTrueType
             } else {
                 cardView.setCardBackgroundColor(Color.WHITE)
                 imgCardView.setColorFilter(Color.parseColor(colorType(type)))
-                filtersTypesList.remove(type)
+                array.remove(type)
                 !isTrueType
             }
 
         }
+    }
+
+    private fun activeFilterInTypesOrWeaknesses(
+        type: String,
+        cardView: MaterialCardView,
+        imgCardView: ImageView
+    ) {
+        cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
+        imgCardView.setColorFilter(Color.WHITE)
     }
 
     private fun colorType(type: String): String = when (type) {

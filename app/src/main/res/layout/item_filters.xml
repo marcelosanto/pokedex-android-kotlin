@@ -519,6 +519,499 @@
 
         </HorizontalScrollView>
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textColor="@color/black"
+            android:text="Weaknesses" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp">
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_normal"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.Light">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_normal_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_normal"
+                            android:layout_gravity="center"
+                            android:tint="#818054"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_fire"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_fire_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_fire"
+                            android:layout_gravity="center"
+                            android:tint="#c25c10"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_water"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_water_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_water"
+                            android:layout_gravity="center"
+                            android:tint="#1d5ee9"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_eletric"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_eletric_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_electric"
+                            android:layout_gravity="center"
+                            android:tint="#FFEF00"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_grass"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_grass_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_grass"
+                            android:layout_gravity="center"
+                            android:tint="#56972f"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_ice"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_ice_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_ice"
+                            android:layout_gravity="center"
+                            android:tint="#5ec5c0"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_fighting"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_fighting_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_fighting"
+                            android:layout_gravity="center"
+                            android:tint="#831f1b"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_poison"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_poison_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_poison"
+                            android:layout_gravity="center"
+                            android:tint="#6c296a"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_ground"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_ground_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_ground"
+                            android:layout_gravity="center"
+                            android:tint="#d3a328"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_flying"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_flying_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_flying"
+                            android:layout_gravity="center"
+                            android:tint="#a385e0"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_psychic"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_psychic_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_psychic"
+                            android:layout_gravity="center"
+                            android:tint="#f60b53"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_bug"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="20dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_bug_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_bug"
+                            android:layout_gravity="center"
+                            android:tint="#6a7611"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_rock"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_rock_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_rock"
+                            android:layout_gravity="center"
+                            android:tint="#7b6d24"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_ghost"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_ghost_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_ghost"
+                            android:layout_gravity="center"
+                            android:tint="#4e3b66"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_dragon"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_dragon_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_dragon"
+                            android:layout_gravity="center"
+                            android:tint="#4403e1"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_dark"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_dark_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_dark"
+                            android:layout_gravity="center"
+                            android:tint="#413229"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_steel"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_steel_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_steel"
+                            android:layout_gravity="center"
+                            android:tint="#8989af"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weaknesses_filter_fairy"
+                        android:checkable="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        android:theme="@style/Theme.MaterialComponents.DayNight">
+
+                        <ImageView
+                            android:id="@+id/weaknesses_fairy_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_fairy"
+                            android:layout_gravity="center"
+                            android:tint="#c34c87"
+                            android:contentDescription="@string/icon_for_filter" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -526,6 +1019,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/btn_types_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
