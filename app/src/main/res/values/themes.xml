@@ -52,4 +52,9 @@
         <item name="android:fontFamily">@font/sf_pro_display_regular</item>
     </style>
 
+    <style name="MyTransparentBottomSheetDialogTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

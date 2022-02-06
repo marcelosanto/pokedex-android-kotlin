@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.slider.RangeSlider
 import com.google.android.material.textfield.TextInputEditText
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 
     private var filtersTypesList: ArrayList<String> = ArrayList()
     private var filtersWeaknessesList: ArrayList<String> = ArrayList()
+    private var filtersHeightsList: ArrayList<String> = ArrayList()
+    private var filtersWeightsList: ArrayList<String> = ArrayList()
+    private var filtersRangerList: ArrayList<Int> = ArrayList()
 
 
     private val recyclerView by lazy {
@@ -128,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     private fun showFiltersAdvanced() {
         val view: View = layoutInflater.inflate(R.layout.item_filters, null)
-        val dialog = BottomSheetDialog(this)
+        val dialog = BottomSheetDialog(this, R.style.MyTransparentBottomSheetDialogTheme)
         dialog.setContentView(view)
         dialog.show()
 
@@ -857,6 +861,182 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val cardTypeHeightsShort = dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsShort)
+        val cardTypeHeightsMedium =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsMedium)
+        val cardTypeHeightsTall = dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsTall)
+
+        val imgTypeHeightsShort = dialog.findViewById<ImageView>(R.id.imgTypeHeightsShort)
+        val imgTypeHeightsMedium = dialog.findViewById<ImageView>(R.id.imgTypeHeightsMedium)
+        val imgTypeHeightsTall = dialog.findViewById<ImageView>(R.id.imgTypeHeightsTall)
+
+        if (cardTypeHeightsShort != null && imgTypeHeightsShort != null) {
+            if (filtersHeightsList.contains("short")) {
+                activeFilterInTypesOrWeaknesses("short", cardTypeHeightsShort, imgTypeHeightsShort)
+                buttonAction(
+                    "short",
+                    cardTypeHeightsShort,
+                    false,
+                    imgTypeHeightsShort,
+                    filtersHeightsList
+                )
+            } else {
+                buttonAction(
+                    "short",
+                    cardTypeHeightsShort,
+                    true,
+                    imgTypeHeightsShort,
+                    filtersHeightsList
+                )
+            }
+        }
+
+        if (cardTypeHeightsMedium != null && imgTypeHeightsMedium != null) {
+            if (filtersHeightsList.contains("medium")) {
+                activeFilterInTypesOrWeaknesses(
+                    "medium",
+                    cardTypeHeightsMedium,
+                    imgTypeHeightsMedium
+                )
+                buttonAction(
+                    "medium",
+                    cardTypeHeightsMedium,
+                    false,
+                    imgTypeHeightsMedium,
+                    filtersHeightsList
+                )
+            } else {
+                buttonAction(
+                    "medium",
+                    cardTypeHeightsMedium,
+                    true,
+                    imgTypeHeightsMedium,
+                    filtersHeightsList
+                )
+            }
+        }
+
+        if (cardTypeHeightsTall != null && imgTypeHeightsTall != null) {
+            if (filtersHeightsList.contains("tall")) {
+                activeFilterInTypesOrWeaknesses("tall", cardTypeHeightsTall, imgTypeHeightsTall)
+                buttonAction(
+                    "tall",
+                    cardTypeHeightsTall,
+                    false,
+                    imgTypeHeightsTall,
+                    filtersHeightsList
+                )
+            } else {
+                buttonAction(
+                    "tall",
+                    cardTypeHeightsTall,
+                    true,
+                    imgTypeHeightsTall,
+                    filtersHeightsList
+                )
+            }
+        }
+
+        val cardTypeWeightsNormal =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsNormal)
+        val cardTypeWeightsLight = dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsLight)
+        val cardTypeWeightsHeavy = dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsHeavy)
+
+        val imgTypeWeightsNormal = dialog.findViewById<ImageView>(R.id.imgTypeWeightsNormal)
+        val imgTypeWeightsLight = dialog.findViewById<ImageView>(R.id.imgTypeWeightsLight)
+        val imgTypeWeightsHeavy = dialog.findViewById<ImageView>(R.id.imgTypeWeightsHeavy)
+
+        if (cardTypeWeightsNormal != null && imgTypeWeightsNormal != null) {
+            if (filtersWeightsList.contains("pnormal")) {
+                activeFilterInTypesOrWeaknesses(
+                    "pnormal",
+                    cardTypeWeightsNormal,
+                    imgTypeWeightsNormal
+                )
+                buttonAction(
+                    "pnormal",
+                    cardTypeWeightsNormal,
+                    false,
+                    imgTypeWeightsNormal,
+                    filtersWeightsList
+                )
+            } else {
+                buttonAction(
+                    "pnormal",
+                    cardTypeWeightsNormal,
+                    true,
+                    imgTypeWeightsNormal,
+                    filtersWeightsList
+                )
+            }
+        }
+
+        if (cardTypeWeightsLight != null && imgTypeWeightsLight != null) {
+            if (filtersWeightsList.contains("light")) {
+                activeFilterInTypesOrWeaknesses("light", cardTypeWeightsLight, imgTypeWeightsLight)
+                buttonAction(
+                    "light",
+                    cardTypeWeightsLight,
+                    false,
+                    imgTypeWeightsLight,
+                    filtersWeightsList
+                )
+            } else {
+                buttonAction(
+                    "light",
+                    cardTypeWeightsLight,
+                    true,
+                    imgTypeWeightsLight,
+                    filtersWeightsList
+                )
+            }
+        }
+
+        if (cardTypeWeightsHeavy != null && imgTypeWeightsHeavy != null) {
+            if (filtersWeightsList.contains("heavy")) {
+                activeFilterInTypesOrWeaknesses("heavy", cardTypeWeightsHeavy, imgTypeWeightsHeavy)
+                buttonAction(
+                    "heavy",
+                    cardTypeWeightsHeavy,
+                    false,
+                    imgTypeWeightsHeavy,
+                    filtersWeightsList
+                )
+            } else {
+                buttonAction(
+                    "heavy",
+                    cardTypeWeightsHeavy,
+                    true,
+                    imgTypeWeightsHeavy,
+                    filtersWeightsList
+                )
+            }
+        }
+
+
+        val rangeSlider = dialog.findViewById<RangeSlider>(R.id.range_slider)
+
+        rangeSlider?.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
+            override fun onStartTrackingTouch(slider: RangeSlider) {
+                val values = rangeSlider.values
+
+                /*   Log.i("RANGESLIDER", "onStartTrackingTouch: ${values[0]}")
+                   Log.i("RANGESLIDER", "onStartTrackingTouch: ${values[1]}")*/
+
+            }
+
+            override fun onStopTrackingTouch(slider: RangeSlider) {
+                val values = rangeSlider.values
+
+                if (filtersRangerList.size > 0) filtersRangerList.clear()
+
+                filtersRangerList.add(0, values[0].toInt())
+                filtersRangerList.add(1, values[1].toInt())
+                Log.i("RANGESLIDER", "onStopTrackingTouch: ${filtersRangerList}")
+            }
+
+
+        })
 
     }
 
@@ -913,7 +1093,13 @@ class MainActivity : AppCompatActivity() {
         "dark" -> "#413229"
         "steel" -> "#8989af"
         "fairy" -> "#c34c87"
-        else -> "#FFFFFF"
+        "tall" -> "#2F4F4F"
+        "medium" -> "#6A5ACD"
+        "short" -> "#FF1493"
+        "light" -> "#90EE90"
+        "pnormal" -> "#6495ED"
+        "heavy" -> "#778899"
+        else -> type
     }
 
 

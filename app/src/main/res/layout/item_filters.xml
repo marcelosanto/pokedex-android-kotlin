@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardCornerRadius="30dp"
+    app:cardElevation="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,162 +18,158 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textSize="25sp"
-            android:text="@string/filters" />
+            android:text="@string/filters"
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular"
-            android:textSize="18sp"
-            android:text="@string/use_advanced_search_to_explore_pok_mon_by_type_weaknes_height_and_more" />
+            android:text="@string/use_advanced_search_to_explore_pok_mon_by_type_weaknes_height_and_more"
+            android:textSize="18sp" />
 
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textColor="@color/black"
-            android:text="@string/types" />
+            android:text="@string/types"
+            android:textColor="@color/black" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
             android:scrollbars="none">
 
             <LinearLayout
-                android:background="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_normal"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.Light">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_normal_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_normal"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#818054"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_normal"
+                            android:tint="#818054" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_fire"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_fire_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fire"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#c25c10"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fire"
+                            android:tint="#c25c10" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_water"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_water_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_water"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#1d5ee9"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_water"
+                            android:tint="#1d5ee9" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_eletric"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_eletric_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_electric"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_electric"
                             android:tint="#FFEF00"
-                            android:contentDescription="@string/icon_for_filter" />
+                            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_grass"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:checkable="true"
-                        android:theme="@style/Theme.MaterialComponents.DayNight"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
                         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck">
 
                         <ImageView
                             android:id="@+id/type_grass_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
                             android:contentDescription="@string/icon_for_filter"
                             android:src="@drawable/ic_grass"
@@ -179,340 +178,341 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_ice"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_ice_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ice"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ice"
                             android:tint="#5ec5c0"
-                            android:contentDescription="@string/icon_for_filter" />
+                            tools:ignore="ImageContrastCheck" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_fighting"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_fighting_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fighting"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#831f1b"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fighting"
+                            android:tint="#831f1b" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_poison"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_poison_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_poison"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#6c296a"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_poison"
+                            android:tint="#6c296a" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_ground"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_ground_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ground"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#d3a328"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ground"
+                            android:tint="#d3a328" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_flying"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_flying_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_flying"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#a385e0"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_flying"
+                            android:tint="#a385e0" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_psychic"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_psychic_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_psychic"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#f60b53"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_psychic"
+                            android:tint="#f60b53" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_bug"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="18dp"
-                        app:cardElevation="20dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="20dp">
 
                         <ImageView
                             android:id="@+id/type_bug_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_bug"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#6a7611"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_bug"
+                            android:tint="#6a7611" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_rock"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_rock_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_rock"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#7b6d24"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_rock"
+                            android:tint="#7b6d24" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_ghost"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_ghost_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ghost"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#4e3b66"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ghost"
+                            android:tint="#4e3b66" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_dragon"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_dragon_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_dragon"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#4403e1"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_dragon"
+                            android:tint="#4483e1" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_dark"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_dark_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_dark"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#413229"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_dark"
+                            android:tint="#413229" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_steel"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_steel_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_steel"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#8989af"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_steel"
+                            android:tint="#8989af" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_type_filter_fairy"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/type_fairy_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fairy"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#c34c87"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="#c34c87" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
@@ -521,491 +521,491 @@
         </HorizontalScrollView>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textColor="@color/black"
-            android:text="Weaknesses" />
+            android:text="Weaknesses"
+            android:textColor="@color/black" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
             android:scrollbars="none">
 
             <LinearLayout
-                android:background="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_normal"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.Light">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_normal_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_normal"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#818054"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_normal"
+                            android:tint="#818054" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_fire"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_fire_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fire"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#c25c10"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fire"
+                            android:tint="#c25c10" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_water"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_water_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_water"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#1d5ee9"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_water"
+                            android:tint="#1d5ee9" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_eletric"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_eletric_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_electric"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_electric"
                             android:tint="#FFEF00"
-                            android:contentDescription="@string/icon_for_filter" />
+                            tools:ignore="ImageContrastCheck" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_grass"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_grass_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_grass"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#56972f"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_grass"
+                            android:tint="#56972f" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_ice"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_ice_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ice"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ice"
                             android:tint="#5ec5c0"
-                            android:contentDescription="@string/icon_for_filter" />
+                            tools:ignore="ImageContrastCheck" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_fighting"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_fighting_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fighting"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#831f1b"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fighting"
+                            android:tint="#831f1b" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_poison"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_poison_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_poison"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#6c296a"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_poison"
+                            android:tint="#6c296a" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_ground"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_ground_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ground"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#d3a328"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ground"
+                            android:tint="#d3a328" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_flying"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_flying_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_flying"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#a385e0"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_flying"
+                            android:tint="#a385e0" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_psychic"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_psychic_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_psychic"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#f60b53"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_psychic"
+                            android:tint="#f60b53" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_bug"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="18dp"
-                        app:cardElevation="20dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="20dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_bug_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_bug"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#6a7611"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_bug"
+                            android:tint="#6a7611" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_rock"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_rock_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_rock"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#7b6d24"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_rock"
+                            android:tint="#7b6d24" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_ghost"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_ghost_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_ghost"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#4e3b66"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_ghost"
+                            android:tint="#4e3b66" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_dragon"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_dragon_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_dragon"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#4403e1"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_dragon"
+                            android:tint="#4483e1" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_dark"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_dark_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_dark"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#413229"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_dark"
+                            android:tint="#413229" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_steel"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_steel_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_steel"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#8989af"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_steel"
+                            android:tint="#8989af" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginHorizontal="10dp"
-                    android:gravity="center"
                     android:layout_width="50dp"
-                    android:layout_height="50dp">
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:gravity="center">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_weaknesses_filter_fairy"
-                        android:checkable="true"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp"
-                        android:theme="@style/Theme.MaterialComponents.DayNight">
+                        app:cardElevation="8dp">
 
                         <ImageView
                             android:id="@+id/weaknesses_fairy_img"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_fairy"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:tint="#c34c87"
-                            android:contentDescription="@string/icon_for_filter" />
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="#c34c87" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
@@ -1014,234 +1014,243 @@
         </HorizontalScrollView>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textColor="@color/black"
-            android:text="Heights" />
+            android:text="Heights"
+            android:textColor="@color/black" />
 
         <LinearLayout
-            android:background="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="10dp">
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeHeightsShort"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.Light">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:id="@+id/imgTypeHeightsShort"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon_for_filter"
                         android:src="@drawable/ic_resource_short"
-                        android:layout_gravity="center"
-                        android:tint="#FF1493"
-                        android:contentDescription="@string/icon_for_filter" />
+                        android:tint="#FF1493" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:checkable="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeHeightsMedium"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.DayNight">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:id="@+id/imgTypeHeightsMedium"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon_for_filter"
                         android:src="@drawable/ic_medium"
-                        android:layout_gravity="center"
-                        android:tint="	#6A5ACD"
-                        android:contentDescription="@string/icon_for_filter" />
+                        android:tint="#6A5ACD" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:checkable="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeHeightsTall"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.DayNight">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_tall"
+                        android:id="@+id/imgTypeHeightsTall"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:tint="#2F4F4F"
-                        android:contentDescription="@string/icon_for_filter" />
+                        android:contentDescription="@string/icon_for_filter"
+                        android:src="@drawable/ic_tall"
+                        android:tint="#2F4F4F" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textColor="@color/black"
-            android:text="Weights" />
+            android:text="Weights"
+            android:textColor="@color/black" />
 
         <LinearLayout
-            android:background="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="10dp">
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeWeightsLight"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.Light">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:id="@+id/imgTypeWeightsLight"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon_for_filter"
                         android:src="@drawable/ic_light"
-                        android:layout_gravity="center"
                         android:tint="#90EE90"
-                        android:contentDescription="@string/icon_for_filter" />
+                        tools:ignore="ImageContrastCheck" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:checkable="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeWeightsNormal"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.DayNight">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:id="@+id/imgTypeWeightsNormal"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon_for_filter"
                         android:src="@drawable/ic_normal"
-                        android:layout_gravity="center"
                         android:tint="#6495ED"
-                        android:contentDescription="@string/icon_for_filter" />
+                        tools:ignore="ImageContrastCheck" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:checkable="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/cardTypeWeightsHeavy"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:theme="@style/Theme.MaterialComponents.DayNight">
+                    app:cardElevation="8dp">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_heavy"
+                        android:id="@+id/imgTypeWeightsHeavy"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:tint="#778899"
-                        android:contentDescription="@string/icon_for_filter" />
+                        android:contentDescription="@string/icon_for_filter"
+                        android:src="@drawable/ic_heavy"
+                        android:tint="#778899" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:textColor="@color/black"
-            android:text="Number Range" />
+            android:text="Number Range"
+            android:textColor="@color/black" />
 
         <com.google.android.material.slider.RangeSlider
             android:id="@+id/range_slider"
+            style="@style/Widget.App.Slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="testando"
-            app:values="@array/rangeSlider"
             android:layout_marginVertical="20dp"
+            android:contentDescription="testando"
+            android:stepSize="1"
             android:valueFrom="0"
             android:valueTo="100"
-            android:stepSize="1"
-            style="@style/Widget.App.Slider" />
+            app:values="@array/rangeSlider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
             android:gravity="center">
 
             <Button
                 android:id="@+id/btn_types_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/sf_pro_display_regular"
-                android:textAllCaps="false"
-                android:text="@string/reset"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="@string/reset"
+                android:textAllCaps="false"
                 android:textColor="@color/gray"
-                tools:ignore="ButtonStyle" />
+                tools:ignore="ButtonStyle,TextContrastCheck,TextContrastCheck" />
 
             <Button
                 android:id="@+id/btn_types_apply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:text="@string/apply"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sf_pro_display_regular"
-                android:textAllCaps="false"
                 android:backgroundTint="@color/red"
-                tools:ignore="ButtonStyle" />
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="@string/apply"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                tools:ignore="ButtonStyle,TextContrastCheck" />
         </LinearLayout>
 
 
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
