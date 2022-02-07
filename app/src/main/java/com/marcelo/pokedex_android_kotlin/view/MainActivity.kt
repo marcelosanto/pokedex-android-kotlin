@@ -67,8 +67,11 @@ class MainActivity : AppCompatActivity() {
 
         btnFilters.setOnClickListener { showFiltersAdvanced() }
 
-        val inputSearch: TextInputEditText = findViewById(R.id.inputSearch)
+        val btnGenerations: ImageButton = findViewById(R.id.btn_generations)
 
+        btnGenerations.setOnClickListener { showGenerationsFilters() }
+
+        val inputSearch: TextInputEditText = findViewById(R.id.inputSearch)
 
         inputSearch.doAfterTextChanged { text ->
 
@@ -127,6 +130,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun showGenerationsFilters() {
+        val view: View = layoutInflater.inflate(R.layout.item_generation, null)
+        val dialog = BottomSheetDialog(this, R.style.MyTransparentBottomSheetDialogTheme)
+        dialog.setContentView(view)
+        dialog.show()
     }
 
     @SuppressLint("InflateParams")
