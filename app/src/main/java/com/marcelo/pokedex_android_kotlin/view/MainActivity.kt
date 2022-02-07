@@ -30,8 +30,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var tempArrayList: List<Pokemon>
-
     private var filterArrayList: ArrayList<Pokemon> = ArrayList()
+    private var filterCloneTempArrayList: ArrayList<Pokemon> = ArrayList()
 
     private var filtersTypesList: ArrayList<String> = ArrayList()
     private var filtersWeaknessesList: ArrayList<String> = ArrayList()
@@ -136,6 +136,8 @@ class MainActivity : AppCompatActivity() {
         dialog.setContentView(view)
         dialog.show()
 
+        Log.i("WEAK", "weak: ${weaknessPokemon("fire")}")
+
         val cardTypeBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
         val cardTypeNormal = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
         val cardTypeFire = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fire)
@@ -174,7 +176,6 @@ class MainActivity : AppCompatActivity() {
         val imgTypeSteel = dialog.findViewById<ImageView>(R.id.type_steel_img)
         val imgTypeFairy = dialog.findViewById<ImageView>(R.id.type_fairy_img)
 
-        Log.i("TYPESL", "showFiltersAdvanced: ${filtersTypesList}")
 
         if (cardTypeBug != null && imgTypeBug != null) {
             if (filtersTypesList.contains("bug")) {
@@ -213,11 +214,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (cardTypeEletric != null && imgTypeEletric != null) {
-            if (filtersTypesList.contains("eletric")) {
-                activeFilterInTypesOrWeaknesses("eletric", cardTypeEletric, imgTypeEletric)
-                buttonAction("eletric", cardTypeEletric, false, imgTypeEletric, filtersTypesList)
+            if (filtersTypesList.contains("electric")) {
+                activeFilterInTypesOrWeaknesses("electric", cardTypeEletric, imgTypeEletric)
+                buttonAction("electric", cardTypeEletric, false, imgTypeEletric, filtersTypesList)
             } else {
-                buttonAction("eletric", cardTypeEletric, true, imgTypeEletric, filtersTypesList)
+                buttonAction("electric", cardTypeEletric, true, imgTypeEletric, filtersTypesList)
             }
 
         }
@@ -357,7 +358,7 @@ class MainActivity : AppCompatActivity() {
         btnApply?.setOnClickListener {
             filterArrayList.clear()
 
-            if (filtersTypesList.isNotEmpty()) {
+            if (filtersTypesList.isNotEmpty() && filterArrayList.isEmpty()) {
                 for (tipos in tempArrayList.indices) {
                     if (tempArrayList[tipos].types.size > 1) {
                         if (filtersTypesList.size > 0) {
@@ -385,8 +386,399 @@ class MainActivity : AppCompatActivity() {
                 }
                 val unic = filterArrayList.distinct()
                 adapterInRecyclerView(unic)
+            } else if (filtersTypesList.isNotEmpty() && filterArrayList.isNotEmpty()) {
+                for (tipos in filterArrayList.indices) {
+                    if (filterArrayList[tipos].types.size > 1) {
+                        if (filtersTypesList.size > 0) {
+                            for (filterTypes in filtersTypesList) {
+                                if (filterArrayList[tipos].types[0].name.contains(filterTypes) || filterArrayList[tipos].types[1].name.contains(
+                                        filterTypes
+                                    )
+                                ) {
+                                    filterCloneTempArrayList.add(filterArrayList[tipos])
+                                }
+                            }
+                        }
+
+                    } else {
+                        if (filtersTypesList.size > 0) {
+                            for (filterTypes in filtersTypesList) {
+                                if (filterArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                    filterCloneTempArrayList.add(filterArrayList[tipos])
+                                }
+                            }
+                        } else {
+                            dialog.dismiss()
+                        }
+                    }
+                }
+                val unic = filterCloneTempArrayList.distinct()
+                adapterInRecyclerView(unic)
             } else {
                 adapterInRecyclerView(tempArrayList)
+            }
+
+            if (filtersWeightsList.isNotEmpty() && filterArrayList.isEmpty()) {
+                if (filtersWeightsList.size == 1) {
+                    if (filtersWeightsList.contains("light")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() <= 500) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersWeightsList.contains("pnormal")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons normais")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() > 500 && tempArrayList[pesoIndice].weight.toInt() <= 1250) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons pesados")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() > 1250) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    }
+                } else if (filtersWeightsList.size == 2) {
+                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains("pnormal")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves e normais")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() <= 1250) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains("heavy")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves e pesados")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() < 500 || tempArrayList[pesoIndice].weight.toInt() > 1250) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersWeightsList.contains("pnormal") && filtersWeightsList.contains(
+                            "heavy"
+                        )
+                    ) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons normais e pesados")
+                        filterArrayList.clear()
+                        for (pesoIndice in tempArrayList.indices) {
+                            if (tempArrayList[pesoIndice].weight.toInt() > 500) {
+                                filterArrayList.add(tempArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    }
+                } else {
+                    Log.i("PESO", "showFiltersAdvanced: pokemons leves e normais, pesados")
+                    filterArrayList.clear()
+                    adapterInRecyclerView(tempArrayList)
+                }
+
+            } else if (filtersWeightsList.isNotEmpty() && filterArrayList.isNotEmpty()) {
+                if (filtersWeightsList.size == 1) {
+                    if (filtersWeightsList.contains("light")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() <= 500) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersWeightsList.contains("pnormal")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons normais")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() > 500 && filterArrayList[pesoIndice].weight.toInt() <= 1250) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons pesados")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() > 1250) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    }
+                } else if (filtersWeightsList.size == 2) {
+                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains("pnormal")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves e normais")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() <= 1250) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains("heavy")) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons leves e pesados")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() < 500 || filterArrayList[pesoIndice].weight.toInt() > 1250) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersWeightsList.contains("pnormal") && filtersWeightsList.contains(
+                            "heavy"
+                        )
+                    ) {
+                        Log.i("PESO", "showFiltersAdvanced: pokemons normais e pesados")
+                        filterCloneTempArrayList.clear()
+                        for (pesoIndice in filterArrayList.indices) {
+                            if (filterArrayList[pesoIndice].weight.toInt() > 500) {
+                                filterCloneTempArrayList.add(filterArrayList[pesoIndice])
+                                Log.i("PESO", "peso: ${filterCloneTempArrayList.size}")
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    }
+                } else {
+                    filterCloneTempArrayList.clear()
+                    adapterInRecyclerView(filterArrayList)
+                }
+            }
+
+            if (filtersHeightsList.isNotEmpty() && filterArrayList.isEmpty()) {
+
+                if (filtersHeightsList.size == 1) {
+                    if (filtersHeightsList.contains("short")) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() <= 7) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersHeightsList.contains("medium")) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() > 7 && tempArrayList[i].height.toInt() <= 14) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersHeightsList.contains("tall")) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() > 14) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    }
+                } else if (filtersHeightsList.size == 2) {
+                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains("medium")) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() <= 14) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersHeightsList.contains("medium") && filtersHeightsList.contains(
+                            "tall"
+                        )
+                    ) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() > 7) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains("tall")) {
+                        filterArrayList.clear()
+                        for (i in tempArrayList.indices) {
+                            if (tempArrayList[i].height.toInt() < 7 || tempArrayList[i].height.toInt() > 14) {
+                                filterArrayList.add(tempArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterArrayList)
+                    }
+                } else {
+                    filterArrayList.clear()
+                    adapterInRecyclerView(tempArrayList)
+                }
+
+            } else if (filtersHeightsList.isNotEmpty() && filterArrayList.isNotEmpty()) {
+                if (filtersHeightsList.size == 1) {
+                    if (filtersHeightsList.contains("short")) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() <= 7) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersHeightsList.contains("medium")) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() > 7 && filterArrayList[i].height.toInt() <= 14) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersHeightsList.contains("tall")) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() > 14) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    }
+                } else if (filtersHeightsList.size == 2) {
+                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains("medium")) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() <= 14) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersHeightsList.contains("medium") && filtersHeightsList.contains(
+                            "tall"
+                        )
+                    ) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() > 7) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains("tall")) {
+                        filterCloneTempArrayList.clear()
+                        for (i in filterArrayList.indices) {
+                            if (filterArrayList[i].height.toInt() < 7 || filterArrayList[i].height.toInt() > 14) {
+                                filterCloneTempArrayList.add(filterArrayList[i])
+                            }
+                        }
+                        adapterInRecyclerView(filterCloneTempArrayList)
+                    }
+                } else {
+                    filterCloneTempArrayList.clear()
+                    adapterInRecyclerView(filterArrayList)
+                }
+            }
+
+            if (filtersRangerList.size == 2) {
+                for (posicao in filtersRangerList[0]..filtersRangerList[1]) {
+                    filterArrayList.add(tempArrayList[posicao])
+                }
+
+                adapterInRecyclerView(filterArrayList)
+
+                Log.i("RANGESLIDER", "onStopTrackingTouch: ${filterArrayList.size}")
+            }
+
+            if (filtersWeaknessesList.isNotEmpty() && filterArrayList.isEmpty()) {
+
+                if (filtersWeaknessesList.size > 0) {
+                    val filters: ArrayList<String> = ArrayList()
+                    for (i in filtersWeaknessesList) {
+                        val weak = weaknessPokemon(i)
+                        for (k in weak) {
+                            filters.add(k)
+                        }
+                    }
+
+                    val filtros = filters.distinct()
+                    for (tipos in tempArrayList.indices) {
+                        if (tempArrayList[tipos].types.size > 1) {
+                            if (filtros.size > 0) {
+                                for (filterTypes in filtros) {
+                                    if (tempArrayList[tipos].types[0].name.contains(filterTypes) || tempArrayList[tipos].types[1].name.contains(
+                                            filterTypes
+                                        )
+                                    ) {
+                                        filterArrayList.add(tempArrayList[tipos])
+                                    }
+                                }
+                            }
+
+                        } else {
+                            if (filtros.size > 0) {
+                                for (filterTypes in filtros) {
+                                    if (tempArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                        filterArrayList.add(tempArrayList[tipos])
+                                    }
+                                }
+                            } else {
+                                dialog.dismiss()
+                            }
+                        }
+                    }
+                    val unic = filterArrayList.distinct()
+                    adapterInRecyclerView(unic)
+                }
+            } else if (filtersWeaknessesList.isNotEmpty() && filterArrayList.isNotEmpty()) {
+                if (filtersWeaknessesList.size > 0) {
+                    val filters: ArrayList<String> = ArrayList()
+                    for (i in filtersWeaknessesList) {
+                        val weak = weaknessPokemon(i)
+                        for (k in weak) {
+                            filters.add(k)
+                        }
+                    }
+
+                    val filtros = filters.distinct()
+                    for (tipos in filterArrayList.indices) {
+                        if (filterArrayList[tipos].types.size > 1) {
+                            if (filtros.size > 0) {
+                                for (filterTypes in filtros) {
+                                    if (filterArrayList[tipos].types[0].name.contains(filterTypes) || filterArrayList[tipos].types[1].name.contains(
+                                            filterTypes
+                                        )
+                                    ) {
+                                        filterCloneTempArrayList.add(filterArrayList[tipos])
+                                    }
+                                }
+                            }
+
+                        } else {
+                            if (filtros.size > 0) {
+                                for (filterTypes in filtros) {
+                                    if (filterArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                        filterCloneTempArrayList.add(filterArrayList[tipos])
+                                    }
+                                }
+                            } else {
+                                dialog.dismiss()
+                            }
+                        }
+                    }
+                    val unic = filterCloneTempArrayList.distinct()
+                    adapterInRecyclerView(unic)
+                }
             }
             dialog.dismiss()
         }
@@ -394,9 +786,13 @@ class MainActivity : AppCompatActivity() {
         val btnReset = dialog.findViewById<Button>(R.id.btn_types_reset)
 
         btnReset?.setOnClickListener {
-            if (filtersTypesList.isNotEmpty() || filtersWeaknessesList.isNotEmpty()) {
+            if (filtersTypesList.isNotEmpty() || filtersWeaknessesList.isNotEmpty() || filtersWeightsList.isNotEmpty() || filtersHeightsList.isNotEmpty() || filtersRangerList.isNotEmpty()) {
                 filtersTypesList.clear()
                 filtersWeaknessesList.clear()
+                filterArrayList.clear()
+                filtersHeightsList.clear()
+                filtersRangerList.clear()
+                filtersWeightsList.clear()
                 adapterInRecyclerView(tempArrayList)
             }
             dialog.dismiss()
@@ -543,14 +939,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (cardWeaknessesEletric != null && imgWeaknessesEletric != null) {
-            if (filtersWeaknessesList.contains("eletric")) {
+            if (filtersWeaknessesList.contains("electric")) {
                 activeFilterInTypesOrWeaknesses(
-                    "eletric",
+                    "electric",
                     cardWeaknessesEletric,
                     imgWeaknessesEletric
                 )
                 buttonAction(
-                    "eletric",
+                    "electric",
                     cardWeaknessesEletric,
                     false,
                     imgWeaknessesEletric,
@@ -558,7 +954,7 @@ class MainActivity : AppCompatActivity() {
                 )
             } else {
                 buttonAction(
-                    "eletric",
+                    "electric",
                     cardWeaknessesEletric,
                     true,
                     imgWeaknessesEletric,
@@ -1017,13 +1413,8 @@ class MainActivity : AppCompatActivity() {
         val rangeSlider = dialog.findViewById<RangeSlider>(R.id.range_slider)
 
         rangeSlider?.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
-            override fun onStartTrackingTouch(slider: RangeSlider) {
-                val values = rangeSlider.values
 
-                /*   Log.i("RANGESLIDER", "onStartTrackingTouch: ${values[0]}")
-                   Log.i("RANGESLIDER", "onStartTrackingTouch: ${values[1]}")*/
-
-            }
+            override fun onStartTrackingTouch(slider: RangeSlider) {}
 
             override fun onStopTrackingTouch(slider: RangeSlider) {
                 val values = rangeSlider.values
@@ -1032,7 +1423,9 @@ class MainActivity : AppCompatActivity() {
 
                 filtersRangerList.add(0, values[0].toInt())
                 filtersRangerList.add(1, values[1].toInt())
+
                 Log.i("RANGESLIDER", "onStopTrackingTouch: ${filtersRangerList}")
+
             }
 
 
@@ -1078,7 +1471,7 @@ class MainActivity : AppCompatActivity() {
         "normal" -> "#818054"
         "fire" -> "#c25c10"
         "water" -> "#1d5ee9"
-        "eletric" -> "#FFEF00"
+        "electric" -> "#FFEF00"
         "grass" -> "#56972f"
         "ice" -> "#5ec5c0"
         "fighting" -> "#831f1b"
@@ -1106,10 +1499,9 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     private fun showSortFilter() {
         val view: View = layoutInflater.inflate(R.layout.item_sort, null)
-        val dialog = BottomSheetDialog(this)
+        val dialog = BottomSheetDialog(this, R.style.MyTransparentBottomSheetDialogTheme)
         dialog.setContentView(view)
         dialog.show()
-
 
         val btnSmall = dialog.findViewById<Button>(R.id.btn_small)
         val btnHigh = dialog.findViewById<Button>(R.id.btn_high)
@@ -1140,21 +1532,45 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun orderByNameZandA() {
-        loadRecyclerView(tempArrayList.sortedByDescending { it.name })
+        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(tempArrayList.sortedByDescending { it.name })
+        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(filterArrayList.sortedByDescending { it.name })
+        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
+            adapterInRecyclerView(filterCloneTempArrayList.sortedByDescending { it.name })
+        }
     }
 
     private fun orderByNameAandZ() {
-        loadRecyclerView(tempArrayList.sortedBy { it.name })
+        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(tempArrayList.sortedBy { it.name })
+        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(filterArrayList.sortedBy { it.name })
+        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
+            adapterInRecyclerView(filterCloneTempArrayList.sortedBy { it.name })
+        }
     }
 
     private fun highNumberPokemonFirst() {
-        loadRecyclerView(tempArrayList.sortedByDescending { it.id.toInt() })
-
+        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(tempArrayList.sortedByDescending { it.id.toInt() })
+        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(filterArrayList.sortedByDescending { it.id.toInt() })
+        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
+            adapterInRecyclerView(filterCloneTempArrayList.sortedByDescending { it.id.toInt() })
+        }
     }
 
     private fun smallNumberPokemonFirst() {
-        loadRecyclerView(tempArrayList.sortedBy { it.id.toInt() })
+        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(tempArrayList.sortedBy { it.id.toInt() })
+        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
+            adapterInRecyclerView(filterArrayList.sortedBy { it.id.toInt() })
+        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
+            adapterInRecyclerView(filterCloneTempArrayList.sortedBy { it.id.toInt() })
+        }
     }
 
     private fun loadRecyclerView(pokemons: List<Pokemon?>) {

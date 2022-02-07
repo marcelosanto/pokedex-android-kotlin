@@ -128,13 +128,13 @@ fun weaknessPokemon(type: String): List<String> = when (type) {
     "fire" -> listOf("water", "ground", "rock")
 
 
-    "water" -> listOf("grass", "electric")
+    "water" -> listOf("grass", "electric", "fire")
 
 
     "grass" -> listOf("fire", "ice", "poison", "flying", "bug")
 
 
-    "electric" -> listOf("ground")
+    "electric" -> listOf("ground", "water")
 
 
     "ice" -> listOf("fire", "fighting", "rock", "steel")
@@ -209,7 +209,7 @@ fun setIconAndColorForTextView(
                 0,
                 0
             )
-            
+
             txt.setBackgroundColor(Color.parseColor("#6a7611"))
 
         }

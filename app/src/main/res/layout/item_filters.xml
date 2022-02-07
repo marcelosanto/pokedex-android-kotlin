@@ -2,9 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/Widget.Material3.CardView.Elevated"
     app:cardCornerRadius="30dp"
     app:cardElevation="3dp">
 
@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_bold"
             android:text="@string/filters"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
         <TextView
@@ -58,9 +59,8 @@
                         android:id="@+id/card_type_filter_normal"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
+                        android:outlineSpotShadowColor="@android:color/transparent"
+                        app:cardCornerRadius="8dp">
 
                         <ImageView
                             android:id="@+id/type_normal_img"
@@ -84,7 +84,7 @@
                         android:id="@+id/card_type_filter_fire"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -109,7 +109,7 @@
                         android:id="@+id/card_type_filter_water"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -134,7 +134,7 @@
                         android:id="@+id/card_type_filter_eletric"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -161,7 +161,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
 
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp"
                         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck">
@@ -188,7 +188,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -215,7 +215,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -241,7 +241,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -267,7 +267,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -293,7 +293,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -319,7 +319,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -345,7 +345,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="18dp"
                         app:cardElevation="20dp">
 
@@ -371,7 +371,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -397,7 +397,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -423,7 +423,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -449,7 +449,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -475,7 +475,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -501,7 +501,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -549,7 +549,7 @@
                         android:id="@+id/card_weaknesses_filter_normal"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -576,7 +576,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
 
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -602,7 +602,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
 
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -628,7 +628,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
 
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -655,7 +655,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
 
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -681,7 +681,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -708,7 +708,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -734,7 +734,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -760,7 +760,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -786,7 +786,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -812,7 +812,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -838,7 +838,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="18dp"
                         app:cardElevation="20dp">
 
@@ -864,7 +864,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -890,7 +890,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -916,7 +916,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -942,7 +942,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -968,7 +968,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -994,7 +994,7 @@
 
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:outlineSpotShadowColor="@android:color/transparent"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="8dp">
 
@@ -1037,7 +1037,7 @@
                     android:id="@+id/cardTypeHeightsShort"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -1063,7 +1063,7 @@
                     android:id="@+id/cardTypeHeightsMedium"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -1088,7 +1088,7 @@
                     android:id="@+id/cardTypeHeightsTall"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -1128,7 +1128,7 @@
                     android:id="@+id/cardTypeWeightsLight"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -1155,7 +1155,7 @@
                     android:id="@+id/cardTypeWeightsNormal"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -1181,7 +1181,7 @@
                     android:id="@+id/cardTypeWeightsHeavy"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:theme="@style/Theme.MaterialComponents.Light"
+                    android:outlineSpotShadowColor="@android:color/transparent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 

@@ -22,6 +22,10 @@
     <string name="the_effectiveness">The effectiveness of each type on Charmander.</string>
     <string name="reset">Reset</string>
     <string name="apply">Apply</string>
+    <string name="smallest">Smallest number first</string>
+    <string name="z_a">Z-A</string>
+    <string name="a_z">A-Z</string>
+    <string name="highest">Highest number first number first</string>
     <string-array name="rangeSlider">
         <item>20</item>
         <item>70</item>
