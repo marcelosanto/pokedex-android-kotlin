@@ -13,6 +13,7 @@
         android:theme="@style/Theme.NoActionBar">
 
         <activity
+            android:windowSoftInputMode="adjustNothing"
             android:name=".view.MainActivity"
             android:launchMode="singleTop"
             android:exported="true">

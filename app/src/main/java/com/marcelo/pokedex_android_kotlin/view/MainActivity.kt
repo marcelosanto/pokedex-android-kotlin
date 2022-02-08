@@ -6,12 +6,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.slider.RangeSlider
-import com.google.android.material.textfield.TextInputEditText
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModelFactory
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,64 +65,64 @@ class MainActivity : AppCompatActivity() {
 
         btnGenerations.setOnClickListener { showGenerationsFilters() }
 
-        val inputSearch: TextInputEditText = findViewById(R.id.inputSearch)
+        val inputSearch: SearchView = findViewById(R.id.inputSearch)
 
-        inputSearch.doAfterTextChanged { text ->
-
-            val tempsArray: ArrayList<Pokemon> = ArrayList()
-
-            if (text!!.isNotEmpty() && filtersTypesList.isEmpty()) {
-                for (pokemon in tempArrayList) {
-                    if (pokemon.name.contains(
-                            text.toString().lowercase(Locale.getDefault())
-                        ) || pokemon.id.contains(text.toString())
-                    ) {
-                        Log.i("FILTRO", "pokemon: ${pokemon.name} ")
-                        if (!filterArrayList.contains(pokemon)) {
-                            filterArrayList.add(pokemon)
-                        }
-                    } else {
-                        filterArrayList.remove(pokemon)
-                    }
-                    val unic = filterArrayList.distinct()
-                    adapterInRecyclerView(unic)
-                }
-                Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
-
-            } else if (text.isNotEmpty() && filtersTypesList.isNotEmpty()) {
-                Toast.makeText(this, "Estou Aqui", Toast.LENGTH_LONG).show()
-                Log.e("EER", "filtersLisy: ${filterArrayList.size}")
-                for (pokemon in filterArrayList) {
-                    if (pokemon.name.contains(
-                            text.toString().lowercase(Locale.getDefault())
-                        ) || pokemon.id.contains(text.toString())
-                    ) {
-                        Log.i("EEF", "if: ${pokemon.name} ")
-                        if (!tempsArray.contains(pokemon)) {
-                            tempsArray.add(pokemon)
-                        }
-                    } else {
-                        Log.i("EEF", "else: ${pokemon.name} ")
-                        tempsArray.remove(pokemon)
-
-                    }
-
-                    val unic = tempsArray.distinct()
-                    adapterInRecyclerView(unic)
-                }
-                Log.i("FILTRO", "filterArray: ${filterArrayList.size} ")
-
-            } else {
-                if (filtersTypesList.size > 0) {
-                    val unic = filterArrayList.distinct()
-                    adapterInRecyclerView(unic)
-                } else {
-                    filterArrayList.clear()
-                    Log.i("FILTRO", "tempArray: ${tempArrayList.size} ")
-                    adapterInRecyclerView(tempArrayList)
-                }
+        inputSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                inputSearch.clearFocus()
+                //searchPokemon(query)
+                return false
             }
 
+            override fun onQueryTextChange(newString: String?): Boolean {
+                searchPokemon(newString)
+                return false
+            }
+
+        })
+
+
+    }
+
+    private fun searchPokemon(query: String?) {
+        val tempsArray: ArrayList<Pokemon> = ArrayList()
+        if (query != null && filterArrayList.isEmpty()) {
+            for (pokemon in tempArrayList) {
+                if (pokemon.name.contains(query) || pokemon.id.contains(query)) {
+                    Log.i("FILTRO", "pokemon: ${pokemon.name} ")
+                    if (!filterArrayList.contains(pokemon)) {
+                        filterArrayList.add(pokemon)
+                    }
+                } else {
+                    filterArrayList.remove(pokemon)
+                }
+                val unic = filterArrayList.distinct()
+                adapterInRecyclerView(unic)
+            }
+        } else if (query != null && filtersTypesList.isNotEmpty()) {
+
+            for (pokemon in filterArrayList) {
+                if (pokemon.name.contains(query) || pokemon.id.contains(query)
+                ) {
+                    if (!tempsArray.contains(pokemon)) {
+                        tempsArray.add(pokemon)
+                    }
+                } else {
+                    tempsArray.remove(pokemon)
+
+                }
+
+                val unic = tempsArray.distinct()
+                adapterInRecyclerView(unic)
+            }
+        } else {
+            if (filtersTypesList.size > 0) {
+                val unic = filterArrayList.distinct()
+                adapterInRecyclerView(unic)
+            } else {
+                filterArrayList.clear()
+                adapterInRecyclerView(tempArrayList)
+            }
         }
     }
 
@@ -149,23 +143,36 @@ class MainActivity : AppCompatActivity() {
         Log.i("WEAK", "weak: ${weaknessPokemon("fire")}")
 
         val cardTypeBug = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_bug)
-        val cardTypeNormal = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
+        val cardTypeNormal =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_normal)
         val cardTypeFire = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fire)
-        val cardTypeWater = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_water)
-        val cardTypeEletric = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_eletric)
-        val cardTypeGrass = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_grass)
+        val cardTypeWater =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_water)
+        val cardTypeEletric =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_eletric)
+        val cardTypeGrass =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_grass)
         val cardTypeIce = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ice)
-        val cardTypeFighting = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fighting)
-        val cardTypePoison = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_poison)
-        val cardTypeGround = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ground)
-        val cardTypeFlying = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_flying)
-        val cardTypePsychic = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_psychic)
+        val cardTypeFighting =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fighting)
+        val cardTypePoison =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_poison)
+        val cardTypeGround =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ground)
+        val cardTypeFlying =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_flying)
+        val cardTypePsychic =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_psychic)
         val cardTypeRock = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_rock)
-        val cardTypeGhost = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ghost)
-        val cardTypeDragon = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_dragon)
+        val cardTypeGhost =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_ghost)
+        val cardTypeDragon =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_dragon)
         val cardTypeDark = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_dark)
-        val cardTypeSteel = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_steel)
-        val cardTypeFairy = dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fairy)
+        val cardTypeSteel =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_steel)
+        val cardTypeFairy =
+            dialog.findViewById<MaterialCardView>(R.id.card_type_filter_fairy)
 
         val imgTypeNormal = dialog.findViewById<ImageView>(R.id.type_normal_img)
         val imgTypeBug = dialog.findViewById<ImageView>(R.id.type_bug_img)
@@ -199,9 +206,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypeNormal != null && imgTypeNormal != null) {
             if (filtersTypesList.contains("normal")) {
                 activeFilterInTypesOrWeaknesses("normal", cardTypeNormal, imgTypeNormal)
-                buttonAction("normal", cardTypeNormal, false, imgTypeNormal, filtersTypesList)
+                buttonAction(
+                    "normal",
+                    cardTypeNormal,
+                    false,
+                    imgTypeNormal,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("normal", cardTypeNormal, true, imgTypeNormal, filtersTypesList)
+                buttonAction(
+                    "normal",
+                    cardTypeNormal,
+                    true,
+                    imgTypeNormal,
+                    filtersTypesList
+                )
             }
         }
 
@@ -226,9 +245,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypeEletric != null && imgTypeEletric != null) {
             if (filtersTypesList.contains("electric")) {
                 activeFilterInTypesOrWeaknesses("electric", cardTypeEletric, imgTypeEletric)
-                buttonAction("electric", cardTypeEletric, false, imgTypeEletric, filtersTypesList)
+                buttonAction(
+                    "electric",
+                    cardTypeEletric,
+                    false,
+                    imgTypeEletric,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("electric", cardTypeEletric, true, imgTypeEletric, filtersTypesList)
+                buttonAction(
+                    "electric",
+                    cardTypeEletric,
+                    true,
+                    imgTypeEletric,
+                    filtersTypesList
+                )
             }
 
         }
@@ -255,10 +286,26 @@ class MainActivity : AppCompatActivity() {
 
         if (cardTypeFighting != null && imgTypeFighting != null) {
             if (filtersTypesList.contains("fighting")) {
-                activeFilterInTypesOrWeaknesses("fighting", cardTypeFighting, imgTypeFighting)
-                buttonAction("fighting", cardTypeFighting, false, imgTypeFighting, filtersTypesList)
+                activeFilterInTypesOrWeaknesses(
+                    "fighting",
+                    cardTypeFighting,
+                    imgTypeFighting
+                )
+                buttonAction(
+                    "fighting",
+                    cardTypeFighting,
+                    false,
+                    imgTypeFighting,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("fighting", cardTypeFighting, true, imgTypeFighting, filtersTypesList)
+                buttonAction(
+                    "fighting",
+                    cardTypeFighting,
+                    true,
+                    imgTypeFighting,
+                    filtersTypesList
+                )
             }
 
         }
@@ -266,9 +313,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypePoison != null && imgTypePoison != null) {
             if (filtersTypesList.contains("poison")) {
                 activeFilterInTypesOrWeaknesses("poison", cardTypePoison, imgTypePoison)
-                buttonAction("poison", cardTypePoison, false, imgTypePoison, filtersTypesList)
+                buttonAction(
+                    "poison",
+                    cardTypePoison,
+                    false,
+                    imgTypePoison,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("poison", cardTypePoison, true, imgTypePoison, filtersTypesList)
+                buttonAction(
+                    "poison",
+                    cardTypePoison,
+                    true,
+                    imgTypePoison,
+                    filtersTypesList
+                )
             }
 
         }
@@ -276,9 +335,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypeGround != null && imgTypeGround != null) {
             if (filtersTypesList.contains("ground")) {
                 activeFilterInTypesOrWeaknesses("ground", cardTypeGround, imgTypeGround)
-                buttonAction("ground", cardTypeGround, false, imgTypeGround, filtersTypesList)
+                buttonAction(
+                    "ground",
+                    cardTypeGround,
+                    false,
+                    imgTypeGround,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("ground", cardTypeGround, true, imgTypeGround, filtersTypesList)
+                buttonAction(
+                    "ground",
+                    cardTypeGround,
+                    true,
+                    imgTypeGround,
+                    filtersTypesList
+                )
             }
 
         }
@@ -286,9 +357,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypeFlying != null && imgTypeFlying != null) {
             if (filtersTypesList.contains("flying")) {
                 activeFilterInTypesOrWeaknesses("flying", cardTypeFlying, imgTypeFlying)
-                buttonAction("flying", cardTypeFlying, false, imgTypeFlying, filtersTypesList)
+                buttonAction(
+                    "flying",
+                    cardTypeFlying,
+                    false,
+                    imgTypeFlying,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("flying", cardTypeFlying, true, imgTypeFlying, filtersTypesList)
+                buttonAction(
+                    "flying",
+                    cardTypeFlying,
+                    true,
+                    imgTypeFlying,
+                    filtersTypesList
+                )
             }
 
         }
@@ -296,9 +379,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypePsychic != null && imgTypePsychic != null) {
             if (filtersTypesList.contains("psychic")) {
                 activeFilterInTypesOrWeaknesses("psychic", cardTypePsychic, imgTypePsychic)
-                buttonAction("psychic", cardTypePsychic, false, imgTypePsychic, filtersTypesList)
+                buttonAction(
+                    "psychic",
+                    cardTypePsychic,
+                    false,
+                    imgTypePsychic,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("psychic", cardTypePsychic, true, imgTypePsychic, filtersTypesList)
+                buttonAction(
+                    "psychic",
+                    cardTypePsychic,
+                    true,
+                    imgTypePsychic,
+                    filtersTypesList
+                )
             }
 
         }
@@ -326,9 +421,21 @@ class MainActivity : AppCompatActivity() {
         if (cardTypeDragon != null && imgTypeDragon != null) {
             if (filtersTypesList.contains("dragon")) {
                 activeFilterInTypesOrWeaknesses("dragon", cardTypeDragon, imgTypeDragon)
-                buttonAction("dragon", cardTypeDragon, false, imgTypeDragon, filtersTypesList)
+                buttonAction(
+                    "dragon",
+                    cardTypeDragon,
+                    false,
+                    imgTypeDragon,
+                    filtersTypesList
+                )
             } else {
-                buttonAction("dragon", cardTypeDragon, true, imgTypeDragon, filtersTypesList)
+                buttonAction(
+                    "dragon",
+                    cardTypeDragon,
+                    true,
+                    imgTypeDragon,
+                    filtersTypesList
+                )
             }
 
         }
@@ -401,7 +508,9 @@ class MainActivity : AppCompatActivity() {
                     if (filterArrayList[tipos].types.size > 1) {
                         if (filtersTypesList.size > 0) {
                             for (filterTypes in filtersTypesList) {
-                                if (filterArrayList[tipos].types[0].name.contains(filterTypes) || filterArrayList[tipos].types[1].name.contains(
+                                if (filterArrayList[tipos].types[0].name.contains(
+                                        filterTypes
+                                    ) || filterArrayList[tipos].types[1].name.contains(
                                         filterTypes
                                     )
                                 ) {
@@ -413,7 +522,10 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         if (filtersTypesList.size > 0) {
                             for (filterTypes in filtersTypesList) {
-                                if (filterArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                if (filterArrayList[tipos].types[0].name.contains(
+                                        filterTypes
+                                    )
+                                ) {
                                     filterCloneTempArrayList.add(filterArrayList[tipos])
                                 }
                             }
@@ -462,7 +574,10 @@ class MainActivity : AppCompatActivity() {
                         adapterInRecyclerView(filterArrayList)
                     }
                 } else if (filtersWeightsList.size == 2) {
-                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains("pnormal")) {
+                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains(
+                            "pnormal"
+                        )
+                    ) {
                         Log.i("PESO", "showFiltersAdvanced: pokemons leves e normais")
                         filterArrayList.clear()
                         for (pesoIndice in tempArrayList.indices) {
@@ -472,7 +587,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         adapterInRecyclerView(filterArrayList)
-                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains("heavy")) {
+                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains(
+                            "heavy"
+                        )
+                    ) {
                         Log.i("PESO", "showFiltersAdvanced: pokemons leves e pesados")
                         filterArrayList.clear()
                         for (pesoIndice in tempArrayList.indices) {
@@ -536,7 +654,10 @@ class MainActivity : AppCompatActivity() {
                         adapterInRecyclerView(filterCloneTempArrayList)
                     }
                 } else if (filtersWeightsList.size == 2) {
-                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains("pnormal")) {
+                    if (filtersWeightsList.contains("light") && filtersWeightsList.contains(
+                            "pnormal"
+                        )
+                    ) {
                         Log.i("PESO", "showFiltersAdvanced: pokemons leves e normais")
                         filterCloneTempArrayList.clear()
                         for (pesoIndice in filterArrayList.indices) {
@@ -546,7 +667,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         adapterInRecyclerView(filterCloneTempArrayList)
-                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains("heavy")) {
+                    } else if (filtersWeightsList.contains("light") && filtersWeightsList.contains(
+                            "heavy"
+                        )
+                    ) {
                         Log.i("PESO", "showFiltersAdvanced: pokemons leves e pesados")
                         filterCloneTempArrayList.clear()
                         for (pesoIndice in filterArrayList.indices) {
@@ -605,7 +729,10 @@ class MainActivity : AppCompatActivity() {
                         adapterInRecyclerView(filterArrayList)
                     }
                 } else if (filtersHeightsList.size == 2) {
-                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains("medium")) {
+                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains(
+                            "medium"
+                        )
+                    ) {
                         filterArrayList.clear()
                         for (i in tempArrayList.indices) {
                             if (tempArrayList[i].height.toInt() <= 14) {
@@ -624,7 +751,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         adapterInRecyclerView(filterArrayList)
-                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains("tall")) {
+                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains(
+                            "tall"
+                        )
+                    ) {
                         filterArrayList.clear()
                         for (i in tempArrayList.indices) {
                             if (tempArrayList[i].height.toInt() < 7 || tempArrayList[i].height.toInt() > 14) {
@@ -666,7 +796,10 @@ class MainActivity : AppCompatActivity() {
                         adapterInRecyclerView(filterCloneTempArrayList)
                     }
                 } else if (filtersHeightsList.size == 2) {
-                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains("medium")) {
+                    if (filtersHeightsList.contains("short") && filtersHeightsList.contains(
+                            "medium"
+                        )
+                    ) {
                         filterCloneTempArrayList.clear()
                         for (i in filterArrayList.indices) {
                             if (filterArrayList[i].height.toInt() <= 14) {
@@ -685,7 +818,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         adapterInRecyclerView(filterCloneTempArrayList)
-                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains("tall")) {
+                    } else if (filtersHeightsList.contains("short") && filtersHeightsList.contains(
+                            "tall"
+                        )
+                    ) {
                         filterCloneTempArrayList.clear()
                         for (i in filterArrayList.indices) {
                             if (filterArrayList[i].height.toInt() < 7 || filterArrayList[i].height.toInt() > 14) {
@@ -726,7 +862,9 @@ class MainActivity : AppCompatActivity() {
                         if (tempArrayList[tipos].types.size > 1) {
                             if (filtros.size > 0) {
                                 for (filterTypes in filtros) {
-                                    if (tempArrayList[tipos].types[0].name.contains(filterTypes) || tempArrayList[tipos].types[1].name.contains(
+                                    if (tempArrayList[tipos].types[0].name.contains(
+                                            filterTypes
+                                        ) || tempArrayList[tipos].types[1].name.contains(
                                             filterTypes
                                         )
                                     ) {
@@ -738,7 +876,10 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             if (filtros.size > 0) {
                                 for (filterTypes in filtros) {
-                                    if (tempArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                    if (tempArrayList[tipos].types[0].name.contains(
+                                            filterTypes
+                                        )
+                                    ) {
                                         filterArrayList.add(tempArrayList[tipos])
                                     }
                                 }
@@ -765,7 +906,9 @@ class MainActivity : AppCompatActivity() {
                         if (filterArrayList[tipos].types.size > 1) {
                             if (filtros.size > 0) {
                                 for (filterTypes in filtros) {
-                                    if (filterArrayList[tipos].types[0].name.contains(filterTypes) || filterArrayList[tipos].types[1].name.contains(
+                                    if (filterArrayList[tipos].types[0].name.contains(
+                                            filterTypes
+                                        ) || filterArrayList[tipos].types[1].name.contains(
                                             filterTypes
                                         )
                                     ) {
@@ -777,7 +920,10 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             if (filtros.size > 0) {
                                 for (filterTypes in filtros) {
-                                    if (filterArrayList[tipos].types[0].name.contains(filterTypes)) {
+                                    if (filterArrayList[tipos].types[0].name.contains(
+                                            filterTypes
+                                        )
+                                    ) {
                                         filterCloneTempArrayList.add(filterArrayList[tipos])
                                     }
                                 }
@@ -849,14 +995,17 @@ class MainActivity : AppCompatActivity() {
         val imgWeaknessesBug = dialog.findViewById<ImageView>(R.id.weaknesses_bug_img)
         val imgWeaknessesFire = dialog.findViewById<ImageView>(R.id.weaknesses_fire_img)
         val imgWeaknessesWater = dialog.findViewById<ImageView>(R.id.weaknesses_water_img)
-        val imgWeaknessesEletric = dialog.findViewById<ImageView>(R.id.weaknesses_eletric_img)
+        val imgWeaknessesEletric =
+            dialog.findViewById<ImageView>(R.id.weaknesses_eletric_img)
         val imgWeaknessesGrass = dialog.findViewById<ImageView>(R.id.weaknesses_grass_img)
         val imgWeaknessesIce = dialog.findViewById<ImageView>(R.id.weaknesses_ice_img)
-        val imgWeaknessesFighting = dialog.findViewById<ImageView>(R.id.weaknesses_fighting_img)
+        val imgWeaknessesFighting =
+            dialog.findViewById<ImageView>(R.id.weaknesses_fighting_img)
         val imgWeaknessesPoison = dialog.findViewById<ImageView>(R.id.weaknesses_poison_img)
         val imgWeaknessesGround = dialog.findViewById<ImageView>(R.id.weaknesses_ground_img)
         val imgWeaknessesFlying = dialog.findViewById<ImageView>(R.id.weaknesses_flying_img)
-        val imgWeaknessesPsychic = dialog.findViewById<ImageView>(R.id.weaknesses_psychic_img)
+        val imgWeaknessesPsychic =
+            dialog.findViewById<ImageView>(R.id.weaknesses_psychic_img)
         val imgWeaknessesRock = dialog.findViewById<ImageView>(R.id.weaknesses_rock_img)
         val imgWeaknessesGhost = dialog.findViewById<ImageView>(R.id.weaknesses_ghost_img)
         val imgWeaknessesDragon = dialog.findViewById<ImageView>(R.id.weaknesses_dragon_img)
@@ -887,7 +1036,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesNormal != null && imgWeaknessesNormal != null) {
             if (filtersWeaknessesList.contains("normal")) {
-                activeFilterInTypesOrWeaknesses("normal", cardWeaknessesNormal, imgWeaknessesNormal)
+                activeFilterInTypesOrWeaknesses(
+                    "normal",
+                    cardWeaknessesNormal,
+                    imgWeaknessesNormal
+                )
                 buttonAction(
                     "normal",
                     cardWeaknessesNormal,
@@ -908,7 +1061,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesFire != null && imgWeaknessesFire != null) {
             if (filtersWeaknessesList.contains("fire")) {
-                activeFilterInTypesOrWeaknesses("fire", cardWeaknessesFire, imgWeaknessesFire)
+                activeFilterInTypesOrWeaknesses(
+                    "fire",
+                    cardWeaknessesFire,
+                    imgWeaknessesFire
+                )
                 buttonAction(
                     "fire",
                     cardWeaknessesFire,
@@ -929,7 +1086,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesWater != null && imgWeaknessesWater != null) {
             if (filtersWeaknessesList.contains("water")) {
-                activeFilterInTypesOrWeaknesses("water", cardWeaknessesWater, imgWeaknessesWater)
+                activeFilterInTypesOrWeaknesses(
+                    "water",
+                    cardWeaknessesWater,
+                    imgWeaknessesWater
+                )
                 buttonAction(
                     "water",
                     cardWeaknessesWater,
@@ -976,7 +1137,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesGrass != null && imgWeaknessesGrass != null) {
             if (filtersWeaknessesList.contains("grass")) {
-                activeFilterInTypesOrWeaknesses("grass", cardWeaknessesGrass, imgWeaknessesGrass)
+                activeFilterInTypesOrWeaknesses(
+                    "grass",
+                    cardWeaknessesGrass,
+                    imgWeaknessesGrass
+                )
                 buttonAction(
                     "grass",
                     cardWeaknessesGrass,
@@ -1046,7 +1211,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesPoison != null && imgWeaknessesPoison != null) {
             if (filtersWeaknessesList.contains("poison")) {
-                activeFilterInTypesOrWeaknesses("poison", cardWeaknessesPoison, imgWeaknessesPoison)
+                activeFilterInTypesOrWeaknesses(
+                    "poison",
+                    cardWeaknessesPoison,
+                    imgWeaknessesPoison
+                )
                 buttonAction(
                     "poison",
                     cardWeaknessesPoison,
@@ -1068,7 +1237,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesGround != null && imgWeaknessesGround != null) {
             if (filtersWeaknessesList.contains("ground")) {
-                activeFilterInTypesOrWeaknesses("ground", cardWeaknessesGround, imgWeaknessesGround)
+                activeFilterInTypesOrWeaknesses(
+                    "ground",
+                    cardWeaknessesGround,
+                    imgWeaknessesGround
+                )
                 buttonAction(
                     "ground",
                     cardWeaknessesGround,
@@ -1090,7 +1263,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesFlying != null && imgWeaknessesFlying != null) {
             if (filtersWeaknessesList.contains("flying")) {
-                activeFilterInTypesOrWeaknesses("flying", cardWeaknessesFlying, imgWeaknessesFlying)
+                activeFilterInTypesOrWeaknesses(
+                    "flying",
+                    cardWeaknessesFlying,
+                    imgWeaknessesFlying
+                )
                 buttonAction(
                     "flying",
                     cardWeaknessesFlying,
@@ -1138,7 +1315,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesRock != null && imgWeaknessesRock != null) {
             if (filtersWeaknessesList.contains("rock")) {
-                activeFilterInTypesOrWeaknesses("rock", cardWeaknessesRock, imgWeaknessesRock)
+                activeFilterInTypesOrWeaknesses(
+                    "rock",
+                    cardWeaknessesRock,
+                    imgWeaknessesRock
+                )
                 buttonAction(
                     "rock",
                     cardWeaknessesRock,
@@ -1160,7 +1341,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesGhost != null && imgWeaknessesGhost != null) {
             if (filtersWeaknessesList.contains("ghost")) {
-                activeFilterInTypesOrWeaknesses("ghost", cardWeaknessesGhost, imgWeaknessesGhost)
+                activeFilterInTypesOrWeaknesses(
+                    "ghost",
+                    cardWeaknessesGhost,
+                    imgWeaknessesGhost
+                )
                 buttonAction(
                     "ghost",
                     cardWeaknessesGhost,
@@ -1182,7 +1367,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesDragon != null && imgWeaknessesDragon != null) {
             if (filtersWeaknessesList.contains("dragon")) {
-                activeFilterInTypesOrWeaknesses("dragon", cardWeaknessesDragon, imgWeaknessesDragon)
+                activeFilterInTypesOrWeaknesses(
+                    "dragon",
+                    cardWeaknessesDragon,
+                    imgWeaknessesDragon
+                )
                 buttonAction(
                     "dragon",
                     cardWeaknessesDragon,
@@ -1204,7 +1393,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesDark != null && imgWeaknessesDark != null) {
             if (filtersWeaknessesList.contains("dark")) {
-                activeFilterInTypesOrWeaknesses("dark", cardWeaknessesDark, imgWeaknessesDark)
+                activeFilterInTypesOrWeaknesses(
+                    "dark",
+                    cardWeaknessesDark,
+                    imgWeaknessesDark
+                )
                 buttonAction(
                     "dark",
                     cardWeaknessesDark,
@@ -1226,7 +1419,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesSteel != null && imgWeaknessesSteel != null) {
             if (filtersWeaknessesList.contains("steel")) {
-                activeFilterInTypesOrWeaknesses("steel", cardWeaknessesSteel, imgWeaknessesSteel)
+                activeFilterInTypesOrWeaknesses(
+                    "steel",
+                    cardWeaknessesSteel,
+                    imgWeaknessesSteel
+                )
                 buttonAction(
                     "steel",
                     cardWeaknessesSteel,
@@ -1248,7 +1445,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardWeaknessesFairy != null && imgWeaknessesFairy != null) {
             if (filtersWeaknessesList.contains("fairy")) {
-                activeFilterInTypesOrWeaknesses("fairy", cardWeaknessesFairy, imgWeaknessesFairy)
+                activeFilterInTypesOrWeaknesses(
+                    "fairy",
+                    cardWeaknessesFairy,
+                    imgWeaknessesFairy
+                )
                 buttonAction(
                     "fairy",
                     cardWeaknessesFairy,
@@ -1267,10 +1468,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val cardTypeHeightsShort = dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsShort)
+        val cardTypeHeightsShort =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsShort)
         val cardTypeHeightsMedium =
             dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsMedium)
-        val cardTypeHeightsTall = dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsTall)
+        val cardTypeHeightsTall =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeHeightsTall)
 
         val imgTypeHeightsShort = dialog.findViewById<ImageView>(R.id.imgTypeHeightsShort)
         val imgTypeHeightsMedium = dialog.findViewById<ImageView>(R.id.imgTypeHeightsMedium)
@@ -1278,7 +1481,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardTypeHeightsShort != null && imgTypeHeightsShort != null) {
             if (filtersHeightsList.contains("short")) {
-                activeFilterInTypesOrWeaknesses("short", cardTypeHeightsShort, imgTypeHeightsShort)
+                activeFilterInTypesOrWeaknesses(
+                    "short",
+                    cardTypeHeightsShort,
+                    imgTypeHeightsShort
+                )
                 buttonAction(
                     "short",
                     cardTypeHeightsShort,
@@ -1324,7 +1531,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardTypeHeightsTall != null && imgTypeHeightsTall != null) {
             if (filtersHeightsList.contains("tall")) {
-                activeFilterInTypesOrWeaknesses("tall", cardTypeHeightsTall, imgTypeHeightsTall)
+                activeFilterInTypesOrWeaknesses(
+                    "tall",
+                    cardTypeHeightsTall,
+                    imgTypeHeightsTall
+                )
                 buttonAction(
                     "tall",
                     cardTypeHeightsTall,
@@ -1345,8 +1556,10 @@ class MainActivity : AppCompatActivity() {
 
         val cardTypeWeightsNormal =
             dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsNormal)
-        val cardTypeWeightsLight = dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsLight)
-        val cardTypeWeightsHeavy = dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsHeavy)
+        val cardTypeWeightsLight =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsLight)
+        val cardTypeWeightsHeavy =
+            dialog.findViewById<MaterialCardView>(R.id.cardTypeWeightsHeavy)
 
         val imgTypeWeightsNormal = dialog.findViewById<ImageView>(R.id.imgTypeWeightsNormal)
         val imgTypeWeightsLight = dialog.findViewById<ImageView>(R.id.imgTypeWeightsLight)
@@ -1379,7 +1592,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardTypeWeightsLight != null && imgTypeWeightsLight != null) {
             if (filtersWeightsList.contains("light")) {
-                activeFilterInTypesOrWeaknesses("light", cardTypeWeightsLight, imgTypeWeightsLight)
+                activeFilterInTypesOrWeaknesses(
+                    "light",
+                    cardTypeWeightsLight,
+                    imgTypeWeightsLight
+                )
                 buttonAction(
                     "light",
                     cardTypeWeightsLight,
@@ -1400,7 +1617,11 @@ class MainActivity : AppCompatActivity() {
 
         if (cardTypeWeightsHeavy != null && imgTypeWeightsHeavy != null) {
             if (filtersWeightsList.contains("heavy")) {
-                activeFilterInTypesOrWeaknesses("heavy", cardTypeWeightsHeavy, imgTypeWeightsHeavy)
+                activeFilterInTypesOrWeaknesses(
+                    "heavy",
+                    cardTypeWeightsHeavy,
+                    imgTypeWeightsHeavy
+                )
                 buttonAction(
                     "heavy",
                     cardTypeWeightsHeavy,

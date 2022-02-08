@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.R
@@ -62,8 +62,12 @@ class PokemonAdapter(
             val txtId = findViewById<TextView>(R.id.txt_idNumber)
             val txtName = findViewById<TextView>(R.id.txt_pokeName)
             val txtType01 = findViewById<TextView>(R.id.txt_type01)
+            val imgType01 = findViewById<ImageView>(R.id.img_type01)
+            val type01Layout = findViewById<CardView>(R.id.type01_layout)
             val txtType02 = findViewById<TextView>(R.id.txt_type02)
-            val constraintLayout = findViewById<ConstraintLayout>(R.id.constraintLayout)
+            val imgType02 = findViewById<ImageView>(R.id.img_type02)
+            val type02Layout = findViewById<CardView>(R.id.type02_layout)
+            val cardView = findViewById<CardView>(R.id.cardview_pokemon_item)
 
 
 
@@ -74,15 +78,14 @@ class PokemonAdapter(
                 txtName.text = captalizerText(item.name)
                 txtType01.text = captalizerText(item.types[0].name)
 
-                changeColorForBackandLabel(item.types[0].name, txtType01, constraintLayout)
+                changeColorForBackandLabel(item.types[0].name, imgType01, cardView, type01Layout)
 
                 if (item.types.size > 1) {
-                    txtType02.visibility = View.VISIBLE
+                    type02Layout.visibility = View.VISIBLE
                     txtType02.text = captalizerText(item.types[1].name)
-
-                    changeColorForBackandLabel(item.types[1].name, txtType02)
+                    changeColorForBackandLabel(item.types[1].name, imgType02, null, type02Layout)
                 } else {
-                    txtType02.visibility = View.GONE
+                    type02Layout.visibility = View.INVISIBLE
                 }
             }
         }
@@ -90,191 +93,102 @@ class PokemonAdapter(
 
         private fun changeColorForBackandLabel(
             type: String,
-            txt: TextView,
-            layout: ConstraintLayout? = null
+            img: ImageView,
+            layout: CardView? = null,
+            typeLayout: CardView? = null
         ) {
             when (type) {
                 "flying" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_flying,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#a385e0"))
-                    layout?.setBackgroundColor(Color.parseColor("#614f86"))
+                    img.setImageResource(R.drawable.ic_flying)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#a385e0"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#614f86"))
 
                 }
                 "grass" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_grass,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#56972f"))
-                    layout?.setBackgroundColor(Color.parseColor("#7AC74C"))
+                    img.setImageResource(R.drawable.ic_grass)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#56972f"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#7AC74C"))
                 }
                 "bug" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_bug,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#6a7611"))
-                    layout?.setBackgroundColor(Color.parseColor("#A6B91A"))
+                    img.setImageResource(R.drawable.ic_bug)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#6a7611"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#A6B91A"))
                 }
                 "poison" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_poison,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#6c296a"))
-                    layout?.setBackgroundColor(Color.parseColor("#A33EA1"))
+                    img.setImageResource(R.drawable.ic_poison)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#6c296a"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#A33EA1"))
                 }
                 "normal" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_normal,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#818054"))
-                    layout?.setBackgroundColor(Color.parseColor("#A8A77A"))
+                    img.setImageResource(R.drawable.ic_normal)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#818054"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#A8A77A"))
                 }
 
                 "dark" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_dark,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#413229"))
-                    layout?.setBackgroundColor(Color.parseColor("#705746"))
+                    img.setImageResource(R.drawable.ic_dark)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#413229"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#705746"))
                 }
                 "dragon" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_dragon,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#4403e1"))
-                    layout?.setBackgroundColor(Color.parseColor("#6F35FC"))
+                    img.setImageResource(R.drawable.ic_dragon)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#4403e1"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#6F35FC"))
                 }
                 "electric" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_electric,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#f76b2c"))
-                    layout?.setBackgroundColor(Color.parseColor("#F7D02C"))
+                    img.setImageResource(R.drawable.ic_electric)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#f76b2c"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#F7D02C"))
                 }
                 "fairy" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_fairy,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#c34c87"))
-                    layout?.setBackgroundColor(Color.parseColor("#D685AD"))
+                    img.setImageResource(R.drawable.ic_fairy)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#c34c87"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#D685AD"))
                 }
                 "fighting" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_fighting,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#831f1b"))
-                    layout?.setBackgroundColor(Color.parseColor("#C22E28"))
+                    img.setImageResource(R.drawable.ic_fighting)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#831f1b"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#C22E28"))
                 }
                 "fire" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_fire,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#c25c10"))
-                    layout?.setBackgroundColor(Color.parseColor("#EE8130"))
+                    img.setImageResource(R.drawable.ic_fire)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#c25c10"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#EE8130"))
                 }
                 "ghost" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_ghost,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#4e3b66"))
-                    layout?.setBackgroundColor(Color.parseColor("#735797"))
+                    img.setImageResource(R.drawable.ic_ghost)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#4e3b66"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#735797"))
                 }
                 "ground" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_ground,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#d3a328"))
-                    layout?.setBackgroundColor(Color.parseColor("#E2BF65"))
+                    img.setImageResource(R.drawable.ic_ground)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#d3a328"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#E2BF65"))
                 }
                 "ice" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_ice,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#5ec5c0"))
-                    layout?.setBackgroundColor(Color.parseColor("#96D9D6"))
+                    img.setImageResource(R.drawable.ic_ice)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#5ec5c0"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#96D9D6"))
                 }
                 "psychic" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_psychic,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#f60b53"))
-                    layout?.setBackgroundColor(Color.parseColor("#F95587"))
+                    img.setImageResource(R.drawable.ic_psychic)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#f60b53"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#F95587"))
                 }
                 "rock" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_rock,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#7b6d24"))
-                    layout?.setBackgroundColor(Color.parseColor("#B6A136"))
+                    img.setImageResource(R.drawable.ic_rock)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#7b6d24"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#B6A136"))
                 }
                 "steel" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_steel,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#8989af"))
-                    layout?.setBackgroundColor(Color.parseColor("#B7B7CE"))
+                    img.setImageResource(R.drawable.ic_steel)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#8989af"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#B7B7CE"))
                 }
                 "water" -> {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_water,
-                        0,
-                        0,
-                        0
-                    )
-                    txt.setBackgroundColor(Color.parseColor("#1d5ee9"))
-                    layout?.setBackgroundColor(Color.parseColor("#6390F0"))
+                    img.setImageResource(R.drawable.ic_water)
+                    typeLayout?.setCardBackgroundColor(Color.parseColor("#1d5ee9"))
+                    layout?.setCardBackgroundColor(Color.parseColor("#6390F0"))
                 }
 
             }
