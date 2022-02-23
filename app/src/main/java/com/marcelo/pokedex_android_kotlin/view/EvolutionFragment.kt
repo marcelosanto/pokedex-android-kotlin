@@ -7,16 +7,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
+import com.marcelo.pokedex_android_kotlin.databinding.FragmentEvolutionBinding
 
 
 class EvolutionFragment : Fragment() {
+
+    private var _binding: FragmentEvolutionBinding? = null
+
+    private val binding get() = _binding!!
+
     val URL =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
 
@@ -24,67 +27,37 @@ class EvolutionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? { // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_evolution, container, false)
+        _binding = FragmentEvolutionBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val evoOneId: TextView = view.findViewById(R.id.txtIdEvoOne)
-
-        val evoOneName = view.findViewById<TextView>(R.id.txtNameEvoOne)
-        val evoOneImage = view.findViewById<ImageView>(R.id.imgEvoOne)
-
-        val EvoOneMinLevel = view.findViewById<TextView>(R.id.txtEvoOneMinLevel)
-
-        val evoTwoId = view.findViewById<TextView>(R.id.txtIdEvoTwo)
-        val evoTwoName = view.findViewById<TextView>(R.id.txtNameEvoTwo)
-        val evoTwoImage = view.findViewById<ImageView>(R.id.imgEvoTwo)
-
-        val evoTwosId = view.findViewById<TextView>(R.id.txtIdEvoTwos)
-        val evoTwosName = view.findViewById<TextView>(R.id.txtNameEvoTwos)
-        val evoTwosImage = view.findViewById<ImageView>(R.id.imgEvoTwos)
-
-
-        val EvoThirdMinLevel = view.findViewById<TextView>(R.id.txtEvoThirdMinLevel)
-
-        val evoThirdId = view.findViewById<TextView>(R.id.txtIdEvoThird)
-        val evoThirdName = view.findViewById<TextView>(R.id.txtNameEvoThird)
-        val evoThirdImage = view.findViewById<ImageView>(R.id.imgEvoThird)
-
-        val pokemonNotEvolutionId = view.findViewById<TextView>(R.id.txtIdPokemonNotEvolution)
-        val pokemonNotEvolutionName = view.findViewById<TextView>(R.id.txtNamePokemonNotEvolution)
-        val pokemonNotEvolutionImage = view.findViewById<ImageView>(R.id.imgPokemonNotEvolution)
-
-        val txtEvolution = view.findViewById<TextView>(R.id.txtEvolution)
-
-        val layoutThird = view.findViewById<LinearLayout>(R.id.layoutThird)
-        val layoutFirst = view.findViewById<LinearLayout>(R.id.firstLayout)
-        val layoutPokemonNotEvolution =
-            view.findViewById<LinearLayout>(R.id.layoutPokemonNotEvolution)
 
         val bundle = arguments
         val pokemon = bundle!!.getParcelable<PokemonModel>("message")
 
-        changeColorForText(pokemon?.types?.get(0)?.name.toString(), txtEvolution)
+        changeColorForText(pokemon?.types?.get(0)?.name.toString(), binding.txtEvolution)
 
         if (pokemon?.evolutions?.chain?.evolves_to?.isEmpty() == true) {
-            val pokemonName = pokemon?.evolutions?.chain.species?.name
-            val id = pokemon?.evolutions?.chain.species?.url?.replace(
+            val pokemonName = pokemon.evolutions.chain.species?.name
+            val id = pokemon.evolutions.chain.species?.url?.replace(
                 "https://pokeapi.co/api/v2/pokemon-species/",
                 ""
             )?.replace("/", "")
 
-            layoutPokemonNotEvolution.visibility = View.VISIBLE
+            binding.layoutPokemonNotEvolution.visibility = View.VISIBLE
 
-            pokemonNotEvolutionId.text = "#${formattedNumber(id.toString())}"
-            pokemonNotEvolutionName.text = captalizerText(pokemonName.toString())
-            Glide.with(this).load("$URL/$id.png").into(pokemonNotEvolutionImage!!)
+            binding.txtIdPokemonNotEvolution.text = "#${formattedNumber(id.toString())}"
+            binding.txtNamePokemonNotEvolution.text = captalizerText(pokemonName.toString())
+            Glide.with(this).load("$URL/$id.png").into(binding.imgPokemonNotEvolution)
 
             Log.w(
                 "EVOU",
-                "onViewCreated: ${pokemon?.evolutions?.chain.species?.url}"
+                "onViewCreated: ${pokemon.evolutions.chain.species?.url}"
             )
         }
 
@@ -110,20 +83,20 @@ class EvolutionFragment : Fragment() {
                         ""
                     )?.replace("/", "")
 
-                layoutPokemonNotEvolution.visibility = View.GONE
-                layoutFirst.visibility = View.VISIBLE
+                binding.layoutPokemonNotEvolution.visibility = View.GONE
+                binding.firstLayout.visibility = View.VISIBLE
 
-                evoOneId.text = "#${formattedNumber(id.toString())}"
-                evoOneName.text = captalizerText(pokemonName.toString())
+                binding.txtIdEvoOne.text = "#${formattedNumber(id.toString())}"
+                binding.txtNameEvoOne.text = captalizerText(pokemonName.toString())
                 Glide.with(this)
                     .load("$URL/$id.png")
-                    .into(evoOneImage!!)
+                    .into(binding.imgEvoOne)
 
-                evoTwoId.text = "#${formattedNumber(secondPokemonId.toString())}"
-                evoTwoName.text = captalizerText(secondPokemon.toString())
-                Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwoImage!!)
+                binding.txtIdEvoTwo.text = "#${formattedNumber(secondPokemonId.toString())}"
+                binding.txtNameEvoTwo.text = captalizerText(secondPokemon.toString())
+                Glide.with(this).load("$URL/$secondPokemonId.png").into(binding.imgEvoTwo)
 
-                EvoOneMinLevel?.text = "(Level $evoluMinLevel)"
+                binding.txtEvoOneMinLevel.text = "(Level $evoluMinLevel)"
             }
 
         } catch (e: IndexOutOfBoundsException) {
@@ -156,18 +129,18 @@ class EvolutionFragment : Fragment() {
                         ""
                     )?.replace("/", "")
 
-                layoutPokemonNotEvolution.visibility = View.GONE
-                layoutThird.visibility = View.VISIBLE
+                binding.layoutPokemonNotEvolution.visibility = View.GONE
+                binding.layoutThird.visibility = View.VISIBLE
 
-                evoTwosId.text = "#${formattedNumber(secondPokemonId.toString())}"
-                evoTwosName.text = captalizerText(secondPokemon.toString())
-                Glide.with(this).load("$URL/$secondPokemonId.png").into(evoTwosImage!!)
+                binding.txtIdEvoTwos.text = "#${formattedNumber(secondPokemonId.toString())}"
+                binding.txtNameEvoTwos.text = captalizerText(secondPokemon.toString())
+                Glide.with(this).load("$URL/$secondPokemonId.png").into(binding.imgEvoTwos)
 
-                EvoThirdMinLevel.text = "(Level $thirdEvoMinLeve)"
+                binding.txtEvoThirdMinLevel.text = "(Level $thirdEvoMinLeve)"
 
-                evoThirdId.text = "#${formattedNumber(thirdPokemonId.toString())}"
-                evoThirdName.text = captalizerText(thirdPokemon.toString())
-                Glide.with(this).load("$URL/$thirdPokemonId.png").into(evoThirdImage!!)
+                binding.txtIdEvoThird.text = "#${formattedNumber(thirdPokemonId.toString())}"
+                binding.txtNameEvoThird.text = captalizerText(thirdPokemon.toString())
+                Glide.with(this).load("$URL/$thirdPokemonId.png").into(binding.imgEvoThird)
             }
 
         } catch (e: IndexOutOfBoundsException) {
@@ -175,7 +148,13 @@ class EvolutionFragment : Fragment() {
         }
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
+
 
 private fun changeColorForText(
     type: String,

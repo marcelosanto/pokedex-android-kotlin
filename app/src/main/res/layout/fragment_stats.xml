@@ -362,6 +362,7 @@
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="20dp">
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -384,95 +385,222 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp">
 
-                    <TextView
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#818054"
-                        android:drawableStart="@drawable/ic_normal"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#c25c10"
-                        android:drawableStart="@drawable/ic_fire"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        <com.google.android.material.card.MaterialCardView
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#1d5ee9"
-                        android:drawableStart="@drawable/ic_water"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#818054">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#FFEF00"
-                        android:drawableStart="@drawable/ic_electric"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                            <ImageView
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="25dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_height="25dp"
-                        android:background="#56972f"
-                        android:drawableStart="@drawable/ic_grass"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_normal"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#5ec5c0"
-                        android:drawableStart="@drawable/ic_ice"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#831f1b"
-                        android:drawableStart="@drawable/ic_fighting"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        <com.google.android.material.card.MaterialCardView
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#6c296a"
-                        android:drawableStart="@drawable/ic_poison"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#c25c10">
 
-                    <TextView
-                        android:layout_weight="1"
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_fire"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#d3a328"
-                        android:drawableStart="@drawable/ic_ground"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#1d5ee9">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_water"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#FFEF00">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_electric"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#56972f">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_grass"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#5ec5c0">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_ice"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#831f1b">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_fighting"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#6c296a">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_poison"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#d3a328">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_ground"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -576,95 +704,225 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#a385e0"
-                        android:drawableStart="@drawable/ic_flying"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
 
-                    <TextView
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#f60b53"
-                        android:drawableStart="@drawable/ic_psychic"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#6a7611"
-                        android:drawableStart="@drawable/ic_bug"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        <com.google.android.material.card.MaterialCardView
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#7b6d24"
-                        android:drawableStart="@drawable/ic_rock"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#a385e0">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="25dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_height="25dp"
-                        android:background="#4e3b66"
-                        android:drawableStart="@drawable/ic_ghost"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                            <ImageView
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#4403e1"
-                        android:drawableStart="@drawable/ic_dragon"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_flying"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#413229"
-                        android:drawableStart="@drawable/ic_dark"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#8989af"
-                        android:drawableStart="@drawable/ic_steel"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        <com.google.android.material.card.MaterialCardView
 
-                    <TextView
-                        android:layout_weight="1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#f60b53">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_psychic"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="#c34c87"
-                        android:drawableStart="@drawable/ic_fairy"
-                        android:drawableTint="@color/white"
-                        android:paddingHorizontal="8dp" />
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#6a7611">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_bug"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#7b6d24">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_rock"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#4e3b66">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_ghost"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#4403e1">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_dragon"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#413229">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_dark"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#8989af">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_steel"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.card.MaterialCardView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:backgroundTint="#c34c87">
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/icon_for_filter"
+                                android:src="@drawable/ic_fairy"
+                                android:tint="@color/white" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout

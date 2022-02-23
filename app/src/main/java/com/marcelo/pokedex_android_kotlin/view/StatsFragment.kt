@@ -10,18 +10,23 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
+import com.marcelo.pokedex_android_kotlin.databinding.FragmentStatsBinding
 
 class StatsFragment : Fragment() {
+
+    private var _binding: FragmentStatsBinding? = null
+
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentStatsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -40,96 +45,60 @@ class StatsFragment : Fragment() {
 
         val typeStatsDefense = pokemon?.types?.get(0)?.name?.let { typeDefensesPokemon(it) }
 
-        val progressBarHP: ProgressBar = view.findViewById(R.id.progressBar)
-        val progressBarAttack: ProgressBar = view.findViewById(R.id.progressBarAttack)
-        val progressBarDefense: ProgressBar = view.findViewById(R.id.progressBarDefense)
-        val progressBarSpAttk: ProgressBar = view.findViewById(R.id.progressBarSpAtk)
-        val progressBarSpDef: ProgressBar = view.findViewById(R.id.progressBarSpDef)
-        val progressBarSpeed: ProgressBar = view.findViewById(R.id.progressBarSpeed)
-
-
-        val txtHP: TextView = view.findViewById(R.id.txtxHp)
-        val txtAttak: TextView = view.findViewById(R.id.txtAttak)
-        val txtDef: TextView = view.findViewById(R.id.txtDef)
-        val txtSpAtk: TextView = view.findViewById(R.id.txtSpAtk)
-        val txtSpDef: TextView = view.findViewById(R.id.txtSpDef)
-        val txtSpeed: TextView = view.findViewById(R.id.txtSpeed)
-        val txtTotal: TextView = view.findViewById(R.id.txtTotal)
-        val txtTypeEffect: TextView = view.findViewById(R.id.txtTypeEffect)
-
-
-        progressBarHP.max = 200
-        progressBarAttack.max = 200
-        progressBarDefense.max = 200
-        progressBarSpAttk.max = 200
-        progressBarSpDef.max = 200
-        progressBarSpeed.max = 200
+        binding.progressBar.max = 200
+        binding.progressBarAttack.max = 200
+        binding.progressBarDefense.max = 200
+        binding.progressBarSpAtk.max = 200
+        binding.progressBarSpDef.max = 200
+        binding.progressBarSpeed.max = 200
 
         if (hp != null && attack != null && defense != null && specialAttack != null && specialDefense != null && speed != null) {
-            setProgressBarXp(progressBarHP, hp)
-            txtHP.text = hp.toString()
+            setProgressBarXp(binding.progressBar, hp)
+            binding.txtxHp.text = hp.toString()
 
-            setProgressBarXp(progressBarAttack, attack)
-            txtAttak.text = attack.toString()
+            setProgressBarXp(binding.progressBarAttack, attack)
+            binding.txtAttak.text = attack.toString()
 
-            setProgressBarXp(progressBarDefense, defense)
-            txtDef.text = defense.toString()
+            setProgressBarXp(binding.progressBarDefense, defense)
+            binding.txtDef.text = defense.toString()
 
-            setProgressBarXp(progressBarSpAttk, specialAttack)
-            txtSpAtk.text = specialAttack.toString()
+            setProgressBarXp(binding.progressBarSpAtk, specialAttack)
+            binding.txtSpAtk.text = specialAttack.toString()
 
-            setProgressBarXp(progressBarSpDef, specialDefense)
-            txtSpDef.text = specialDefense.toString()
+            setProgressBarXp(binding.progressBarSpDef, specialDefense)
+            binding.txtSpDef.text = specialDefense.toString()
 
-            setProgressBarXp(progressBarSpeed, speed)
-            txtSpeed.text = speed.toString()
+            setProgressBarXp(binding.progressBarSpeed, speed)
+            binding.txtSpeed.text = speed.toString()
 
             var total = hp + attack + defense + specialAttack + specialDefense + speed
 
-            txtTotal.text = total.toString()
+            binding.txtTotal.text = total.toString()
         }
 
-        txtTypeEffect.text =
+        binding.txtTypeEffect.text =
             "The effectiveness of each type on ${pokemon?.name?.let { captalizerText(it) }}."
 
-        val txtType1: TextView = view.findViewById(R.id.txtType1)
-        val txtType2: TextView = view.findViewById(R.id.txtType2)
-        val txtType3: TextView = view.findViewById(R.id.txtType3)
-        val txtType4: TextView = view.findViewById(R.id.txtType4)
-        val txtType5: TextView = view.findViewById(R.id.txtType5)
-        val txtType6: TextView = view.findViewById(R.id.txtType6)
-        val txtType7: TextView = view.findViewById(R.id.txtType7)
-        val txtType8: TextView = view.findViewById(R.id.txtType8)
-        val txtType9: TextView = view.findViewById(R.id.txtType9)
-        val txtType10: TextView = view.findViewById(R.id.txtType10)
-        val txtType11: TextView = view.findViewById(R.id.txtType11)
-        val txtType12: TextView = view.findViewById(R.id.txtType12)
-        val txtType13: TextView = view.findViewById(R.id.txtType13)
-        val txtType14: TextView = view.findViewById(R.id.txtType14)
-        val txtType15: TextView = view.findViewById(R.id.txtType15)
-        val txtType16: TextView = view.findViewById(R.id.txtType16)
-        val txtType17: TextView = view.findViewById(R.id.txtType17)
-        val txtType18: TextView = view.findViewById(R.id.txtType18)
 
         val txtArray = listOf<TextView>(
-            txtType1,
-            txtType2,
-            txtType3,
-            txtType4,
-            txtType5,
-            txtType6,
-            txtType7,
-            txtType8,
-            txtType9,
-            txtType10,
-            txtType11,
-            txtType12,
-            txtType13,
-            txtType14,
-            txtType15,
-            txtType16,
-            txtType17,
-            txtType18
+            binding.txtType1,
+            binding.txtType2,
+            binding.txtType3,
+            binding.txtType4,
+            binding.txtType5,
+            binding.txtType6,
+            binding.txtType7,
+            binding.txtType8,
+            binding.txtType9,
+            binding.txtType10,
+            binding.txtType11,
+            binding.txtType12,
+            binding.txtType13,
+            binding.txtType14,
+            binding.txtType15,
+            binding.txtType16,
+            binding.txtType17,
+            binding.txtType18
         )
 
         if (typeStatsDefense != null) {
@@ -139,6 +108,11 @@ class StatsFragment : Fragment() {
             }
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
