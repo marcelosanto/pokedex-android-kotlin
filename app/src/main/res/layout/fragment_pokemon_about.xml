@@ -140,62 +140,135 @@
                     android:fontFamily="@font/sf_pro_display_bold"
                     android:text="@string/weaknesses" />
 
-
-                <TextView
-                    android:id="@+id/txt_weakness0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@color/red"
+                <LinearLayout
+                    android:id="@+id/layoutWeakness0"
                     android:visibility="gone"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
-                    android:paddingHorizontal="8dp" />
-
-                <TextView
-                    android:id="@+id/txt_weakness1"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/red"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
-                    android:visibility="gone"
-                    android:paddingHorizontal="8dp" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/txt_weakness2"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weakness0"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp">
+
+                        <ImageView
+                            android:id="@+id/txt_weakness0"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutWeakness1"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/red"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weakness1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:backgroundTint="#c34c87">
+
+                        <ImageView
+                            android:id="@+id/txt_weakness1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutWeakness2"
                     android:visibility="gone"
-
-                    android:paddingHorizontal="8dp" />
-
-                <TextView
-                    android:id="@+id/txt_weakness3"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/red"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weakness2"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:backgroundTint="#c34c87">
+
+                        <ImageView
+                            android:id="@+id/txt_weakness2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutWeakness3"
                     android:visibility="gone"
-
-                    android:paddingHorizontal="8dp" />
-
-                <TextView
-                    android:id="@+id/txt_weakness4"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/red"
-                    android:drawableStart="@drawable/ic_poison"
-                    android:drawableTint="@color/white"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weakness3"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:backgroundTint="#c34c87">
+
+                        <ImageView
+                            android:id="@+id/txt_weakness3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutWeakness4"
                     android:visibility="gone"
-                    android:paddingHorizontal="8dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weakness4"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:backgroundTint="#c34c87">
+
+                        <ImageView
+                            android:id="@+id/txt_weakness4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/icon_for_filter"
+                            android:src="@drawable/ic_fairy"
+                            android:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
             </LinearLayout>
 
