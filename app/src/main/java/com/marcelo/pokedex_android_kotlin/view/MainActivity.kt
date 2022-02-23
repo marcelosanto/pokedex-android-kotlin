@@ -69,14 +69,17 @@ class MainActivity : AppCompatActivity() {
 
         inputSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                inputSearch.clearFocus()
-                //searchPokemon(query)
-                return false
+                if (query != null) {
+                    searchPokemon(query)
+                }
+                return true
             }
 
             override fun onQueryTextChange(newString: String?): Boolean {
-                searchPokemon(newString)
-                return false
+                if (newString != null) {
+                    searchPokemon(newString)
+                }
+                return true
             }
 
         })
@@ -85,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchPokemon(query: String?) {
+
         val tempsArray: ArrayList<Pokemon> = ArrayList()
         if (query != null && filterArrayList.isEmpty()) {
             for (pokemon in tempArrayList) {
