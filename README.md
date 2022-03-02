@@ -2,7 +2,7 @@
 
 ### Sobre
 
-Esse projeto foi feito com base no desafio proposto por [DevChallenge](https://devchallenge.vercel.app/), com a proposta de montar uma Pokedex.
+Esse projeto foi feito com base no desafio proposto por [DevChallenge](https://devchallenge.vercel.app/), com a proposta de montar uma Pokedex, consumido a api de pokemon.
 
 ### 🛠 Tecnologias
 
