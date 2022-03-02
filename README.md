@@ -1,5 +1,9 @@
 # Pokedex Kotlin 
 
+### Sobre
+
+Esse projeto foi feito com base no desafio proposto por [DevChallenge](https://devchallenge.vercel.app/), com a proposta de montar uma Pokedex.
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
