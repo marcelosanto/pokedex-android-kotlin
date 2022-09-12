@@ -2,16 +2,18 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id("kotlin-parcelize")
-
+//    id 'kotlin-kapt'
+//    id 'dagger.hilt.android.plugin'
 }
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.marcelo.pokedex_android_kotlin"
         minSdk 21
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -55,5 +57,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.google.android.material:material:1.6.0-alpha02'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+//    implementation 'androidx.room:room-runtime:2.4.0-alpha04'
+//    kapt 'androidx.room:room-compiler:2.4.0-alpha04'
+//    implementation 'com.google.dagger:hilt-android:2.43.2'
+//    kapt 'com.google.dagger:hilt-android-compiler:2.43.2'
 
 }

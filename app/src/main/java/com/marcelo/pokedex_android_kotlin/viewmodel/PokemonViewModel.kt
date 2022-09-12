@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.marcelo.pokedex_android_kotlin.api.PokemonRepository
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
-class PokemonViewModel : ViewModel() {
+class PokemonViewModel() : ViewModel() {
     var pokemons = MutableLiveData<List<Pokemon?>>()
 
     init {
