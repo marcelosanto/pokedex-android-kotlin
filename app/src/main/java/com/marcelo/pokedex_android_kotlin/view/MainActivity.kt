@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,21 +18,23 @@ import com.google.android.material.card.MaterialCardView
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
 import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PokemonViewModel
 
-    private lateinit var tempArrayList: List<Pokemon>
+    private lateinit var PokemonsArraysList: List<Pokemon>
     private var filterArrayList: ArrayList<Pokemon> = ArrayList()
-    private var filterCloneTempArrayList: ArrayList<Pokemon> = ArrayList()
 
-    private var filtersTypesList: ArrayList<String> = ArrayList()
-    private var filtersWeaknessesList: ArrayList<String> = ArrayList()
-    private var filtersHeightsList: ArrayList<String> = ArrayList()
-    private var filtersWeightsList: ArrayList<String> = ArrayList()
-    private var filtersRangerList: ArrayList<Int> = ArrayList()
+//    private var filterCloneTempArrayList: ArrayList<Pokemon> = ArrayList()
+//
+//    private var filtersTypesList: ArrayList<String> = ArrayList()
+//    private var filtersWeaknessesList: ArrayList<String> = ArrayList()
+//    private var filtersHeightsList: ArrayList<String> = ArrayList()
+//    private var filtersWeightsList: ArrayList<String> = ArrayList()
+//    private var filtersRangerList: ArrayList<Int> = ArrayList()
 
     val recyclerView by lazy { findViewById<RecyclerView>(R.id.rvPokemons) }
 
@@ -1694,34 +1699,6 @@ class MainActivity : AppCompatActivity() {
         imgCardView.setColorFilter(Color.WHITE)
     }
 
-    private fun colorType(type: String): String = when (type) {
-        "normal" -> "#818054"
-        "fire" -> "#c25c10"
-        "water" -> "#1d5ee9"
-        "electric" -> "#FFEF00"
-        "grass" -> "#56972f"
-        "ice" -> "#5ec5c0"
-        "fighting" -> "#831f1b"
-        "poison" -> "#6c296a"
-        "ground" -> "#d3a328"
-        "flying" -> "#a385e0"
-        "psychic" -> "#f60b53"
-        "bug" -> "#6a7611"
-        "rock" -> "#7b6d24"
-        "ghost" -> "#4e3b66"
-        "dragon" -> "#4403e1"
-        "dark" -> "#413229"
-        "steel" -> "#8989af"
-        "fairy" -> "#c34c87"
-        "tall" -> "#2F4F4F"
-        "medium" -> "#6A5ACD"
-        "short" -> "#FF1493"
-        "light" -> "#90EE90"
-        "pnormal" -> "#6495ED"
-        "heavy" -> "#778899"
-        else -> type
-    }
-
 
     @SuppressLint("InflateParams")
     private fun showSortFilter() {
@@ -1735,26 +1712,23 @@ class MainActivity : AppCompatActivity() {
         val btnAZ = dialog.findViewById<Button>(R.id.btn_a_z)
         val btnZA = dialog.findViewById<Button>(R.id.btn_z_a)
 
+        filterArrayList.addAll(PokemonsArraysList)
 
         btnSmall?.setOnClickListener {
             smallNumberPokemonFirst()
             dialog.dismiss()
-            Toast.makeText(this, "Small Button", Toast.LENGTH_LONG).show()
         }
         btnHigh?.setOnClickListener {
             dialog.dismiss()
             highNumberPokemonFirst()
-            Toast.makeText(this, "High Button", Toast.LENGTH_LONG).show()
         }
         btnAZ?.setOnClickListener {
             dialog.dismiss()
             orderByNameAandZ()
-            Toast.makeText(this, "A-Z Button", Toast.LENGTH_LONG).show()
         }
         btnZA?.setOnClickListener {
             dialog.dismiss()
             orderByNameZandA()
-            Toast.makeText(this, "Z-A Button", Toast.LENGTH_LONG).show()
         }
 
         dialog.show()
@@ -1762,85 +1736,58 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun orderByNameZandA() {
-        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(tempArrayList.sortedByDescending { it.name })
-        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(filterArrayList.sortedByDescending { it.name })
-        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
-            adapterInRecyclerView(filterCloneTempArrayList.sortedByDescending { it.name })
-        }
+        adapterInRecyclerView(filterArrayList.sortedByDescending { it.name })
     }
 
     private fun orderByNameAandZ() {
-        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(tempArrayList.sortedBy { it.name })
-        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(filterArrayList.sortedBy { it.name })
-        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
-            adapterInRecyclerView(filterCloneTempArrayList.sortedBy { it.name })
-        }
+        adapterInRecyclerView(filterArrayList.sortedBy { it.name })
     }
 
     private fun highNumberPokemonFirst() {
-        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(tempArrayList.sortedByDescending { it.id.toInt() })
-        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(filterArrayList.sortedByDescending { it.id.toInt() })
-        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
-            adapterInRecyclerView(filterCloneTempArrayList.sortedByDescending { it.id.toInt() })
-        }
+        adapterInRecyclerView(filterArrayList.sortedByDescending { it.id.toInt() })
     }
 
     private fun smallNumberPokemonFirst() {
-        if (filterArrayList.isEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(tempArrayList.sortedBy { it.id.toInt() })
-        } else if (filterArrayList.isNotEmpty() && filterCloneTempArrayList.isEmpty()) {
-            adapterInRecyclerView(filterArrayList.sortedBy { it.id.toInt() })
-        } else if (filterArrayList.isEmpty() && filterCloneTempArrayList.isNotEmpty()) {
-            adapterInRecyclerView(filterCloneTempArrayList.sortedBy { it.id.toInt() })
-        }
+        adapterInRecyclerView(filterArrayList.sortedBy { it.id.toInt() })
     }
 
     private fun loadRecyclerView(pokemons: List<Pokemon?>) {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        tempArrayList = pokemons.map { it!!.copy() }
-        adapterInRecyclerView(tempArrayList)
+
+        PokemonsArraysList = pokemons.map { it!!.copy() }
+
+        adapterInRecyclerView(PokemonsArraysList)
     }
 
 
-    private fun adapterInRecyclerView(pokemons: List<Pokemon?>) {
+    private fun adapterInRecyclerView(pokemons: List<Pokemon>) {
+        val adapter = PokemonAdapter(pokemons) { position ->
+            val intent = Intent(this@MainActivity, PokemonActivity::class.java)
 
-        val adapter = PokemonAdapter(pokemons)
+            val poke = PokemonModel(
+                pokemons[position].id,
+                pokemons[position].name,
+                pokemons[position].imageUrl,
+                pokemons[position].types,
+                pokemons[position].weight,
+                pokemons[position].height,
+                pokemons[position].base_experience,
+                pokemons[position].abilities,
+                pokemons[position].species,
+                pokemons[position].biography,
+                pokemons[position].base_happiness,
+                pokemons[position].capture_rate,
+                pokemons[position].growth_rate,
+                pokemons[position].evolutions,
+                pokemons[position].stats
+
+            )
+            intent.putExtra("pokemon", poke)
+
+
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
-
-        adapter.setOnItemClickListener(object : PokemonAdapter.onItemClickListener {
-            override fun onItemClick(position: Int) {
-                val intent = Intent(this@MainActivity, PokemonActivity::class.java)
-
-                val poke = PokemonModel(
-                    pokemons[position]!!.id,
-                    pokemons[position]!!.name,
-                    pokemons[position]!!.imageUrl,
-                    pokemons[position]!!.types,
-                    pokemons[position]!!.weight,
-                    pokemons[position]!!.height,
-                    pokemons[position]!!.base_experience,
-                    pokemons[position]!!.abilities,
-                    pokemons[position]!!.species,
-                    pokemons[position]!!.biography,
-                    pokemons[position]!!.base_happiness,
-                    pokemons[position]!!.capture_rate,
-                    pokemons[position]!!.growth_rate,
-                    pokemons[position]!!.evolutions,
-                    pokemons[position]!!.stats
-
-                )
-                intent.putExtra("pokemon", poke)
-
-
-                startActivity(intent)
-            }
-        })
     }
 
 
