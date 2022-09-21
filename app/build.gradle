@@ -36,6 +36,7 @@ android {
     viewBinding {
         enabled = true
     }
+    namespace 'com.marcelo.pokedex_android_kotlin'
 }
 
 dependencies {
