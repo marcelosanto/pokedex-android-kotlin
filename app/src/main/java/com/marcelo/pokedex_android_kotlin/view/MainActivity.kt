@@ -25,52 +25,57 @@ import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PokemonViewModel
+    private lateinit var adapter: PokemonAdapter
 
     private var filterArrayList: ArrayList<Pokemon> = ArrayList()
+    private var pokemonsArraysList = mutableListOf<Pokemon>()
 
-    val recyclerView by lazy { findViewById<RecyclerView>(R.id.rvPokemons) }
+    //val recyclerView by lazy { findViewById<RecyclerView>(R.id.rvPokemons) }
 
-    @SuppressLint("NotifyDataSetChanged")
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var PokemonsArraysList: List<Pokemon> = emptyList()
-
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
 
-        val adapter = PokemonAdapter(PokemonsArraysList) { position ->
+        adapter = PokemonAdapter(pokemonsArraysList) { position ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
             val poke = PokemonModel(
-                PokemonsArraysList[position].id,
-                PokemonsArraysList[position].name,
-                PokemonsArraysList[position].imageUrl,
-                PokemonsArraysList[position].types,
-                PokemonsArraysList[position].weight,
-                PokemonsArraysList[position].height,
-                PokemonsArraysList[position].base_experience,
-                PokemonsArraysList[position].abilities,
-                PokemonsArraysList[position].species,
-                PokemonsArraysList[position].biography,
-                PokemonsArraysList[position].base_happiness,
-                PokemonsArraysList[position].capture_rate,
-                PokemonsArraysList[position].growth_rate,
-                PokemonsArraysList[position].evolutions,
-                PokemonsArraysList[position].stats
+                pokemonsArraysList[position].id,
+                pokemonsArraysList[position].name,
+                pokemonsArraysList[position].imageUrl,
+                pokemonsArraysList[position].types,
+                pokemonsArraysList[position].weight,
+                pokemonsArraysList[position].height,
+                pokemonsArraysList[position].base_experience,
+                pokemonsArraysList[position].abilities,
+                pokemonsArraysList[position].species,
+                pokemonsArraysList[position].biography,
+                pokemonsArraysList[position].base_happiness,
+                pokemonsArraysList[position].capture_rate,
+                pokemonsArraysList[position].growth_rate,
+                pokemonsArraysList[position].evolutions,
+                pokemonsArraysList[position].stats
 
             )
             intent.putExtra("pokemon", poke)
             startActivity(intent)
         }
 
+
+        recyclerView = findViewById<RecyclerView>(R.id.rvPokemons)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
         viewModel.pokemons.observe(this, Observer {
-            PokemonsArraysList = it.requireNoNulls()
-            Log.i("TAG", "onCreate: ${PokemonsArraysList.size}")
+            pokemonsArraysList.addAll(it.requireNoNulls())
+            Log.i("TAG", "viewModel Observer: ${pokemonsArraysList.size}")
             adapter.notifyDataSetChanged()
+
         })
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
 
         val btnSort: ImageButton = findViewById(R.id.Btn_sort)
 
@@ -126,7 +131,6 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     private fun showSortFilter() {
 
-        //val view: View = layoutInflater.inflate(R.layout.bottom_shee_item_sort, null)
         val dialog = BottomSheetDialog(this, R.style.MyTransparentBottomSheetDialogTheme)
         dialog.setContentView(R.layout.bottom_sheet_item_sort)
 
@@ -135,7 +139,6 @@ class MainActivity : AppCompatActivity() {
         val btnAZ = dialog.findViewById<Button>(R.id.btn_a_z)
         val btnZA = dialog.findViewById<Button>(R.id.btn_z_a)
 
-        //filterArrayList.addAll(PokemonsArraysList)
 
         btnSmall?.setOnClickListener {
             smallNumberPokemonFirst()
@@ -159,29 +162,24 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun orderByNameZandA() {
-        //adapterInRecyclerView(filterArrayList.sortedByDescending { it.name })
-
+        pokemonsArraysList.sortedByDescending { it.name }
+        adapter.notifyDataSetChanged()
     }
 
     private fun orderByNameAandZ() {
-        //adapterInRecyclerView(filterArrayList.sortedBy { it.name })
+        pokemonsArraysList.sortedBy { it.name }
+        adapter.notifyDataSetChanged()
     }
 
     private fun highNumberPokemonFirst() {
-        //adapterInRecyclerView(filterArrayList.sortedByDescending { it.id.toInt() })
+        pokemonsArraysList.sortedByDescending { it.id.toInt() }
+        adapter.notifyDataSetChanged()
     }
 
     private fun smallNumberPokemonFirst() {
-        // adapterInRecyclerView(filterArrayList.sortedBy { it.id.toInt() })
+        pokemonsArraysList.sortedBy { it.id.toInt() }
+        adapter.notifyDataSetChanged()
     }
-
-    private fun loadRecyclerView(pokemons: List<Pokemon?>) {
-
-
-        // adapterInRecyclerView(PokemonsArraysList)
-    }
-
-
 }
 
 

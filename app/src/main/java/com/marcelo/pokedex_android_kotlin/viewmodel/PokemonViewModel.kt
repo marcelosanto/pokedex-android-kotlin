@@ -17,52 +17,54 @@ class PokemonViewModel() : ViewModel() {
     private fun loadPokemons() {
         val pokemonsApiResult = PokemonRepository.getListPokemons(15)
 
-        pokemonsApiResult?.results?.let { it ->
-            pokemons.postValue(it.map { pokemonResult ->
-                val id = pokemonResult.url
-                    .replace("https://pokeapi.co/api/v2/pokemon/", "")
-                    .replace("/", "").toInt()
+        if (pokemonsApiResult != null) {
+            pokemonsApiResult.results.let { it ->
+                pokemons.postValue(it.map { pokemonResult ->
+                    val id = pokemonResult.url
+                        .replace("https://pokeapi.co/api/v2/pokemon/", "")
+                        .replace("/", "").toInt()
 
-                val pokemonApiResult = PokemonRepository.getPokemon(id)
-                val pokemonSpecies = PokemonRepository.getPokemonSpecies(id)
+                    val pokemonApiResult = PokemonRepository.getPokemon(id)
+                    val pokemonSpecies = PokemonRepository.getPokemonSpecies(id)
 
-                var species = pokemonSpecies?.genera!![7].genus
-                var flavorText = pokemonSpecies.flavor_text_entries[7].flavor_text
-                var baseHappiness = pokemonSpecies.base_happiness
-                var captureRate = pokemonSpecies.capture_rate
-                var growthRate = pokemonSpecies.growth_rate
+                    var species = pokemonSpecies?.genera!![7].genus
+                    var flavorText = pokemonSpecies.flavor_text_entries[7].flavor_text
+                    var baseHappiness = pokemonSpecies.base_happiness
+                    var captureRate = pokemonSpecies.capture_rate
+                    var growthRate = pokemonSpecies.growth_rate
 
-                var evolutionUrl = pokemonSpecies.evolution_chain.url
-                    .replace("https://pokeapi.co/api/v2/evolution-chain/", "")
-                    .replace("/", "").toInt()
+                    var evolutionUrl = pokemonSpecies.evolution_chain.url
+                        .replace("https://pokeapi.co/api/v2/evolution-chain/", "")
+                        .replace("/", "").toInt()
 
-                val pokemonEvolucao = PokemonRepository.getPokemonEvolutions(evolutionUrl)
+                    val pokemonEvolucao = PokemonRepository.getPokemonEvolutions(evolutionUrl)
 
-                //Log.w("EEEE", "loadPokemons: $pokemonEvolucao")
+                    //Log.w("EEEE", "loadPokemons: $pokemonEvolucao")
 
-                pokemonApiResult?.let {
-                    Pokemon(
-                        pokemonApiResult.id,
-                        pokemonApiResult.name,
-                        pokemonApiResult.weight,
-                        pokemonApiResult.height,
-                        pokemonApiResult.base_experience,
-                        pokemonApiResult.types.map { type ->
-                            type.type
-                        },
-                        pokemonApiResult.abilities.map { ability -> ability.ability },
-                        species,
-                        flavorText,
-                        baseHappiness,
-                        captureRate,
-                        growthRate,
-                        pokemonEvolucao!!,
-                        pokemonApiResult.stats
+                    pokemonApiResult?.let {
+                        Pokemon(
+                            pokemonApiResult.id,
+                            pokemonApiResult.name,
+                            pokemonApiResult.weight,
+                            pokemonApiResult.height,
+                            pokemonApiResult.base_experience,
+                            pokemonApiResult.types.map { type ->
+                                type.type
+                            },
+                            pokemonApiResult.abilities.map { ability -> ability.ability },
+                            species,
+                            flavorText,
+                            baseHappiness,
+                            captureRate,
+                            growthRate,
+                            pokemonEvolucao!!,
+                            pokemonApiResult.stats
 
-                    )
+                        )
 
-                }
-            })
+                    }
+                })
+            }
         }
     }
 }

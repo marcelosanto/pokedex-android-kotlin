@@ -1,6 +1,7 @@
 package com.marcelo.pokedex_android_kotlin.view
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,6 @@ class PokemonAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_item, parent, false)
-
         return ViewHolder(view)
     }
 
@@ -29,7 +29,11 @@ class PokemonAdapter(
         holder.bindView(item)
     }
 
-    override fun getItemCount() = pokemons.size
+    override fun getItemCount(): Int {
+        Log.i("TAG", "onCreate: ${pokemons.size}")
+        return pokemons.size
+    }
+
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
