@@ -20,7 +20,7 @@ class PokemonAdapter(
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_card, parent, false)
         return ViewHolder(view)
     }
 
@@ -40,9 +40,9 @@ class PokemonAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bindView(item: Pokemon) = with(itemView) {
-            val imgPokemon = findViewById<ImageView>(R.id.imgPokemon)
-            val txtId = findViewById<TextView>(R.id.txt_idNumber)
-            val txtName = findViewById<TextView>(R.id.txt_pokeName)
+            val imgPokemon = findViewById<ImageView>(R.id.item_pokemon_img)
+            val txtId = findViewById<TextView>(R.id.item_pokemon_id)
+            val txtName = findViewById<TextView>(R.id.item_pokemon_name)
             val txtType01 = findViewById<TextView>(R.id.txt_type01)
             val imgType01 = findViewById<ImageView>(R.id.img_type01)
             val type01Layout = findViewById<CardView>(R.id.type01_layout)

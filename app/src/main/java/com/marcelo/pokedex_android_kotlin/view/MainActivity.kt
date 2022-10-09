@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: PokemonViewModel
     private lateinit var adapter: PokemonAdapter
 
-    private var filterArrayList: ArrayList<Pokemon> = ArrayList()
+    private var filterArrayList = mutableListOf<Pokemon>()
     private var pokemonsArraysList = mutableListOf<Pokemon>()
 
     //val recyclerView by lazy { findViewById<RecyclerView>(R.id.rvPokemons) }
@@ -71,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.pokemons.observe(this, Observer {
             pokemonsArraysList.addAll(it.requireNoNulls())
-            Log.i("TAG", "viewModel Observer: ${pokemonsArraysList.size}")
             adapter.notifyDataSetChanged()
 
         })
