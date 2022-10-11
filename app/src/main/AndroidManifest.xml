@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoActionBar">
         <activity
+            android:name=".pokedex.view.PokedexActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DialogTesT"
             android:exported="false" />
         <activity
