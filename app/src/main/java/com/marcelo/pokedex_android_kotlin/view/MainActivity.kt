@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.SearchView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,7 +21,7 @@ import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: PokemonViewModel
-    private lateinit var adapter: PokemonAdapter
+    private lateinit var adapter: PokemonAdapterDiff
 
     private var filterArrayList = mutableListOf<Pokemon>()
     private var pokemonsArraysList = mutableListOf<Pokemon>()
@@ -38,8 +35,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
-
-        adapter = PokemonAdapter(pokemonsArraysList) { position ->
+        
+        recyclerView = findViewById<RecyclerView>(R.id.rvPokemons)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = PokemonAdapterDiff { position ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
             val poke = PokemonModel(
                 pokemonsArraysList[position].id,
@@ -62,16 +61,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("pokemon", poke)
             startActivity(intent)
         }
-
-
-        recyclerView = findViewById<RecyclerView>(R.id.rvPokemons)
-        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
         viewModel.pokemons.observe(this, Observer {
             pokemonsArraysList.addAll(it.requireNoNulls())
-            adapter.notifyDataSetChanged()
-
+            adapter.submitList(pokemonsArraysList)
         })
 
 
@@ -89,6 +83,18 @@ class MainActivity : AppCompatActivity() {
 
         val inputSearch: SearchView = findViewById(R.id.inputSearch)
 
+//        inputSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                adapter.search(newText)
+//
+//                return true
+//            }
+//
+//        })
     }
 
     private fun buttonAction(
