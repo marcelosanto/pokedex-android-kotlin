@@ -14,6 +14,11 @@ class PokemonViewModel() : ViewModel() {
         }).start()
     }
 
+    fun search(query: String) {
+        //differ.submitList(tempList.filter { it.name.contains(query, true) })
+    }
+
+
     private fun loadPokemons() {
         val pokemonsApiResult = PokemonRepository.getListPokemons(15)
 
@@ -67,4 +72,6 @@ class PokemonViewModel() : ViewModel() {
             }
         }
     }
+
+
 }

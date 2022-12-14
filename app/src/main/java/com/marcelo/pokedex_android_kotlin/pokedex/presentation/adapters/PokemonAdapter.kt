@@ -1,90 +1,94 @@
-package com.marcelo.pokedex_android_kotlin.pokedex.presentation.adapters
+package com.marcelo.pokedex_android_kotlin.view
 
-//class PokemonAdapter(
-//    private val pokemons: List<Pokemon>,
-//    private val onItemClickListener: (Int) -> Unit
-//) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
-//
-//    private var listPokemons = pokemons.toMutableList()
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_card, parent, false)
-//        return ViewHolder(view)
-//    }
-//
-//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        val item = listPokemons[position]
-//        holder.bindView(item)
-//    }
-//
-//    override fun getItemCount(): Int {
-//        Log.i("TAG", "onCreate: ${pokemons.size}")
-//        return listPokemons.size
-//    }
-//
-//    fun search(query: String): Boolean {
-//        listPokemons.clear()
-//
-//        listPokemons.addAll(pokemons.filter { it.name.contains(query, true) })
-//
-//        notifyDataSetChanged()
-//
-//        return listPokemons.isEmpty()
-//    }
-//
-//    fun clearSearch() {
-//        listPokemons = pokemons.toMutableList()
-//        notifyDataSetChanged()
-//    }
-//
-//
-//    inner class ViewHolder(itemView: View) :
-//        RecyclerView.ViewHolder(itemView) {
-//
-//        @SuppressLint("SetTextI18n")
-//        fun bindView(item: Pokemon) = with(itemView) {
-//            val imgPokemon = findViewById<ImageView>(R.id.item_pokemon_img)
-//            val txtId = findViewById<TextView>(R.id.item_pokemon_id)
-//            val txtName = findViewById<TextView>(R.id.item_pokemon_name)
-//            val txtType01 = findViewById<TextView>(R.id.txt_type01)
-//            val imgType01 = findViewById<ImageView>(R.id.img_type01)
-//            val type01Layout = findViewById<CardView>(R.id.type01_layout)
-//            val txtType02 = findViewById<TextView>(R.id.txt_type02)
-//            val imgType02 = findViewById<ImageView>(R.id.img_type02)
-//            val type02Layout = findViewById<CardView>(R.id.type02_layout)
-//            val cardView = findViewById<CardView>(R.id.cardview_pokemon_item)
-//
-//            cardView.setOnClickListener {
-//                onItemClickListener.invoke(item.id.toInt() - 1)
-//            }
-//
-//
-//            item.let {
-//                Glide.with(itemView.context).load(it.imageUrl).into(imgPokemon)
-//
-//                txtId.text = "#${item.formattedNumber}"
-//                txtName.text = captalizerText(item.name)
-//                txtType01.text = captalizerText(item.types[0].name)
-//
-//                changeColorForBackandLabel(item.types[0].name, imgType01, cardView, type01Layout)
-//
-//                if (item.types.size > 1) {
-//                    type02Layout.visibility = View.VISIBLE
-//                    txtType02.text = captalizerText(item.types[1].name)
-//                    changeColorForBackandLabel(item.types[1].name, imgType02, null, type02Layout)
-//                } else {
-//                    type02Layout.visibility = View.INVISIBLE
-//                }
-//            }
-//        }
-//
-//
-//    }
-//
-//}
-//
-//
-//
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.marcelo.pokedex_android_kotlin.databinding.PokemonCardBinding
+import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.captalizerText
+import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabel
+
+class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+
+    private val callback = object : DiffUtil.ItemCallback<Pokemon>() {
+        override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val differ = AsyncListDiffer(this, callback)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = PokemonCardBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val pokemon = differ.currentList[position]
+        holder.bindView(pokemon)
+    }
+
+    override fun getItemCount(): Int = differ.currentList.size
+    
+    inner class ViewHolder(private val binding: PokemonCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bindView(pokemon: Pokemon) = with(itemView) {
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(pokemon.id.toInt() - 1)
+                }
+            }
+
+            binding.apply {
+                with(this) {
+                    Glide.with(itemView.context).load(pokemon.imageUrl).into(itemPokemonImg)
+                    itemPokemonId.text = "#${pokemon.formattedNumber}"
+                    itemPokemonName.text = captalizerText(pokemon.name)
+                    txtType01.text = captalizerText(pokemon.types[0].name)
+                    changeColorForBackandLabel(
+                        pokemon.types[0].name,
+                        imgType01,
+                        cardviewPokemonItem,
+                        type01Layout
+                    )
+
+                    if (pokemon.types.size > 1) {
+                        type02Layout.visibility = View.VISIBLE
+                        txtType02.text = captalizerText(pokemon.types[1].name)
+                        changeColorForBackandLabel(
+                            pokemon.types[1].name,
+                            imgType02,
+                            null,
+                            type02Layout
+                        )
+                    } else {
+                        type02Layout.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        }
+    }
+
+    private var onItemClickListener: ((Int) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Int) -> Unit) {
+        onItemClickListener = listener
+    }
+}
+
+
+
 
 
 

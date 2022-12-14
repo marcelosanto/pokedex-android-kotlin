@@ -18,16 +18,15 @@ import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.pokedex.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
 import com.marcelo.pokedex_android_kotlin.view.PokemonActivity
-import com.marcelo.pokedex_android_kotlin.view.PokemonAdapterDiff
+import com.marcelo.pokedex_android_kotlin.view.PokemonAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var viewModel: PokemonViewModel
-    private lateinit var adapter: PokemonAdapterDiff
+    private lateinit var adapter: PokemonAdapter
 
-    private var filterArrayList = mutableListOf<Pokemon>()
     private var pokemonsArraysList = mutableListOf<Pokemon>()
 
     private lateinit var recyclerView: RecyclerView
@@ -39,8 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
 
+        adapter = PokemonAdapter()
 
-        adapter = PokemonAdapterDiff { position ->
+        adapter.setOnItemClickListener { position ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
             val poke = PokemonModel(
                 pokemonsArraysList[position].id,
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.pokemons.observe(this, Observer {
             pokemonsArraysList.addAll(it.requireNoNulls())
-            adapter.submitList(pokemonsArraysList)
+            adapter.differ.submitList(pokemonsArraysList)
         })
 
         binding.btnSort.setOnClickListener { showSortFilter() }
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                adapter.search(newText)
+                // adapter.search(newText)
                 return true
             }
 
@@ -162,19 +162,19 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun orderByNameZandA() {
-        adapter.submitList(pokemonsArraysList.sortedByDescending { it.name })
+        //adapter.submitList(pokemonsArraysList.sortedByDescending { it.name })
     }
 
     private fun orderByNameAandZ() {
-        adapter.submitList(pokemonsArraysList.sortedBy { it.name })
+        //adapter.submitList(pokemonsArraysList.sortedBy { it.name })
     }
 
     private fun highNumberPokemonFirst() {
-        adapter.submitList(pokemonsArraysList.sortedByDescending { it.id.toInt() })
+        //adapter.submitList(pokemonsArraysList.sortedByDescending { it.id.toInt() })
     }
 
     private fun smallNumberPokemonFirst() {
-        adapter.submitList(pokemonsArraysList.sortedBy { it.id.toInt() })
+        //adapter.submitList(pokemonsArraysList.sortedBy { it.id.toInt() })
     }
 }
 
