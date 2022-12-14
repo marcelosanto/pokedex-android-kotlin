@@ -1,4 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.view
+package com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint

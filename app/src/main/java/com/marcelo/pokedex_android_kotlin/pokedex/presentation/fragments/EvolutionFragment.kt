@@ -1,4 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.view
+package com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentEvolutionBinding
+import com.marcelo.pokedex_android_kotlin.view.formattedNumber
 
 
 class EvolutionFragment : Fragment() {

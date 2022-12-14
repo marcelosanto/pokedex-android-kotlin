@@ -20,6 +20,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.EvolutionFragment
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.PokemonAboutFragment
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.StatsFragment
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.captalizerText
 
 var poke: Parcelable? = null
 
