@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.databinding.PokemonCardBinding
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
-import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.captalizerText
+import com.marcelo.pokedex_android_kotlin.presentation.fragments.captalizerText
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabel
 
 class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
@@ -38,7 +38,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int = differ.currentList.size
-    
+
     inner class ViewHolder(private val binding: PokemonCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -46,7 +46,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
             binding.root.setOnClickListener {
                 onItemClickListener?.let {
-                    it(pokemon.id.toInt() - 1)
+                    it(pokemon)
                 }
             }
 
@@ -80,9 +80,9 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
         }
     }
 
-    private var onItemClickListener: ((Int) -> Unit)? = null
+    private var onItemClickListener: ((Pokemon) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Int) -> Unit) {
+    fun setOnItemClickListener(listener: (Pokemon) -> Unit) {
         onItemClickListener = listener
     }
 }

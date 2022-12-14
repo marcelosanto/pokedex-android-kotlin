@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pokedex.presentation.view.PokedexActivity">
+    tools:context=".presentation.view.PokedexActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

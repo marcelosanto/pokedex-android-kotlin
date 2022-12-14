@@ -1,17 +1,15 @@
-package com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments
+package com.marcelo.pokedex_android_kotlin.presentation.fragments
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentEvolutionBinding
+import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForText
 import com.marcelo.pokedex_android_kotlin.view.formattedNumber
 
 
@@ -33,17 +31,17 @@ class EvolutionFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("SetTextI18n")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         val bundle = arguments
-        val pokemon = bundle!!.getParcelable<PokemonModel>("message")
+        val pokemon = bundle!!.getSerializable("message") as Pokemon
 
-        changeColorForText(pokemon?.types?.get(0)?.name.toString(), binding.txtEvolution)
+        changeColorForText(pokemon.types.get(0).name.toString(), binding.txtEvolution)
 
-        if (pokemon?.evolutions?.chain?.evolves_to?.isEmpty() == true) {
+        if (pokemon.evolutions.chain?.evolves_to?.isEmpty() == true) {
             val pokemonName = pokemon.evolutions.chain.species?.name
             val id = pokemon.evolutions.chain.species?.url?.replace(
                 "https://pokeapi.co/api/v2/pokemon-species/",
@@ -56,10 +54,6 @@ class EvolutionFragment : Fragment() {
             binding.txtNamePokemonNotEvolution.text = captalizerText(pokemonName.toString())
             Glide.with(this).load("$URL/$id.png").into(binding.imgPokemonNotEvolution)
 
-            Log.w(
-                "EVOU",
-                "onViewCreated: ${pokemon.evolutions.chain.species?.url}"
-            )
         }
 
         try {
@@ -157,63 +151,3 @@ class EvolutionFragment : Fragment() {
 }
 
 
-private fun changeColorForText(
-    type: String,
-    txt: TextView,
-) {
-    when (type) {
-        "grass" -> {
-            txt.setTextColor(Color.parseColor("#56972f"))
-        }
-        "bug" -> {
-            txt.setTextColor(Color.parseColor("#6a7611"))
-        }
-        "poison" -> {
-            txt.setTextColor(Color.parseColor("#6c296a"))
-        }
-        "normal" -> {
-            txt.setTextColor(Color.parseColor("#818054"))
-        }
-
-        "dark" -> {
-            txt.setTextColor(Color.parseColor("#413229"))
-        }
-        "dragon" -> {
-            txt.setTextColor(Color.parseColor("#4403e1"))
-        }
-        "electric" -> {
-            txt.setTextColor(Color.parseColor("#f76b2c"))
-        }
-        "fairy" -> {
-            txt.setTextColor(Color.parseColor("#c34c87"))
-        }
-        "fighting" -> {
-            txt.setTextColor(Color.parseColor("#831f1b"))
-        }
-        "fire" -> {
-            txt.setTextColor(Color.parseColor("#c25c10"))
-        }
-        "ghost" -> {
-            txt.setTextColor(Color.parseColor("#4e3b66"))
-        }
-        "ground" -> {
-            txt.setTextColor(Color.parseColor("#d3a328"))
-        }
-        "ice" -> {
-            txt.setTextColor(Color.parseColor("#5ec5c0"))
-        }
-        "psychic" -> {
-            txt.setTextColor(Color.parseColor("#f60b53"))
-        }
-        "rock" -> {
-            txt.setTextColor(Color.parseColor("#7b6d24"))
-        }
-        "steel" -> {
-            txt.setTextColor(Color.parseColor("#8989af"))
-        }
-        "water" -> {
-            txt.setTextColor(Color.parseColor("#1d5ee9"))
-        }
-
-    }
-}

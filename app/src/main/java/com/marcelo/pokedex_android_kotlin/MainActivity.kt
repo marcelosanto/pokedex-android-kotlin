@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.databinding.ActivityMainBinding
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
-import com.marcelo.pokedex_android_kotlin.pokedex.presentation.viewmodel.PokemonViewModel
+import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
 import com.marcelo.pokedex_android_kotlin.view.PokemonActivity
 import com.marcelo.pokedex_android_kotlin.view.PokemonAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -40,39 +41,16 @@ class MainActivity : AppCompatActivity() {
 
         adapter = PokemonAdapter()
 
-        adapter.setOnItemClickListener { position ->
+        adapter.setOnItemClickListener { pokemon ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
-            val poke = PokemonModel(
-                pokemonsArraysList[position].id,
-                pokemonsArraysList[position].name,
-                pokemonsArraysList[position].imageUrl,
-                pokemonsArraysList[position].types,
-                pokemonsArraysList[position].weight,
-                pokemonsArraysList[position].height,
-                pokemonsArraysList[position].base_experience,
-                pokemonsArraysList[position].abilities,
-                pokemonsArraysList[position].species,
-                pokemonsArraysList[position].biography,
-                pokemonsArraysList[position].base_happiness,
-                pokemonsArraysList[position].capture_rate,
-                pokemonsArraysList[position].growth_rate,
-                pokemonsArraysList[position].evolutions,
-                pokemonsArraysList[position].stats
-
-            )
-            intent.putExtra("pokemon", poke)
+            //val poke = PokemonModel(pokemon)
+            intent.putExtra("POKEMON", pokemon)
             startActivity(intent)
         }
 
-        binding.rvPokemons.let { rv ->
-            rv.layoutManager = LinearLayoutManager(this)
-            rv.adapter = adapter
-        }
+        initRecyclerView()
 
-        viewModel.pokemons.observe(this, Observer {
-            pokemonsArraysList.addAll(it.requireNoNulls())
-            adapter.differ.submitList(pokemonsArraysList)
-        })
+        getAllPokemons()
 
         binding.btnSort.setOnClickListener { showSortFilter() }
 
@@ -91,6 +69,20 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun getAllPokemons() {
+        viewModel.pokemons.observe(this, Observer {
+            pokemonsArraysList.addAll(it.requireNoNulls())
+            adapter.differ.submitList(pokemonsArraysList)
+        })
+    }
+
+    private fun initRecyclerView() {
+        binding.rvPokemons.let { rv ->
+            rv.layoutManager = LinearLayoutManager(this)
+            rv.adapter = adapter
+        }
     }
 
     private fun buttonAction(

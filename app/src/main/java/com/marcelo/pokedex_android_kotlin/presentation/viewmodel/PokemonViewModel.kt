@@ -1,11 +1,12 @@
-package com.marcelo.pokedex_android_kotlin.pokedex.presentation.viewmodel
+package com.marcelo.pokedex_android_kotlin.presentation.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.marcelo.pokedex_android_kotlin.api.PokemonRepository
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
-class PokemonViewModel() : ViewModel() {
+class PokemonViewModel(private val app: Application) : AndroidViewModel(app) {
     var pokemons = MutableLiveData<List<Pokemon?>>()
 
     init {

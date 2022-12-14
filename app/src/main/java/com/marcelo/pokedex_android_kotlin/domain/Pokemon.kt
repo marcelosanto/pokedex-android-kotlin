@@ -20,7 +20,7 @@ data class Pokemon(
     val growth_rate: Rate,
     val evolutions: PokemonEvolutions,
     val stats: List<Stats>
-) {
+) : java.io.Serializable {
     val formattedNumber = id.padStart(3, '0')
     val imageUrl =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"

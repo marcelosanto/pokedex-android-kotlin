@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".presentation.PokemonApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoActionBar">
         <activity
-            android:name=".pokedex.presentation.view.PokedexActivity"
+            android:name=".presentation.view.PokedexActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

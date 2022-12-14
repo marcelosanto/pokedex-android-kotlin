@@ -1,7 +1,6 @@
-package com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments
+package com.marcelo.pokedex_android_kotlin.presentation.fragments
 
 import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentStatsBinding
+import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
 class StatsFragment : Fragment() {
 
@@ -29,12 +28,11 @@ class StatsFragment : Fragment() {
 
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val pokemon = bundle!!.getParcelable<PokemonModel>("message")
+        val pokemon = bundle!!.getSerializable("message") as Pokemon
 
         val hp = pokemon?.stats?.get(0)?.base_stat
         val attack = pokemon?.stats?.get(1)?.base_stat
