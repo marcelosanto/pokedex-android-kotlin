@@ -1,25 +1,26 @@
 package com.marcelo.pokedex_android_kotlin.view
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.fragments.captalizerText
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabel
 
-class PokemonAdapter(
-    private val pokemons: List<Pokemon>,
+class PokemonAdapterDiff(
     private val onItemClickListener: (Int) -> Unit
-) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+) : ListAdapter<Pokemon, PokemonAdapterDiff.ViewHolder>(PokemonDiffCallback()) {
 
-    private var listPokemons = pokemons.toMutableList()
+    private var listPokemons = currentList.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.pokemon_card, parent, false)
@@ -27,30 +28,17 @@ class PokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = listPokemons[position]
-        holder.bindView(item)
+        val pokemon = getItem(position)
+        holder.bindView(pokemon)
     }
 
-    override fun getItemCount(): Int {
-        Log.i("TAG", "onCreate: ${pokemons.size}")
-        return listPokemons.size
-    }
+    fun search(query: String) = submitList(currentList.filter { it.name.contains(query, true) })
 
-    fun search(query: String): Boolean {
-        listPokemons.clear()
-
-        listPokemons.addAll(pokemons.filter { it.name.contains(query, true) })
-
-        notifyDataSetChanged()
-
-        return listPokemons.isEmpty()
-    }
 
     fun clearSearch() {
-        listPokemons = pokemons.toMutableList()
-        notifyDataSetChanged()
+        listPokemons = currentList.toMutableList()
+        submitList(listPokemons)
     }
-
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -97,6 +85,16 @@ class PokemonAdapter(
 
 }
 
+class PokemonDiffCallback : DiffUtil.ItemCallback<Pokemon>() {
+    override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+        return oldItem.name == newItem.name
+    }
+
+    override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+        return oldItem == newItem
+    }
+
+}
 
 
 

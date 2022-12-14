@@ -1,4 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.view
+package com.marcelo.pokedex_android_kotlin
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
-import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.api.model.PokemonModel
+import com.marcelo.pokedex_android_kotlin.databinding.ActivityMainBinding
 import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.pokedex.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
-import com.marcelo.pokedex_android_kotlin.viewmodel.PokemonViewModel
+import com.marcelo.pokedex_android_kotlin.view.PokemonActivity
+import com.marcelo.pokedex_android_kotlin.view.PokemonAdapterDiff
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var viewModel: PokemonViewModel
     private lateinit var adapter: PokemonAdapterDiff
@@ -26,18 +30,16 @@ class MainActivity : AppCompatActivity() {
     private var filterArrayList = mutableListOf<Pokemon>()
     private var pokemonsArraysList = mutableListOf<Pokemon>()
 
-    //val recyclerView by lazy { findViewById<RecyclerView>(R.id.rvPokemons) }
-
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
-        
-        recyclerView = findViewById<RecyclerView>(R.id.rvPokemons)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+
+
         adapter = PokemonAdapterDiff { position ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
             val poke = PokemonModel(
@@ -61,40 +63,34 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("pokemon", poke)
             startActivity(intent)
         }
-        recyclerView.adapter = adapter
+
+        binding.rvPokemons.let { rv ->
+            rv.layoutManager = LinearLayoutManager(this)
+            rv.adapter = adapter
+        }
 
         viewModel.pokemons.observe(this, Observer {
             pokemonsArraysList.addAll(it.requireNoNulls())
             adapter.submitList(pokemonsArraysList)
         })
 
-
-        val btnSort: ImageButton = findViewById(R.id.Btn_sort)
-
-        btnSort.setOnClickListener { showSortFilter() }
-
-        val btnFilters: ImageButton = findViewById(R.id.btn_filters)
+        binding.btnSort.setOnClickListener { showSortFilter() }
 
         // btnFilters.setOnClickListener { showFiltersAdvanced() }
-
-        val btnGenerations: ImageButton = findViewById(R.id.btn_generations)
-
         //btnGenerations.setOnClickListener { showGenerationsFilters() }
 
-        val inputSearch: SearchView = findViewById(R.id.inputSearch)
 
-//        inputSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String): Boolean {
-//                adapter.search(newText)
-//
-//                return true
-//            }
-//
-//        })
+        binding.inputSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                adapter.search(newText)
+                return true
+            }
+
+        })
     }
 
     private fun buttonAction(
@@ -166,23 +162,19 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun orderByNameZandA() {
-        pokemonsArraysList.sortedByDescending { it.name }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(pokemonsArraysList.sortedByDescending { it.name })
     }
 
     private fun orderByNameAandZ() {
-        pokemonsArraysList.sortedBy { it.name }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(pokemonsArraysList.sortedBy { it.name })
     }
 
     private fun highNumberPokemonFirst() {
-        pokemonsArraysList.sortedByDescending { it.id.toInt() }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(pokemonsArraysList.sortedByDescending { it.id.toInt() })
     }
 
     private fun smallNumberPokemonFirst() {
-        pokemonsArraysList.sortedBy { it.id.toInt() }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(pokemonsArraysList.sortedBy { it.id.toInt() })
     }
 }
 

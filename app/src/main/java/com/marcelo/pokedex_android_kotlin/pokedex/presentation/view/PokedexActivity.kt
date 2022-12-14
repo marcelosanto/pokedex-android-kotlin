@@ -1,4 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.pokedex.view
+package com.marcelo.pokedex_android_kotlin.pokedex.presentation.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
