@@ -481,4 +481,6 @@ object Const {
 
         }
     }
+
+    fun findId(url: String) = url.dropLast(1).takeLastWhile { it.isDigit() }.toInt()
 }

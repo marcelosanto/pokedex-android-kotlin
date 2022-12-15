@@ -1,4 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.domain
+package com.marcelo.pokedex_android_kotlin.data.model
 
 data class PokemonType(
     val name: String

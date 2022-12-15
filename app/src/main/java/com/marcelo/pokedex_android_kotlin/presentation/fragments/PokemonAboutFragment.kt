@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentPokemonAboutBinding
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.utils.Const.setIconAndColorForTextView
 import com.marcelo.pokedex_android_kotlin.utils.Const.weaknessPokemon
 import java.util.*
@@ -33,7 +33,7 @@ class PokemonAboutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val pokemon = bundle!!.getSerializable("message") as Pokemon
+        val pokemon = bundle!!.getSerializable("message") as ModelPokemon
 
         val list = weaknessPokemon(pokemon!!.types[0].name)
 

@@ -12,44 +12,48 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
+import com.marcelo.pokedex_android_kotlin.data.model.Pokemon
 import com.marcelo.pokedex_android_kotlin.databinding.ActivityMainBinding
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModel
+import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModelFactory
 import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
 import com.marcelo.pokedex_android_kotlin.view.PokemonActivity
 import com.marcelo.pokedex_android_kotlin.view.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var viewModel: PokemonViewModel
+    @Inject
+    lateinit var factory: PokemonViewModelFactory
+    lateinit var viewModel: PokemonViewModel
+
     private lateinit var adapter: PokemonAdapter
 
     private var pokemonsArraysList = mutableListOf<Pokemon>()
 
     private lateinit var recyclerView: RecyclerView
 
+    val offset = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(PokemonViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory)[PokemonViewModel::class.java]
 
         adapter = PokemonAdapter()
 
         adapter.setOnItemClickListener { pokemon ->
             val intent = Intent(this@MainActivity, PokemonActivity::class.java)
-            //val poke = PokemonModel(pokemon)
             intent.putExtra("POKEMON", pokemon)
             startActivity(intent)
         }
 
         initRecyclerView()
-
         getAllPokemons()
 
         binding.btnSort.setOnClickListener { showSortFilter() }
@@ -72,9 +76,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAllPokemons() {
+        viewModel.getAllPokemons(offset)
+
         viewModel.pokemons.observe(this, Observer {
-            pokemonsArraysList.addAll(it.requireNoNulls())
-            adapter.differ.submitList(pokemonsArraysList)
+            adapter.differ.submitList(it)
         })
     }
 

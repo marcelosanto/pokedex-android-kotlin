@@ -1,11 +1,6 @@
-package com.marcelo.pokedex_android_kotlin.domain
+package com.marcelo.pokedex_android_kotlin.data.model
 
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonAbility
-import com.marcelo.pokedex_android_kotlin.api.model.PokemonEvolutions
-import com.marcelo.pokedex_android_kotlin.api.model.Rate
-import com.marcelo.pokedex_android_kotlin.api.model.Stats
-
-data class Pokemon(
+data class ModelPokemon(
     val id: String,
     val name: String,
     val weight: String,

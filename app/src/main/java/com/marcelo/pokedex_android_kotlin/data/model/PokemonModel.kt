@@ -1,6 +1,4 @@
-package com.marcelo.pokedex_android_kotlin.api.model
-
-import com.marcelo.pokedex_android_kotlin.domain.PokemonType
+package com.marcelo.pokedex_android_kotlin.data.model
 
 data class PokemonModel(
     var id: String,

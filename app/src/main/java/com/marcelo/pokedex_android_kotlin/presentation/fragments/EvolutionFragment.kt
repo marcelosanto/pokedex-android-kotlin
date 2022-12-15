@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentEvolutionBinding
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForText
-import com.marcelo.pokedex_android_kotlin.view.formattedNumber
 
 
 class EvolutionFragment : Fragment() {
@@ -37,7 +36,7 @@ class EvolutionFragment : Fragment() {
 
 
         val bundle = arguments
-        val pokemon = bundle!!.getSerializable("message") as Pokemon
+        val pokemon = bundle!!.getSerializable("message") as ModelPokemon
 
         changeColorForText(pokemon.types.get(0).name.toString(), binding.txtEvolution)
 
@@ -143,6 +142,8 @@ class EvolutionFragment : Fragment() {
         }
 
     }
+
+    private fun formattedNumber(id: String): String = id.padStart(3, '0')
 
     override fun onDestroyView() {
         super.onDestroyView()

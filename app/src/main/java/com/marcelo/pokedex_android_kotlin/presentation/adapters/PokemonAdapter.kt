@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.PokemonCardBinding
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.captalizerText
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabel
 
 class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
-    private val callback = object : DiffUtil.ItemCallback<Pokemon>() {
-        override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+    private val callback = object : DiffUtil.ItemCallback<ModelPokemon>() {
+        override fun areItemsTheSame(oldItem: ModelPokemon, newItem: ModelPokemon): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean {
+        override fun areContentsTheSame(oldItem: ModelPokemon, newItem: ModelPokemon): Boolean {
             return oldItem == newItem
         }
     }
@@ -42,7 +42,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: PokemonCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindView(pokemon: Pokemon) = with(itemView) {
+        fun bindView(pokemon: ModelPokemon) = with(itemView) {
 
             binding.root.setOnClickListener {
                 onItemClickListener?.let {
@@ -80,9 +80,9 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
         }
     }
 
-    private var onItemClickListener: ((Pokemon) -> Unit)? = null
+    private var onItemClickListener: ((ModelPokemon) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Pokemon) -> Unit) {
+    fun setOnItemClickListener(listener: (ModelPokemon) -> Unit) {
         onItemClickListener = listener
     }
 }

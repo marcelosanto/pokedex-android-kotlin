@@ -1,8 +1,6 @@
-package com.marcelo.pokedex_android_kotlin.api.model
+package com.marcelo.pokedex_android_kotlin.data.model
 
-import com.marcelo.pokedex_android_kotlin.domain.PokemonType
-
-data class PokemonApiResult(
+data class Pokemon(
     val id: String,
     val name: String,
     val weight: String,

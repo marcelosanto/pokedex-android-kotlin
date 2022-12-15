@@ -1,6 +1,5 @@
 package com.marcelo.pokedex_android_kotlin.view
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -18,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.marcelo.pokedex_android_kotlin.R
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.EvolutionFragment
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.PokemonAboutFragment
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.StatsFragment
@@ -27,7 +26,6 @@ import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabel
 
 class PokemonActivity : AppCompatActivity() {
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,9 +48,9 @@ class PokemonActivity : AppCompatActivity() {
         val constraintLayout = findViewById<ConstraintLayout>(R.id.pokemonConstrain)
 
         val pokemonInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            intent.getSerializableExtra("POKEMON", Pokemon::class.java)!!
+            intent.getSerializableExtra("POKEMON", ModelPokemon::class.java)!!
         else
-            intent.getSerializableExtra("POKEMON") as Pokemon
+            intent.getSerializableExtra("POKEMON") as ModelPokemon
 
         setupViews(pokemonInfo)
 
@@ -88,8 +86,7 @@ class PokemonActivity : AppCompatActivity() {
 
     }
 
-
-    private fun setupViews(pokemonInfo: Pokemon) {
+    private fun setupViews(pokemonInfo: ModelPokemon) {
         val tabLayout: TabLayout = findViewById(R.id.add_tab)
         val viewPager: ViewPager2 = findViewById(R.id.add_viewpager)
         val adapter = TabViewPagerAdapter(this, pokemonInfo)
@@ -104,7 +101,8 @@ class PokemonActivity : AppCompatActivity() {
 fun formattedNumber(id: String) = id.toString().padStart(3, '0')
 
 
-class TabViewPagerAdapter(fa: FragmentActivity, pokemonInfo: Pokemon) : FragmentStateAdapter(fa) {
+class TabViewPagerAdapter(fa: FragmentActivity, pokemonInfo: ModelPokemon) :
+    FragmentStateAdapter(fa) {
     val tabs = arrayOf(R.string.about, R.string.stats, R.string.evolution)
     val fragments = arrayOf(
         PokemonAboutFragment(),

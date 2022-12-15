@@ -2,15 +2,14 @@ package com.marcelo.pokedex_android_kotlin.presentation.fragments
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentStatsBinding
-import com.marcelo.pokedex_android_kotlin.domain.Pokemon
 
 class StatsFragment : Fragment() {
 
@@ -32,9 +31,9 @@ class StatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val pokemon = bundle!!.getSerializable("message") as Pokemon
+        val pokemon = bundle!!.getSerializable("message") as ModelPokemon
 
-        val hp = pokemon?.stats?.get(0)?.base_stat
+        val hp = pokemon.stats.get(0).base_stat
         val attack = pokemon?.stats?.get(1)?.base_stat
         val defense = pokemon?.stats?.get(2)?.base_stat
         val specialAttack = pokemon?.stats?.get(3)?.base_stat
@@ -101,7 +100,6 @@ class StatsFragment : Fragment() {
 
         if (typeStatsDefense != null) {
             for (type in typeStatsDefense.indices) {
-                Log.i("TYPE", "TYPE: $type")
                 txtArray[type].text = typeStatsDefense[type]
             }
         }
