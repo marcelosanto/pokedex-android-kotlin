@@ -1,9 +1,9 @@
-package com.marcelo.pokedex_android_kotlin.api.model
+package com.marcelo.pokedex_android_kotlin.data.model
 
-data class PokemonsApiResult(
+data class ResponseAPIResult(
     val count: Int,
     val next: String?,
-    val previous: String?,
+    //val previous: Any,
     val results: List<PokemonResult>
 )
 
