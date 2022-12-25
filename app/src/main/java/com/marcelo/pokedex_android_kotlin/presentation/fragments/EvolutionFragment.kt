@@ -57,8 +57,8 @@ class EvolutionFragment : Fragment() {
 
         try {
             //primeiro pokemon
-            val pokemonName = pokemon?.evolutions?.chain?.species?.name
-            val id = pokemon?.evolutions?.chain?.species?.url?.replace(
+            val pokemonName = pokemon.evolutions?.chain?.species?.name
+            val id = pokemon.evolutions?.chain?.species?.url?.replace(
                 "https://pokeapi.co/api/v2/pokemon-species/",
                 ""
             )?.replace("/", "")
@@ -98,22 +98,22 @@ class EvolutionFragment : Fragment() {
         }
 
         try {
-            val secondPokemon = pokemon?.evolutions?.chain?.evolves_to?.get(0)?.species?.name
+            val secondPokemon = pokemon.evolutions.chain?.evolves_to?.get(0)?.species?.name
 
             val secondPokemonId =
-                pokemon?.evolutions?.chain?.evolves_to?.get(0)?.species?.url?.replace(
+                pokemon.evolutions.chain?.evolves_to?.get(0)?.species?.url?.replace(
                     "https://pokeapi.co/api/v2/pokemon-species/",
                     ""
                 )?.replace("/", "")
 
-            if (pokemon?.evolutions?.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species != null) {
+            if (pokemon.evolutions.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species != null) {
 
                 val thirdPokemon =
-                    pokemon.evolutions.chain.evolves_to[0].evolves_to?.get(0)?.species?.name
+                    pokemon.evolutions.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species?.name
 
 
                 val thirdEvoMinLeve =
-                    pokemon.evolutions.chain.evolves_to[0].evolves_to?.get(0)?.evolution_details?.get(
+                    pokemon.evolutions.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.evolution_details?.get(
                         0
                     )?.min_level
 

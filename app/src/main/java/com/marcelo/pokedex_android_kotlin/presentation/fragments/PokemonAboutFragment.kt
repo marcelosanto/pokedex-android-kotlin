@@ -35,7 +35,7 @@ class PokemonAboutFragment : Fragment() {
         val bundle = arguments
         val pokemon = bundle!!.getSerializable("message") as ModelPokemon
 
-        val list = weaknessPokemon(pokemon!!.types[0].name)
+        val list = weaknessPokemon(pokemon.types[0].name)
 
         for (item in list.indices) {
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
-import com.marcelo.pokedex_android_kotlin.data.model.Pokemon
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.ActivityMainBinding
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModelFactory
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: PokemonAdapter
 
-    private var pokemonsArraysList = mutableListOf<Pokemon>()
+    private var pokemonsArraysList = mutableListOf<ModelPokemon>()
 
     private lateinit var recyclerView: RecyclerView
 
@@ -68,17 +68,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                // adapter.search(newText)
+                updateList(viewModel.filterList(newText, pokemonsArraysList))
                 return true
             }
 
         })
     }
 
+    private fun updateList(filteredList: MutableList<ModelPokemon>) {
+        adapter.differ.submitList(filteredList)
+    }
+
     private fun getAllPokemons() {
         viewModel.getAllPokemons(offset)
 
         viewModel.pokemons.observe(this, Observer {
+            pokemonsArraysList = it as MutableList<ModelPokemon>
             adapter.differ.submitList(it)
         })
     }

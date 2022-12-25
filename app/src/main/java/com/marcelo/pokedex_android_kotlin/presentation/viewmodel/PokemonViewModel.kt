@@ -58,69 +58,22 @@ class PokemonViewModel(private val app: Application, private val getAllPokemons:
                 }
             })
         }
-
-
     }
 
-
-    fun search(query: String) {
-        //differ.submitList(tempList.filter { it.name.contains(query, true) })
+    fun filterList(filter: String, list: MutableList<ModelPokemon>): MutableList<ModelPokemon> {
+        val filteredList = mutableListOf<ModelPokemon>()
+        for (item in list) {
+            if (item.name.contains(filter, ignoreCase = true) || item.id.contains(
+                    filter,
+                    ignoreCase = true
+                )
+            ) {
+                filteredList.add(item)
+            }
+        }
+        
+        return filteredList
     }
-
-
-//    private fun loadPokemons() {
-//        val pokemonsApiResult = PokemonRepository.getListPokemons(15)
-//
-//        if (pokemonsApiResult != null) {
-//            pokemonsApiResult.results.let { it ->
-//                pokemons.postValue(it.map { pokemonResult ->
-//                    val id = pokemonResult.url
-//                        .replace("https://pokeapi.co/api/v2/pokemon/", "")
-//                        .replace("/", "").toInt()
-//
-//                    val pokemonApiResult = PokemonRepository.getPokemon(id)
-//                    val pokemonSpecies = PokemonRepository.getPokemonSpecies(id)
-//
-//                    var species = pokemonSpecies?.genera!![7].genus
-//                    var flavorText = pokemonSpecies.flavor_text_entries[7].flavor_text
-//                    var baseHappiness = pokemonSpecies.base_happiness
-//                    var captureRate = pokemonSpecies.capture_rate
-//                    var growthRate = pokemonSpecies.growth_rate
-//
-//                    var evolutionUrl = pokemonSpecies.evolution_chain.url
-//                        .replace("https://pokeapi.co/api/v2/evolution-chain/", "")
-//                        .replace("/", "").toInt()
-//
-//                    val pokemonEvolucao = PokemonRepository.getPokemonEvolutions(evolutionUrl)
-//
-//                    //Log.w("EEEE", "loadPokemons: $pokemonEvolucao")
-//
-//                    pokemonApiResult?.let {
-//                        Pokemon(
-//                            pokemonApiResult.id,
-//                            pokemonApiResult.name,
-//                            pokemonApiResult.weight,
-//                            pokemonApiResult.height,
-//                            pokemonApiResult.base_experience,
-//                            pokemonApiResult.types.map { type ->
-//                                type.type
-//                            },
-//                            pokemonApiResult.abilities.map { ability -> ability.ability },
-//                            species,
-//                            flavorText,
-//                            baseHappiness,
-//                            captureRate,
-//                            growthRate,
-//                            pokemonEvolucao!!,
-//                            pokemonApiResult.stats
-//
-//                        )
-//
-//                    }
-//                })
-//            }
-//        }
-//    }
 
 
 }
