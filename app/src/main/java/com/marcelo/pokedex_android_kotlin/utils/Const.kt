@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.card.MaterialCardView
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 
@@ -481,6 +482,40 @@ object Const {
             }
 
         }
+    }
+
+    private fun buttonAction(
+        type: String,
+        cardView: MaterialCardView,
+        isBoolType: Boolean,
+        imgCardView: ImageView,
+        array: ArrayList<String>
+    ) {
+        var isTrueType = isBoolType
+
+        cardView.setOnClickListener {
+            isTrueType = if (isTrueType) {
+                cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
+                imgCardView.setColorFilter(Color.WHITE)
+                array.add(type)
+                !isTrueType
+            } else {
+                cardView.setCardBackgroundColor(Color.WHITE)
+                imgCardView.setColorFilter(Color.parseColor(colorType(type)))
+                array.remove(type)
+                !isTrueType
+            }
+
+        }
+    }
+
+    private fun activeFilterInTypesOrWeaknesses(
+        type: String,
+        cardView: MaterialCardView,
+        imgCardView: ImageView
+    ) {
+        cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
+        imgCardView.setColorFilter(Color.WHITE)
     }
 
     fun findId(url: String) = url.dropLast(1).takeLastWhile { it.isDigit() }.toInt()

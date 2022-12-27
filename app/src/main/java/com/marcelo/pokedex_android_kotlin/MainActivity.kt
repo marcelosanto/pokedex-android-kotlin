@@ -1,22 +1,18 @@
 package com.marcelo.pokedex_android_kotlin
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.ActivityMainBinding
 import com.marcelo.pokedex_android_kotlin.presentation.components.BottomFilterDialog
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModelFactory
-import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
 import com.marcelo.pokedex_android_kotlin.utils.Const.highNumberPokemonFirst
 import com.marcelo.pokedex_android_kotlin.utils.Const.orderByNameAandZ
 import com.marcelo.pokedex_android_kotlin.utils.Const.orderByNameZandA
@@ -79,10 +75,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun updateList(filteredList: MutableList<ModelPokemon>) {
-        adapter.differ.submitList(filteredList)
-    }
-
     private fun getAllPokemons() {
         viewModel.getAllPokemons(offset)
 
@@ -99,40 +91,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun buttonAction(
-        type: String,
-        cardView: MaterialCardView,
-        isBoolType: Boolean,
-        imgCardView: ImageView,
-        array: ArrayList<String>
-    ) {
-        var isTrueType = isBoolType
-
-        cardView.setOnClickListener {
-            isTrueType = if (isTrueType) {
-                cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
-                imgCardView.setColorFilter(Color.WHITE)
-                array.add(type)
-                !isTrueType
-            } else {
-                cardView.setCardBackgroundColor(Color.WHITE)
-                imgCardView.setColorFilter(Color.parseColor(colorType(type)))
-                array.remove(type)
-                !isTrueType
-            }
-
-        }
+    fun updateList(filteredList: MutableList<ModelPokemon>) {
+        adapter.differ.submitList(filteredList)
     }
-
-    private fun activeFilterInTypesOrWeaknesses(
-        type: String,
-        cardView: MaterialCardView,
-        imgCardView: ImageView
-    ) {
-        cardView.setCardBackgroundColor(Color.parseColor(colorType(type)))
-        imgCardView.setColorFilter(Color.WHITE)
-    }
-
+    
     private fun showSortFilter() {
 
         val bottomSheetDialog = BottomFilterDialog()
