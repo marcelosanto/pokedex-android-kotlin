@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.marcelo.pokedex_android_kotlin.R
+import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 
 object Const {
     fun changeColorForBackandLabel(
@@ -483,4 +484,19 @@ object Const {
     }
 
     fun findId(url: String) = url.dropLast(1).takeLastWhile { it.isDigit() }.toInt()
+
+    fun orderByNameZandA(filteredList: MutableList<ModelPokemon>) =
+        (filteredList.sortedByDescending { it.name }).toMutableList()
+
+    fun orderByNameAandZ(filteredList: MutableList<ModelPokemon>) =
+        (filteredList.sortedBy { it.name }).toMutableList()
+
+
+    fun highNumberPokemonFirst(filteredList: MutableList<ModelPokemon>) =
+        (filteredList.sortedByDescending { it.id.toInt() }).toMutableList()
+
+
+    fun smallNumberPokemonFirst(filteredList: MutableList<ModelPokemon>) =
+        (filteredList.sortedBy { it.id.toInt() }).toMutableList()
+
 }

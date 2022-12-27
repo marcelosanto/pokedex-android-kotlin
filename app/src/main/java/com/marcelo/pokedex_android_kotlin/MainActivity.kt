@@ -1,10 +1,10 @@
 package com.marcelo.pokedex_android_kotlin
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.*
+import android.widget.ImageView
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +17,10 @@ import com.marcelo.pokedex_android_kotlin.presentation.components.BottomFilterDi
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModel
 import com.marcelo.pokedex_android_kotlin.presentation.viewmodel.PokemonViewModelFactory
 import com.marcelo.pokedex_android_kotlin.utils.Const.colorType
+import com.marcelo.pokedex_android_kotlin.utils.Const.highNumberPokemonFirst
+import com.marcelo.pokedex_android_kotlin.utils.Const.orderByNameAandZ
+import com.marcelo.pokedex_android_kotlin.utils.Const.orderByNameZandA
+import com.marcelo.pokedex_android_kotlin.utils.Const.smallNumberPokemonFirst
 import com.marcelo.pokedex_android_kotlin.view.PokemonActivity
 import com.marcelo.pokedex_android_kotlin.view.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateList(filteredList: MutableList<ModelPokemon>) {
+    fun updateList(filteredList: MutableList<ModelPokemon>) {
         adapter.differ.submitList(filteredList)
     }
 
@@ -129,60 +133,31 @@ class MainActivity : AppCompatActivity() {
         imgCardView.setColorFilter(Color.WHITE)
     }
 
-
-    @SuppressLint("InflateParams")
     private fun showSortFilter() {
 
         val bottomSheetDialog = BottomFilterDialog()
         bottomSheetDialog.show(supportFragmentManager, "myBottomSheetDialog")
         bottomSheetDialog.setOnItemClickListener {
-            println("clicou $it")
+            when (it) {
+                "small" -> {
+                    updateList(smallNumberPokemonFirst(pokemonsArraysList))
+                    bottomSheetDialog.dismiss()
+                }
+                "high" -> {
+                    updateList(highNumberPokemonFirst(pokemonsArraysList))
+                    bottomSheetDialog.dismiss()
+                }
+                "a-z" -> {
+                    updateList(orderByNameAandZ(pokemonsArraysList))
+                    bottomSheetDialog.dismiss()
+                }
+                "z-a" -> {
+                    updateList(orderByNameZandA(pokemonsArraysList))
+                    bottomSheetDialog.dismiss()
+                }
+            }
         }
 
-//        val dialog = BottomSheetDialog(this, R.style.MyTransparentBottomSheetDialogTheme)
-//        dialog.setContentView(R.layout.bottom_sheet_item_sort)
-//
-//        val btnSmall = dialog.findViewById<Button>(R.id.btn_small)
-//        val btnHigh = dialog.findViewById<Button>(R.id.btn_high)
-//        val btnAZ = dialog.findViewById<Button>(R.id.btn_a_z)
-//        val btnZA = dialog.findViewById<Button>(R.id.btn_z_a)
-//
-//
-//        btnSmall?.setOnClickListener {
-//            smallNumberPokemonFirst(pokemonsArraysList)
-//            dialog.dismiss()
-//        }
-//        btnHigh?.setOnClickListener {
-//            dialog.dismiss()
-//            highNumberPokemonFirst(pokemonsArraysList)
-//        }
-//        btnAZ?.setOnClickListener {
-//            dialog.dismiss()
-//            orderByNameAandZ(pokemonsArraysList)
-//        }
-//        btnZA?.setOnClickListener {
-//            dialog.dismiss()
-//            orderByNameZandA(pokemonsArraysList)
-//        }
-//
-//        dialog.show()
-    }
-
-
-    private fun orderByNameZandA(filteredList: MutableList<ModelPokemon>) {
-        adapter.differ.submitList(filteredList.sortedByDescending { it.name })
-    }
-
-    private fun orderByNameAandZ(filteredList: MutableList<ModelPokemon>) {
-        adapter.differ.submitList(filteredList.sortedBy { it.name })
-    }
-
-    private fun highNumberPokemonFirst(filteredList: MutableList<ModelPokemon>) {
-        adapter.differ.submitList(filteredList.sortedByDescending { it.id.toInt() })
-    }
-
-    private fun smallNumberPokemonFirst(filteredList: MutableList<ModelPokemon>) {
-        adapter.differ.submitList(filteredList.sortedBy { it.id.toInt() })
     }
 }
 

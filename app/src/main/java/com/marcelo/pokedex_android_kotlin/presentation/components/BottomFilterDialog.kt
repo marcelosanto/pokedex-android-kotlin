@@ -25,6 +25,15 @@ class BottomFilterDialog() : BottomSheetDialogFragment() {
         binding.btnSmall.setOnClickListener {
             onItemClickListener?.invoke("small")
         }
+        binding.btnHigh.setOnClickListener {
+            onItemClickListener?.invoke("high")
+        }
+        binding.btnAZ.setOnClickListener {
+            onItemClickListener?.invoke("a-z")
+        }
+        binding.btnZA.setOnClickListener {
+            onItemClickListener?.invoke("z-a")
+        }
     }
 
     private var onItemClickListener: ((String) -> Unit)? = null
