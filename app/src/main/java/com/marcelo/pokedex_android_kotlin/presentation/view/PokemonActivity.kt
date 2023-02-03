@@ -18,34 +18,26 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.marcelo.pokedex_android_kotlin.R
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
+import com.marcelo.pokedex_android_kotlin.databinding.ActivityPokemonBinding
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.EvolutionFragment
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.PokemonAboutFragment
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.StatsFragment
 import com.marcelo.pokedex_android_kotlin.presentation.fragments.captalizerText
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForBackandLabelConstraint
+import com.marcelo.pokedex_android_kotlin.utils.Const.formattedNumber
 
 class PokemonActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityPokemonBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityPokemonBinding.inflate(layoutInflater)
 
-        setContentView(R.layout.activity_pokemon)
+        setContentView(binding.root)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar2)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar2)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
-
-        val imagemView: ImageView = findViewById(R.id.imageView)
-        val pokemonId: TextView = findViewById(R.id.txt_pokemonId)
-        val pokemonName: TextView = findViewById(R.id.txt_pokemonName)
-        val txtType01 = findViewById<TextView>(R.id.txt_type01)
-        val imgType01 = findViewById<ImageView>(R.id.img_type01)
-        val type01Layout = findViewById<CardView>(R.id.type01_layout)
-        val txtType02 = findViewById<TextView>(R.id.txt_type02)
-        val imgType02 = findViewById<ImageView>(R.id.img_type02)
-        val type02Layout = findViewById<CardView>(R.id.type02_layout)
-        val constraintLayout = findViewById<ConstraintLayout>(R.id.pokemonConstrain)
 
         val pokemonInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             intent.getSerializableExtra("POKEMON", ModelPokemon::class.java)!!
@@ -55,31 +47,34 @@ class PokemonActivity : AppCompatActivity() {
         setupViews(pokemonInfo)
 
         pokemonInfo.let { pokemon ->
-            Glide.with(this).load(pokemon.imageUrl).into(imagemView)
-            pokemonId.text = "#${formattedNumber(pokemon.id)}"
-            pokemonName.text = captalizerText(pokemon.name)
-            txtType01.text = captalizerText(pokemon.types[0].name)
-
-            changeColorForBackandLabelConstraint(
-                pokemon.types[0].name,
-                imgType01,
-                constraintLayout,
-                type01Layout
-            )
-
-            if (pokemon.types.size > 1) {
-                type02Layout.visibility = View.VISIBLE
-                txtType02.text = captalizerText(pokemon.types[1].name)
+            binding.run {
+                Glide.with(this@PokemonActivity).load(pokemon.imageUrl).into(imageView)
+                txtPokemonId.text = "#${formattedNumber(pokemon.id)}"
+                txtPokemonName.text = captalizerText(pokemon.name)
+                txtType01.text = captalizerText(pokemon.types[0].name)
 
                 changeColorForBackandLabelConstraint(
-                    pokemon.types[1].name,
-                    imgType02,
-                    null,
-                    type02Layout
+                    pokemon.types[0].name,
+                    imgType01,
+                    pokemonConstrain,
+                    type01Layout
                 )
-            } else {
-                type02Layout.visibility = View.INVISIBLE
+
+                if (pokemon.types.size > 1) {
+                    type02Layout.visibility = View.VISIBLE
+                    txtType02.text = captalizerText(pokemon.types[1].name)
+
+                    changeColorForBackandLabelConstraint(
+                        pokemon.types[1].name,
+                        imgType02,
+                        null,
+                        type02Layout
+                    )
+                } else {
+                    type02Layout.visibility = View.INVISIBLE
+                }
             }
+
 
         }
 
@@ -87,19 +82,18 @@ class PokemonActivity : AppCompatActivity() {
     }
 
     private fun setupViews(pokemonInfo: ModelPokemon) {
-        val tabLayout: TabLayout = findViewById(R.id.add_tab)
-        val viewPager: ViewPager2 = findViewById(R.id.add_viewpager)
         val adapter = TabViewPagerAdapter(this, pokemonInfo)
-        viewPager.adapter = adapter
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = getString(adapter.tabs[position])
-        }.attach()
+        binding.run {
+            addViewpager.adapter = adapter
+
+            TabLayoutMediator(addTab, addViewpager) { tab, position ->
+                tab.text = getString(adapter.tabs[position])
+            }.attach()
+        }
+
     }
 }
-
-fun formattedNumber(id: String) = id.toString().padStart(3, '0')
-
 
 class TabViewPagerAdapter(fa: FragmentActivity, pokemonInfo: ModelPokemon) :
     FragmentStateAdapter(fa) {

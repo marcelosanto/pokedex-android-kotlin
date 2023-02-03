@@ -534,4 +534,6 @@ object Const {
     fun smallNumberPokemonFirst(filteredList: MutableList<ModelPokemon>) =
         (filteredList.sortedBy { it.id.toInt() }).toMutableList()
 
+    fun formattedNumber(id: String) = id.toString().padStart(3, '0')
+
 }
