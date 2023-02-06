@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.domain.usecase.GetAllPokemons
 import com.marcelo.pokedex_android_kotlin.utils.Const.findId
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -14,9 +15,11 @@ class PokemonViewModel(private val app: Application, private val getAllPokemons:
     AndroidViewModel(app) {
     val pokemons: MutableLiveData<List<ModelPokemon?>> = MutableLiveData()
 
-    fun getAllPokemons(offset: Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun getAllPokemons(offset: Int) = CoroutineScope(Dispatchers.IO).launch {
         val apiResult = getAllPokemons.execute(offset)
         val resul = apiResult.body()?.results
+
+        println("Courotine scope name: ${Thread.currentThread().name}")
 
         resul.let {
             pokemons.postValue(it?.map {

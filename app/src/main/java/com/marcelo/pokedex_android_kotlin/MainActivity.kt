@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     fun updateList(filteredList: MutableList<ModelPokemon>) {
         adapter.differ.submitList(filteredList)
+        binding.rvPokemons.smoothScrollToPosition(0)
     }
     
     private fun showSortFilter() {
