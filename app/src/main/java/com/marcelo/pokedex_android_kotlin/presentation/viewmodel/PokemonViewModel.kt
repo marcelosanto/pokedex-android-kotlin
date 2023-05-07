@@ -19,8 +19,6 @@ class PokemonViewModel(private val app: Application, private val getAllPokemons:
         val apiResult = getAllPokemons.execute(offset)
         val resul = apiResult.body()?.results
 
-        println("Courotine scope name: ${Thread.currentThread().name}")
-
         resul.let {
             pokemons.postValue(it?.map {
                 val pokemon = getAllPokemons.pokemonInfo(findId(it.url))
