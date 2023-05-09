@@ -24,6 +24,9 @@ jobs:
         
       - name: Build Android
         run: ./gradlew assembleRelease
+        
+      - name: Android Build
+        run: ls app/build/outputs/apk/debug/
 
       - name: Create Release
         id: create_release
@@ -46,6 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.POKEMON }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: android/build/outputs/apk/debug/android-debug.apk
+          asset_path: app/build/outputs/apk/debug/android-debug.apk
           asset_name: android-debug.apk
           asset_content_type: application/vnd.android.package-archive
