@@ -1,26 +1,54 @@
-name: Android CI
+name: Build and Release App
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ master ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Grant execute permission
+        run: chmod +x ./gradlew
+        
+      - name: Build Android
+        run: ./gradlew android:assembleDebug
+
+      - name: List files in desktop build folder
+        run: ls android/build/outputs/apk/debug/
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.POKEMON }}
+        with:
+          tag_name: v1.0.1
+          release_name: Release v1.0.1
+          body: |
+            Release notes for version 1.0.1
+            - fix: smoothScrollToPosition on update list
+          draft: false
+          prerelease: false
+
+      - name: Upload Android build
+        id: upload_android
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.POKEMON }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: android/build/outputs/apk/debug/android-debug.apk
+          asset_name: android-debug.apk
+          asset_content_type: application/vnd.android.package-archive
