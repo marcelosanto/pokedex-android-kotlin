@@ -1,5 +1,7 @@
 # Pokedex Kotlin 
 
+[![Build and Release App](https://github.com/marcelosanto/pokedex-android-kotlin/actions/workflows/android.yml/badge.svg?branch=main)](https://github.com/marcelosanto/pokedex-android-kotlin/actions/workflows/android.yml)
+
 ### Sobre
 
 Esse projeto foi feito com base no desafio proposto por [DevChallenge](https://devchallenge.vercel.app/), com a proposta de montar uma Pokedex, consumido a api de pokemon.
