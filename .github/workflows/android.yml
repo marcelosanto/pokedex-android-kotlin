@@ -23,7 +23,7 @@ jobs:
         run: chmod +x ./gradlew
         
       - name: Build Android
-        run: ./gradlew android:assembleDebug
+        run: ./gradlew assembleRelease
 
       - name: List files in desktop build folder
         run: ls android/build/outputs/apk/debug/
