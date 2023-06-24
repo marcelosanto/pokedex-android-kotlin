@@ -34,11 +34,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.POKEMON }}
         with:
-          tag_name: v1.0.1
-          release_name: Release v1.0.1
+          tag_name: v1.0.2
+          release_name: Release v1.0.2
           body: |
-            Release notes for version 1.0.1
-            - fix: smoothScrollToPosition on update list
+            Release notes for version 1.0.2
+            - fix: update dependencies
           draft: false
           prerelease: false
 
