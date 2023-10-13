@@ -1,6 +1,7 @@
 # Pokedex Kotlin 
 
 [![Build and Release App](https://github.com/marcelosanto/pokedex-android-kotlin/actions/workflows/android.yml/badge.svg?branch=main)](https://github.com/marcelosanto/pokedex-android-kotlin/actions/workflows/android.yml)
+[![Latest release]([https://img.shields.io/github/v/release/marcelosanto/pokedex-android-kotlin?color=brightgreen&label=latest%20release)](https://img.shields.io/github/v/release/marcelosanto/pokedex-android-kotlin)
 
 ### Sobre
 
