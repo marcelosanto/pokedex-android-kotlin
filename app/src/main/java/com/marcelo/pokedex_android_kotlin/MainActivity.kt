@@ -2,6 +2,7 @@ package com.marcelo.pokedex_android_kotlin
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
 
-    val offset = 0
+   // val offset = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         initRecyclerView()
-        getAllPokemons()
+        getAllPokemons(0)
 
         binding.btnSort.setOnClickListener { showSortFilter() }
 
@@ -73,9 +74,11 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+
     }
 
-    private fun getAllPokemons() {
+    private fun getAllPokemons(offset: Int) {
         viewModel.getAllPokemons(offset)
 
         viewModel.pokemons.observe(this, Observer {
@@ -85,17 +88,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        binding.rvPokemons.let { rv ->
+        val rv = binding.rvPokemons
             rv.layoutManager = LinearLayoutManager(this)
             rv.adapter = adapter
-        }
+
+            rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+                    val totalItemCount = adapter.itemCount
+
+                    if (lastVisibleItemPosition == totalItemCount - 1) {
+                        getAllPokemons(20)
+                        Log.d("TAG", "onScrolled: CHEGUEI AO FIM")
+                    }
+                }
+            })
+
+
+
     }
 
     fun updateList(filteredList: MutableList<ModelPokemon>) {
         adapter.differ.submitList(filteredList)
         binding.rvPokemons.smoothScrollToPosition(0)
     }
-    
+
     private fun showSortFilter() {
 
         val bottomSheetDialog = BottomFilterDialog()

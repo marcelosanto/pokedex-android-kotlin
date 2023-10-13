@@ -34,11 +34,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.POKEMON }}
         with:
-          tag_name: v1.0.2
-          release_name: Release v1.0.2
+          tag_name: v1.0.3
+          release_name: Release v1.0.3
           body: |
-            Release notes for version 1.0.2
+            Release notes for version 1.0.3
             - fix: update dependencies
+            - bug: test anda load +pokemons list after end rv
           draft: false
           prerelease: false
 

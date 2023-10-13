@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.databinding.FragmentEvolutionBinding
 import com.marcelo.pokedex_android_kotlin.utils.Const.changeColorForText
-import com.marcelo.pokedex_android_kotlin.utils.Const.findId
+import com.marcelo.pokedex_android_kotlin.utils.Const.getIdByURL
 
 
 class EvolutionFragment : Fragment() {
@@ -40,7 +40,7 @@ class EvolutionFragment : Fragment() {
 
         if (pokemon.evolutions.chain?.evolves_to?.isEmpty() == true) {
             val pokemonName = pokemon.evolutions.chain.species?.name
-            val id = pokemon.evolutions.chain.species?.url?.let { findId(it) }
+            val id = pokemon.evolutions.chain.species?.url?.let { getIdByURL(it) }
 
             binding.layoutPokemonNotEvolution.visibility = View.VISIBLE
 
@@ -53,7 +53,7 @@ class EvolutionFragment : Fragment() {
         try {
             //primeiro pokemon
             val pokemonName = pokemon.evolutions.chain?.species?.name
-            val id = pokemon.evolutions.chain?.species?.url?.let { findId(it) }
+            val id = pokemon.evolutions.chain?.species?.url?.let { getIdByURL(it) }
 
             if (pokemon.evolutions.chain?.evolves_to?.get(0)?.species != null) {
 
@@ -64,7 +64,7 @@ class EvolutionFragment : Fragment() {
                     pokemon.evolutions.chain.evolves_to[0].evolution_details?.get(0)?.min_level
 
                 val secondPokemonId =
-                    pokemon.evolutions.chain.evolves_to[0].species?.url?.let { findId(it) }
+                    pokemon.evolutions.chain.evolves_to[0].species?.url?.let { getIdByURL(it) }
 
                 binding.layoutPokemonNotEvolution.visibility = View.GONE
                 binding.firstLayout.visibility = View.VISIBLE
@@ -90,7 +90,7 @@ class EvolutionFragment : Fragment() {
             val secondPokemon = pokemon.evolutions.chain?.evolves_to?.get(0)?.species?.name
 
             val secondPokemonId =
-                pokemon.evolutions.chain?.evolves_to?.get(0)?.species?.url?.let { findId(it) }
+                pokemon.evolutions.chain?.evolves_to?.get(0)?.species?.url?.let { getIdByURL(it) }
 
             if (pokemon.evolutions.chain?.evolves_to?.get(0)?.evolves_to?.get(0)?.species != null) {
 
@@ -105,7 +105,7 @@ class EvolutionFragment : Fragment() {
 
                 val thirdPokemonId =
                     pokemon.evolutions.chain.evolves_to.get(0).evolves_to?.get(0)?.species?.url?.let {
-                        findId(
+                        getIdByURL(
                             it
                         )
                     }

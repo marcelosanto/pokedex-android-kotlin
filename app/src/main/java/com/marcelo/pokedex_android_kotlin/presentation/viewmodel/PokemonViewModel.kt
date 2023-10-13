@@ -3,10 +3,9 @@ package com.marcelo.pokedex_android_kotlin.presentation.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.marcelo.pokedex_android_kotlin.data.model.ModelPokemon
 import com.marcelo.pokedex_android_kotlin.domain.usecase.GetAllPokemons
-import com.marcelo.pokedex_android_kotlin.utils.Const.findId
+import com.marcelo.pokedex_android_kotlin.utils.Const.getIdByURL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,10 +20,10 @@ class PokemonViewModel(private val app: Application, private val getAllPokemons:
 
         resul.let {
             pokemons.postValue(it?.map {
-                val pokemon = getAllPokemons.pokemonInfo(findId(it.url))
-                val pokemonSpecies = getAllPokemons.pokemonSpecies(findId(it.url)).body()
+                val pokemon = getAllPokemons.pokemonInfo(getIdByURL(it.url))
+                val pokemonSpecies = getAllPokemons.pokemonSpecies(getIdByURL(it.url)).body()
                 val pokemonEvolutions =
-                    getAllPokemons.pokemonEvolutions(findId(pokemonSpecies?.evolution_chain!!.url))
+                    getAllPokemons.pokemonEvolutions(getIdByURL(pokemonSpecies?.evolution_chain!!.url))
                         .body()
 
                 var species = pokemonSpecies.genera[7].genus

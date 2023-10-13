@@ -518,7 +518,7 @@ object Const {
         imgCardView.setColorFilter(Color.WHITE)
     }
 
-    fun findId(url: String) = url.dropLast(1).takeLastWhile { it.isDigit() }.toInt()
+    fun getIdByURL(url: String) = url.dropLast(1).takeLastWhile { it.isDigit() }.toInt()
 
     fun orderByNameZandA(filteredList: MutableList<ModelPokemon>) =
         (filteredList.sortedByDescending { it.name }).toMutableList()
